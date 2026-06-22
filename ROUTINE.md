@@ -2,6 +2,32 @@
 
 These instructions are for the scheduled run (daily, 07:00). Follow them exactly to keep runs cheap and the knowledge base consistent.
 
+## Branch model (read first)
+
+There is **one canonical branch** for this knowledge base: `main`. All accumulated
+state lives there. Each scheduled run may start on a fresh session branch (the web
+harness assigns one), but it MUST base its work on `main` and land its commit back
+on `main`. Never leave the day's work stranded on a throwaway session branch.
+
+At the **start** of every run:
+
+```bash
+git fetch origin main
+git checkout main 2>/dev/null || git checkout -b main origin/main
+git reset --hard origin/main   # ensure we build on the latest accumulated state, not a stale base
+```
+
+At the **end** of every run (see step 5), commit and push straight to `main`:
+
+```bash
+git push origin HEAD:main
+```
+
+> Why this matters: previously every run was created from the original seed commit,
+> so each day re-researched everything from scratch and pushed an isolated branch.
+> Always syncing to `main` first means each run sees yesterday's digest as the most
+> recent and only has to cover the new day.
+
 ## Budget
 
 - Keep each run short: **3–5 searches maximum** (Perplexity or web search).
@@ -11,6 +37,7 @@ These instructions are for the scheduled run (daily, 07:00). Follow them exactly
 
 ## Procedure
 
+0. Sync to `main` first (see "Branch model" above) so `digests/` reflects the latest accumulated state.
 1. Read the most recent file in `digests/` to know what is already covered. Do not re-research known items.
 2. Search for updates since the last digest date. Suggested queries (adapt dates):
    - `Claude Code changelog <month> <year>` — releases and features
@@ -22,7 +49,7 @@ These instructions are for the scheduled run (daily, 07:00). Follow them exactly
    - Add new entries **at the top** of the relevant section, dated `(YYYY-MM-DD)`.
    - Prune entries that are superseded or older than ~3 months unless still authoritative.
    - Tag items worth acting on at Lanzico with `[ACTION]`.
-5. Commit with message `kb: daily update YYYY-MM-DD` and push.
+5. Commit with message `kb: daily update YYYY-MM-DD`, then push to the canonical branch: `git push origin HEAD:main`. Do not open a new branch or PR for routine daily updates.
 
 ## Quality rules
 

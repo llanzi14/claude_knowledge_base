@@ -16,6 +16,7 @@ Stay informed on everything that improves how Claude is used at Lanzico and othe
 | `knowledge-base/best-practices.md` | Workflows, prompting patterns, configuration tips |
 | `knowledge-base/tools-and-integrations.md` | MCP servers, SDKs, skills, plugins, third-party tools |
 | `knowledge-base/community-insights.md` | Useful findings from Reddit, YouTube, social media |
+| `knowledge-base/suggestions-for-lucas.md` | Curated `[ACTION]` items and recommendations for Lanzico |
 | `digests/YYYY-MM-DD.md` | One short digest per run: what was new that day, with links |
 
 ## How to use it
