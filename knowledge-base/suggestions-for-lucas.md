@@ -1,14 +1,22 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-22)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-23)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
 
-### 1. `[ACTION]` Check Fable 5 billing — TODAY
-Fable 5 is free on subscription plans through June 22 (today). Usage credits are required from June 23. If Lanzico relies on Fable 5 for Claude Code sessions, verify your billing is set up to cover credits.
+### 0. `[ACTION]` Verify Fable 5 billing is active — URGENT
+Fable 5 free access ended June 22. Usage credits are required from today (June 23). If Lanzico's Claude Code sessions use Fable 5, confirm billing is configured or sessions will fail silently on the free quota.
 - [Pricing details](https://claudefa.st/blog/models/claude-fable-5-mythos-5)
+
+### 0a. `[ACTION]` Switch to `claude mcp login` for scripted MCP auth (v2.1.186)
+The new `claude mcp login <name>` / `claude mcp logout <name>` commands authenticate MCP servers from the CLI without the interactive menu. If any Lanzico automation scripts launch Claude Code with MCP connections, migrate them to this pattern — it's more robust in headless/CI environments.
+- [GitHub releases](https://github.com/anthropics/claude-code/releases)
+
+### 0b. `[ACTION]` Evaluate `!` bash auto-trigger for debugging workflows (v2.1.186)
+Shell commands prefixed with `!` now automatically trigger a Claude response to the output. This can eliminate the "what does this error mean?" follow-up in iterative debugging loops. Test it on a Lanzico project's build or test pipeline. If you want silent execution, add `"respondToBashCommands": false` to `.claude/settings.json`.
+- [GitHub releases](https://github.com/anthropics/claude-code/releases)
 
 ### 2. `[ACTION]` Enable `attribution.sessionUrl: false` in client-facing repos
 As of v2.1.183, you can omit the `claude.ai` session link from git commits and PRs via the `attribution.sessionUrl` setting. If Lanzico pushes commits clients can see, this is worth enabling now.

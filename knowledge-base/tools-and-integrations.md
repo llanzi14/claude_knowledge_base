@@ -4,6 +4,9 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
 ## Claude Code Built-in Features
 
+- **`claude mcp login/logout <name>`** (2026-06-23) — authenticate and deauthenticate MCP servers from the CLI without the interactive `/mcp` menu. Essential for scripted, headless, or CI environments. `[ACTION]` Switch to `claude mcp login` for any automated scripts that need MCP access. [GitHub releases](https://github.com/anthropics/claude-code/releases)
+- **`!` bash commands auto-trigger Claude responses** (2026-06-23) — shell commands prefixed with `!` now produce an immediate Claude reply to the output. Disable with `"respondToBashCommands": false` in settings if you want silent execution. `[ACTION]` Test in iterative debugging workflows — could eliminate manual "what does this output mean?" prompts. [GitHub releases](https://github.com/anthropics/claude-code/releases)
+- **`CLAUDE_CODE_MAX_RETRIES` cap raised to 15** (2026-06-23) — useful for workflows in flaky network environments or high-concurrency agent runs. [GitHub releases](https://github.com/anthropics/claude-code/releases)
 - **Skills in nested directories** (2026-06-22) — as of v2.1.178, skills placed in nested `.claude/skills/` subdirectories load locally without `--global` flag. Enables per-feature or per-service skill scoping in monorepos. `[ACTION]` Restructure Lanzico skills into per-service subdirectories if needed. [Changelog](https://code.claude.com/docs/en/changelog)
 - **Agent teams via direct Agent tool** (2026-06-22) — `TeamCreate`/`TeamDelete` removed in v2.1.178; teams are now implicit — spawn subagents directly with the Agent tool. Simpler orchestration model. [Changelog](https://code.claude.com/docs/en/changelog)
 - **`/config key=value` shorthand** (2026-06-22) — change any config setting from within a session prompt (e.g., `/config thinking=false`, `/config model=fable-5`). [Changelog](https://code.claude.com/docs/en/changelog)
@@ -18,6 +21,10 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 - **Workload Identity Federation** (2026-06-22) — short-lived scoped credentials replacing static API keys; integrates with AWS IAM, GCP, and other identity providers. `[ACTION]` Replace hardcoded API keys in Lanzico projects with WIF credentials. [Releasebot](https://releasebot.io/updates/anthropic)
 - **Claude Managed Agents** (2026-06-22) — agents run in enterprise-controlled sandboxes connected to private MCP servers; all execution and tool calls stay within enterprise boundaries. [Releasebot](https://releasebot.io/updates/anthropic)
 - **Dreaming** (2026-06-22) — scheduled process reviewing past agent sessions to extract patterns and update shared memory. Improves recall across runs without manual intervention. [Releasebot](https://releasebot.io/updates/anthropic)
+
+## Design
+
+- **Claude Design — sidebar + Code sync** (2026-06-23) — Claude Design now lives in the Claude desktop app sidebar (also at claude.ai/design); updated features include tighter two-way Claude Code sync, direct canvas editing, and stronger layout controls. `[ACTION]` Evaluate for design-to-code handoff on Lanzico client projects. [Anthropic](https://www.anthropic.com/news)
 
 ## Security
 

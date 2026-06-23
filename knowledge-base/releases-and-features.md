@@ -4,7 +4,7 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
 ## Models
 
-- **Claude Fable 5 — subscription free access ends June 23** (2026-06-22) — included at no extra cost through June 22; usage credits required from June 23 onwards. `[ACTION]` Check Lanzico's subscription/billing for Fable 5 usage after June 23. [claudefa.st](https://claudefa.st/blog/models/claude-fable-5-mythos-5)
+- **Claude Fable 5 — usage credits now required** (2026-06-23) — free access on all subscription plans ended June 22. Credits required from June 23 onwards. `[ACTION]` Verify Lanzico billing covers Fable 5 credits if used in Claude Code. [claudefa.st](https://claudefa.st/blog/models/claude-fable-5-mythos-5)
 - **Claude Mythos 5 pricing** (2026-06-22) — $10 input / $50 output per million tokens (2× Opus 4.8, 2× GPT-5.5 input). Available to Glasswing partners; public access via Fable 5 for now. [Finout](https://www.finout.io/blog/claude-fable-5-mythos-5-pricing-benchmarks)
 - **Claude Fable 5 benchmarks** (2026-06-22) — 80.3% SWE-Bench Pro (Opus 4.8: 69.2%, GPT-5.5: 58.6%, Gemini 3.1 Pro: 54.2%); 1M context window; 128K max output; always-on adaptive thinking; Jan 2026 knowledge cutoff. [Vellum](https://www.vellum.ai/blog/claude-fable-5-and-mythos-5-benchmarks-explained)
 - **Claude Fable 5** (2026-06-12) — Anthropic's newest generally available model; first of the Claude 5 family, a "Mythos-class" tier above Opus. Available in Claude Code. [Releasebot](https://releasebot.io/updates/anthropic/claude)
@@ -12,6 +12,7 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
 ## Claude Code
 
+- **v2.1.186 — MCP CLI auth + bash auto-triggers + 33 fixes** (2026-06-23) — `claude mcp login/logout <name>` authenticates MCP servers from the CLI; `!` bash commands now auto-trigger Claude responses (disable: `"respondToBashCommands": false`); `/workflows` status filter (press `f`); Skills section added to `/plugin` Installed tab; `CLAUDE_CODE_MAX_RETRIES` cap raised to 15; `Agent(type)` deny rules now enforce on named subagent spawns (security fix); 33 bug fixes including streaming failures after sleep, subagent scroll, session cost display. `[ACTION]` Use `claude mcp login` for scripted/headless MCP auth; evaluate `respondToBashCommands` for automated workflows. [GitHub releases](https://github.com/anthropics/claude-code/releases)
 - **v2.1.185 — stream-stall hint** (2026-06-22) — now fires after 20s silence (was 10s); message changed to "Waiting for API response · will retry in…". [Changelog](https://code.claude.com/docs/en/changelog)
 - **v2.1.183 — auto mode safety + model warnings** (2026-06-22) — destructive git commands (`git reset --hard`, `git checkout --`, `git clean -fd`, `git stash drop`) blocked when user didn't ask; `git commit --amend` blocked if commit wasn't made by agent; IaC destroy (`terraform destroy`, `pulumi destroy`, `cdk destroy`) blocked unless explicitly requested. Model deprecation warnings now shown in print mode and agent frontmatter. New `attribution.sessionUrl` setting omits Claude session link from commits/PRs. `[ACTION]` Consider setting `attribution.sessionUrl: false` if client-facing commits are made. [Changelog](https://code.claude.com/docs/en/changelog)
 - **v2.1.181 — /config shorthand + sandbox** (2026-06-22) — `/config key=value` to change settings from prompt (e.g., `/config thinking=false`); `sandbox.allowAppleEvents` opt-in for macOS; `CLAUDE_CLIENT_PRESENCE_FILE` env var to suppress mobile push notifications; Bun runtime upgraded to 1.4. [Changelog](https://code.claude.com/docs/en/changelog)
@@ -20,10 +21,13 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 - **Dynamic workflows** (2026-06-12) — ask Claude to create a workflow and it orchestrates tens to hundreds of background agents. [Changelog](https://code.claude.com/docs/en/changelog)
 - **Nested sub-agents** (2026-06-12) — sub-agents can spawn their own sub-agents, up to 5 levels deep. [Changelog](https://code.claude.com/docs/en/changelog)
 - **Plugin marketplace search** (2026-06-12) — search bar added when browsing marketplace plugins in `/plugin`. [Changelog](https://code.claude.com/docs/en/changelog)
-- Latest version at time of writing: **2.1.185** (2026-06-20). [GitHub releases](https://github.com/anthropics/claude-code/releases)
+- Latest version at time of writing: **2.1.186** (2026-06-22). [GitHub releases](https://github.com/anthropics/claude-code/releases)
 
 ## Platform & Enterprise
 
+- **Auto mode on Bedrock/Vertex/Foundry** (2026-06-23) — auto mode now available on third-party inference providers for Opus 4.7 and Opus 4.8; replaces permission prompts with background safety checks. `[ACTION]` Relevant if Lanzico runs Claude Code via Bedrock or Vertex. [Changelog](https://code.claude.com/docs/en/changelog)
+- **Claude on Apple Platforms** (2026-06-23) — Foundation Models framework integration; iOS 27/macOS 27/iPadOS 27/visionOS 27 developers can pass typed Apple on-device API outputs directly to Claude requests. [Anthropic](https://www.anthropic.com/news)
+- **Enterprise custom role admin permissions** (2026-06-23) — custom roles can now grant admin-level billing/privacy access without requiring full Owner role. [Platform release notes](https://platform.claude.com/docs/en/release-notes/overview)
 - **Claude Platform on AWS** (2026-06-22) — Claude API on Anthropic-managed infrastructure via AWS billing and IAM auth; covers Messages, Files, Batches, and Managed Agents APIs. `[ACTION]` Relevant if Lanzico is AWS-native. [Releasebot](https://releasebot.io/updates/anthropic)
 - **Workload Identity Federation** (2026-06-22) — replaces static API keys with short-lived scoped credentials; integrates with existing identity stack. `[ACTION]` Evaluate as a replacement for stored API keys. [Releasebot](https://releasebot.io/updates/anthropic)
 - **Dreaming** (2026-06-22) — scheduled agent process reviewing past sessions to surface patterns and update memory; improves agent behavior between runs. [Releasebot](https://releasebot.io/updates/anthropic)
