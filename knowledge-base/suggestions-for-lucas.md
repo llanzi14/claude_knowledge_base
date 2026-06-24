@@ -1,20 +1,24 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-22)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-24)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
 
-### 1. `[ACTION]` Check Fable 5 billing — TODAY
-Fable 5 is free on subscription plans through June 22 (today). Usage credits are required from June 23. If Lanzico relies on Fable 5 for Claude Code sessions, verify your billing is set up to cover credits.
-- [Pricing details](https://claudefa.st/blog/models/claude-fable-5-mythos-5)
+### 1. `[ACTION]` Keep production pinned to Opus 4.8 — Fable 5 still offline
+Fable 5 and Mythos 5 remain suspended under a US government export-control directive (active since June 12). No restoration timeline. Any session or API call targeting `claude-fable-5` will fail. Ensure all Lanzico automations, skills, and Claude Code configs explicitly reference `claude-opus-4-8` or `claude-sonnet-4-6`.
+- [Anthropic statement](https://www.anthropic.com/news/fable-mythos-access)
 
-### 2. `[ACTION]` Enable `attribution.sessionUrl: false` in client-facing repos
+### 2. `[ACTION]` Enable `sandbox.credentials: true` in automated run configs
+New in v2.1.187: prevents sandboxed agent commands from reading credential files or secret environment variables. This is a meaningful security control for any automated Lanzico workflow that runs in an environment with credentials present.
+- Add to `.claude/settings.json`: `"sandbox": { "credentials": true }`
+
+### 3. `[ACTION]` Enable `attribution.sessionUrl: false` in client-facing repos
 As of v2.1.183, you can omit the `claude.ai` session link from git commits and PRs via the `attribution.sessionUrl` setting. If Lanzico pushes commits clients can see, this is worth enabling now.
 - Add to `.claude/settings.json`: `"attribution": { "sessionUrl": false }`
 
-### 3. `[ACTION]` Replace stored API keys with Workload Identity Federation
+### 4. `[ACTION]` Replace stored API keys with Workload Identity Federation
 Anthropic now supports WIF — short-lived scoped credentials that integrate with AWS IAM, GCP, and other identity providers. This eliminates the risk of leaked long-lived API keys.
 - [Releasebot](https://releasebot.io/updates/anthropic)
 
@@ -22,21 +26,26 @@ Anthropic now supports WIF — short-lived scoped credentials that integrate wit
 
 ## New Workflows to Adopt
 
-### 4. Use `/btw` for side questions during long sessions
+### 5. `[ACTION]` Use Claude Design `/design-sync` for client work
+Claude Design now has a full overhaul: import a client's design system from GitHub, lock it so all AI-generated designs stay on-brand, and sync two-ways with Claude Code using `/design-sync` and `/design`. For Lanzico's client work involving design-to-code handoffs, this closes the loop between Figma/brand assets and coded components.
+- Run `/design-sync` from Claude Code to pull the design system into Claude Design
+- [VentureBeat](https://venturebeat.com/technology/anthropic-ships-major-claude-design-overhaul-with-design-system-imports-code-round-trips-and-a-fix-for-its-token-burning-problem)
+
+### 6. Use `/btw` for side questions during long sessions
 `/btw` runs a question in a dismissible overlay — the answer never enters conversation history. This keeps context clean when you need a quick lookup mid-session without derailing focus.
 
-### 5. Writer/Reviewer parallel session pattern
+### 7. Writer/Reviewer parallel session pattern
 For any significant PR: implement in Session A, then open Session B and ask it to review just the diff against your plan. Session B has no memory of writing the code, so its review is unbiased. Feed findings back to Session A to iterate.
 - `[ACTION]` Use this for all Lanzico feature PRs before client delivery.
 
-### 6. Let Claude interview you for complex features
+### 8. Let Claude interview you for complex features
 Start with: `"I want to build [description]. Interview me using AskUserQuestion about implementation, UX, edge cases, and tradeoffs. Then write a complete spec to SPEC.md."` Then start a fresh session to execute from the spec.
 - Surfaces blind spots before code is written, not after.
 
-### 7. Use `/goal` for unattended runs
+### 9. Use `/goal` for unattended runs
 Set a `/goal` condition (e.g., "all tests pass") at the start of a session. A separate evaluator re-checks after every turn and keeps Claude working until the condition holds — no babysitting needed.
 
-### 8. Fan-out large migrations with `claude -p` loops
+### 10. Fan-out large migrations with `claude -p` loops
 For repetitive tasks across many files (e.g., migrating components, updating API calls):
 ```bash
 for file in $(cat files.txt); do
@@ -91,10 +100,12 @@ You have Notion, Slack, Gmail, Google Calendar, Google Drive, Miro, Canva, Clay,
 
 ## Model Strategy
 
-### 12. Use Fable 5 for coding; Opus 4.8 Fast for fast iteration
-- **Fable 5**: complex multi-file tasks, architecture work, debugging hard problems (best SWE-Bench score)
+### 12. Current model strategy — Fable 5 offline
+Fable 5 and Mythos 5 remain suspended (US export control, no return date). Active model lineup:
+- **Opus 4.8**: complex multi-file tasks, architecture work, debugging hard problems — current best available
 - **Opus 4.8 + Fast mode** (`/fast`): rapid iteration, reviews, quick answers — 2.5× faster at 2× cost
-- **Haiku 4.5**: simple lookups, boilerplate generation, cost-sensitive automations
+- **Sonnet 4.6**: balanced speed/capability for mid-complexity tasks
+- **Haiku 4.5**: simple lookups, boilerplate, cost-sensitive automations
 
 ### 13. Consider API plan if hitting Pro limits
 Community reports Pro plan ($20/month) runs out after ~12 heavy prompts per session. If you're doing intensive coding, the API plan with usage-based billing may be more cost-effective and doesn't impose session caps.

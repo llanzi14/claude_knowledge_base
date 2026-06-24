@@ -2,6 +2,11 @@
 
 Newest entries first. Findings from Reddit, YouTube, X/Twitter, and blogs. Treat as opinion until verified against official docs.
 
+## Service & Incident History
+
+- *(2026-06-24)* **Claude outage — June 23** — elevated error rate across all models, approximately 10:02 AM–12:44 PM ET; now resolved. [TechRadar](https://www.techradar.com/news/live/claude-down-june-23-2026)
+- *(2026-06-24)* **Fable 5 & Mythos 5 still offline** — US export-control directive (June 12) remains in effect with no public restoration timeline. Community sites tracking status (e.g., `isfableback.org`). Main workaround: `claude-opus-4-8` or Sonnet 4.6. [Anthropic](https://www.anthropic.com/news/fable-mythos-access)
+
 ## Reddit (r/ClaudeAI, r/ClaudeCode)
 
 - *(2026-06-22)* **r/ClaudeCode now at 4,200+ weekly contributors** — 3× the size of r/Codex; Claude Code is the most-discussed AI coding agent on Reddit. Community consensus on setups has consolidated significantly in 2026. [MorphLLM](https://www.morphllm.com/claude-code-reddit)
