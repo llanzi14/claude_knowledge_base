@@ -1,10 +1,14 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-24)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-25)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### 0. `[ACTION]` Try Claude Tag for Lanzico's Slack workspace
+Claude Tag (launched June 23) puts a persistent AI teammate inside shared Slack channels — shared by the whole team, with ambient mode so it proactively follows up on threads. Available on Enterprise and Team plans. You already have the Slack MCP connected in Claude Code sessions; Claude Tag extends that into your actual Slack workspace where conversations happen. Start with one internal ops channel to test ambient mode and context persistence before rolling out to client-facing channels.
+- [Anthropic intro](https://www.anthropic.com/news/introducing-claude-tag) / [TechCrunch deep-dive](https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/)
 
 ### 1. `[ACTION]` Keep production pinned to Opus 4.8 — Fable 5 still offline
 Fable 5 and Mythos 5 remain suspended under a US government export-control directive (active since June 12). No restoration timeline. Any session or API call targeting `claude-fable-5` will fail. Ensure all Lanzico automations, skills, and Claude Code configs explicitly reference `claude-opus-4-8` or `claude-sonnet-4-6`.
@@ -30,6 +34,14 @@ Anthropic now supports WIF — short-lived scoped credentials that integrate wit
 Claude Design now has a full overhaul: import a client's design system from GitHub, lock it so all AI-generated designs stay on-brand, and sync two-ways with Claude Code using `/design-sync` and `/design`. For Lanzico's client work involving design-to-code handoffs, this closes the loop between Figma/brand assets and coded components.
 - Run `/design-sync` from Claude Code to pull the design system into Claude Design
 - [VentureBeat](https://venturebeat.com/technology/anthropic-ships-major-claude-design-overhaul-with-design-system-imports-code-round-trips-and-a-fix-for-its-token-burning-problem)
+
+### 5b. `[ACTION]` Compact at 50% context, not the default auto-trigger
+Community consensus: manually run `/compact Focus on <current task>` when context reaches ~50%. Waiting for auto-compaction at 70% puts you in the "agent dumb zone" where Claude noticeably loses coherence. Set a mental habit or hook to trigger this proactively.
+- [DEV.to](https://dev.to/galian/claude-code-workflow-best-practices-that-ship-code-na)
+
+### 5c. `[ACTION]` Use git worktrees for parallel Claude Code sessions
+Run each Claude Code session in a separate worktree (`git worktree add ../feature-branch feature-branch`) rather than the same checkout. Prevents state bleed and merge conflicts when running parallel sessions for different features.
+- [DEV.to](https://dev.to/evan-dong/10-battle-tested-claude-code-practices-4n81)
 
 ### 6. Use `/btw` for side questions during long sessions
 `/btw` runs a question in a dismissible overlay — the answer never enters conversation history. This keeps context clean when you need a quick lookup mid-session without derailing focus.

@@ -35,6 +35,7 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
 ## Anthropic Product News
 
+- **Claude Tag — Slack AI teammate** (2026-06-25) — persistent AI team member that joins shared Slack channels. Launched June 23 for Enterprise and Team customers. Key traits: shared identity (whole team shares one Claude per channel); ambient mode (monitors and proactively posts without @mention); persistent context from channel history and approved data sources; admin-controlled channel/tool access scope with per-channel token spend ceiling. Claude Code team ships ~65% of its code via Claude Tag internally. `[ACTION]` Evaluate for Lanzico's Slack workspace — Lucas already has the Slack MCP connected, making Claude Tag a natural extension. [Anthropic](https://www.anthropic.com/news/introducing-claude-tag) / [TechCrunch](https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/)
 - **Claude Security** (2026-06-22) — new product that scans codebases and suggests patches using Opus 4.8. `[ACTION]` Evaluate for Lanzico codebase security auditing. [Anthropic](https://www.anthropic.com/news)
 - **Project Glasswing expanded** (2026-06-22) — 150 more orgs in 15 countries; surfaced 10,000+ high/critical vulnerabilities using Mythos Preview since April. [Anthropic](https://www.anthropic.com/news/expanding-project-glasswing)
 - **Anthropic Labs** (2026-06-22) — new experimental products division announced. [Anthropic](https://www.anthropic.com/news/introducing-anthropic-labs)
