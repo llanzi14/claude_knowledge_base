@@ -1,10 +1,19 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-25)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-26)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### 0a. `[ACTION]` Update Claude Code to v2.1.193 (latest as of June 25)
+v2.1.191 brings a 37% CPU reduction during streaming — meaningful for long automated sessions like this knowledge base routine. Also adds `/rewind` support across `/clear` (you can rewind past a context clear now) and fixes stopped background agents resurrecting. v2.1.193 adds live file path autocomplete in `!` bash mode and better auto-mode visibility.
+- `npm update -g @anthropic-ai/claude-code` or equivalent
+- [Changelog](https://code.claude.com/docs/en/changelog)
+
+### 0b. `[ACTION]` Enable `autoMode.classifyAllShell: true` for automated pipelines
+New in v2.1.193: routes all Bash/PowerShell commands through the auto-mode safety classifier, not just agent-issued ones. For Lanzico automated runs (like this routine), this adds a safety gate without manual permission prompts.
+- Add to `.claude/settings.json`: `"autoMode": { "classifyAllShell": true }`
 
 ### 0. `[ACTION]` Try Claude Tag for Lanzico's Slack workspace
 Claude Tag (launched June 23) puts a persistent AI teammate inside shared Slack channels — shared by the whole team, with ambient mode so it proactively follows up on threads. Available on Enterprise and Team plans. You already have the Slack MCP connected in Claude Code sessions; Claude Tag extends that into your actual Slack workspace where conversations happen. Start with one internal ops channel to test ambient mode and context persistence before rolling out to client-facing channels.

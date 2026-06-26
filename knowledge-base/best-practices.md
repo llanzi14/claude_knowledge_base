@@ -4,6 +4,7 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
 ## Context Management
 
+- **`/rewind` works across `/clear`** (2026-06-26) — as of v2.1.191, `/rewind` can restore a conversation from before `/clear` was run, not just mid-session points. If you clear by mistake, you can still go back. [Changelog](https://code.claude.com/docs/en/changelog)
 - **Use `/btw` for side questions — now with history navigation** (2026-06-24) — runs the answer in a dismissible overlay that never enters conversation history. As of v2.1.187, ←/→ arrow keys step through earlier `/btw` answers. `[ACTION]` Use `/btw` instead of inline questions during long implementation sessions. [Best practices](https://code.claude.com/docs/en/best-practices) / [Changelog](https://code.claude.com/docs/en/changelog)
 - **Selective compaction with `/compact <instructions>`** (2026-06-22) — e.g., `/compact Focus on the API changes`; preserves what matters and drops the rest. Encode compaction preferences in CLAUDE.md: `"When compacting, always preserve the full list of modified files and any test commands"`. [Best practices](https://code.claude.com/docs/en/best-practices)
 - **`Esc+Esc` / `/rewind` checkpointing** (2026-06-22) — every prompt creates a snapshot; restore conversation only, code only, or both. Summarize from a checkpoint forward or backward to manage context without losing history. [Best practices](https://code.claude.com/docs/en/best-practices)
