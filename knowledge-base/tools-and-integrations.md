@@ -4,6 +4,7 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
 ## Claude Code Built-in Features
 
+- **Artifacts** (2026-06-27) — beta on Team & Enterprise: turn a session's output into a live shareable page on claude.ai that updates in-place as the session works. Replaces the pattern of exporting a report and re-sharing manually. `[ACTION]` Use for Lanzico client-facing deliverables: research reports, changelogs, live status dashboards. [Releasebot](https://releasebot.io/updates/anthropic/claude)
 - **`claude mcp login/logout` CLI commands** (2026-06-24) — authenticate and deauthenticate MCP servers directly from the terminal without opening the interactive `/mcp` menu. `--no-browser` flag enables stdin-redirect auth flow for SSH sessions. `[ACTION]` Use for Lanzico MCP servers accessed via SSH or CI environments. [Changelog](https://code.claude.com/docs/en/changelog)
 - **`sandbox.credentials` setting** (2026-06-24) — new security control that prevents sandboxed agent commands from reading credential files or secret env vars. Safe default for any automated agentic run touching sensitive environments. `[ACTION]` Enable in all Lanzico CI/automation configs. [Changelog](https://code.claude.com/docs/en/changelog)
 - **Remote MCP idle timeout** (2026-06-24) — MCP tool calls now abort after 5 minutes of no response (was: hang indefinitely). Override via `CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT`. Prevents CI jobs from stalling silently. [Changelog](https://code.claude.com/docs/en/changelog)
@@ -18,6 +19,7 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
 ## Platforms & Infrastructure
 
+- **Enterprise MCP connectors (Okta)** (2026-06-27) — org admins provision MCP connectors once; users get zero-touch access on first login across Claude chat, Claude Code, and Cowork (Team & Enterprise). First connector: Okta; more identity providers to follow. Centralizes authorization without per-user API key management. `[ACTION]` If Lanzico uses Okta, evaluate this as the path to give team members Claude tool access without distributing credentials. [Releasebot](https://releasebot.io/updates/anthropic/claude-developer-platform)
 - **Claude Platform on AWS** (2026-06-22) — Anthropic-managed infra accessible through AWS with AWS billing and IAM auth; full API access including Managed Agents. `[ACTION]` Evaluate as primary deployment target if Lanzico uses AWS. [Releasebot](https://releasebot.io/updates/anthropic)
 - **Workload Identity Federation** (2026-06-22) — short-lived scoped credentials replacing static API keys; integrates with AWS IAM, GCP, and other identity providers. `[ACTION]` Replace hardcoded API keys in Lanzico projects with WIF credentials. [Releasebot](https://releasebot.io/updates/anthropic)
 - **Claude Managed Agents** (2026-06-22) — agents run in enterprise-controlled sandboxes connected to private MCP servers; all execution and tool calls stay within enterprise boundaries. [Releasebot](https://releasebot.io/updates/anthropic)

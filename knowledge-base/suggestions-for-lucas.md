@@ -1,15 +1,20 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-26)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-27)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
 
-### 0a. `[ACTION]` Update Claude Code to v2.1.193 (latest as of June 25)
-v2.1.191 brings a 37% CPU reduction during streaming — meaningful for long automated sessions like this knowledge base routine. Also adds `/rewind` support across `/clear` (you can rewind past a context clear now) and fixes stopped background agents resurrecting. v2.1.193 adds live file path autocomplete in `!` bash mode and better auto-mode visibility.
+### 0a. `[ACTION]` Update Claude Code to v2.1.195 (latest as of June 26)
+v2.1.195 fixes background job reliability, hook matchers for hyphenated identifiers (now exact-match — check your hooks), and voice dictation on macOS. v2.1.193 adds live file path autocomplete in `!` bash mode. v2.1.191 brings a 37% CPU reduction during streaming and `/rewind` across `/clear`.
 - `npm update -g @anthropic-ai/claude-code` or equivalent
+- **Verify after update**: if you have hook names with hyphens (e.g. `pre-commit`), test they still fire — the matching behaviour changed in v2.1.195.
 - [Changelog](https://code.claude.com/docs/en/changelog)
+
+### 0aa. `[ACTION]` Try Artifacts for client deliverables
+New in beta for Team & Enterprise: run a Claude session to produce a report, spec, or changelog, and Claude can publish it as a live shareable page on claude.ai that auto-updates. Removes the "export → re-share" cycle for Lanzico client deliverables. Test on your next internal report or client status update.
+- [Releasebot](https://releasebot.io/updates/anthropic/claude)
 
 ### 0b. `[ACTION]` Enable `autoMode.classifyAllShell: true` for automated pipelines
 New in v2.1.193: routes all Bash/PowerShell commands through the auto-mode safety classifier, not just agent-issued ones. For Lanzico automated runs (like this routine), this adds a safety gate without manual permission prompts.
