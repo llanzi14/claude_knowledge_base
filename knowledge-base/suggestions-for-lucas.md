@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-27)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-28)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### 0aaa. `[ACTION]` Lock in Anthropic commercial terms before October 2026 IPO
+Anthropic filed a confidential S-1 with the SEC on June 1 and may go public as early as October 2026 at a ~$1T valuation. Post-IPO, companies typically revise pricing upward, reduce promotional rates, and tighten enterprise terms. Lanzico should act now:
+- Review the current API plan; if usage is stable, explore a multi-year contract or enterprise agreement locked at today's rates.
+- Confirm your Team/Enterprise plan agreement is in writing with stable pricing commitments.
+- Build usage-cost redundancy: ensure Sonnet 4.6 and Haiku 4.5 are tested as cost fallbacks for less critical tasks.
+- [TechCrunch](https://techcrunch.com/2026/06/01/anthropic-files-to-go-public/) / [CNBC](https://www.cnbc.com/2026/06/01/anthropic-ipo-s1-prospectus.html)
 
 ### 0a. `[ACTION]` Update Claude Code to v2.1.195 (latest as of June 26)
 v2.1.195 fixes background job reliability, hook matchers for hyphenated identifiers (now exact-match — check your hooks), and voice dictation on macOS. v2.1.193 adds live file path autocomplete in `!` bash mode. v2.1.191 brings a 37% CPU reduction during streaming and `/rewind` across `/clear`.
