@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-27)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### 00. `[ACTION URGENT]` Audit for deprecated model IDs — `claude-sonnet-4` and `claude-opus-4` now return errors
+As of ~June 28, 2026, Anthropic retired the legacy model IDs `claude-sonnet-4` and `claude-opus-4`. Any API call using these IDs returns an error immediately. Replacement IDs: `claude-sonnet-4-6` and `claude-opus-4-8`.
+- Search all Lanzico repos: `grep -r "claude-sonnet-4\|claude-opus-4" --include="*.json" --include="*.yaml" --include="*.env" --include="*.ts" --include="*.js" --include="*.py" .`
+- Update any matches; then re-run CI.
+- [Releasebot](https://releasebot.io/updates/anthropic/claude-developer-platform)
 
 ### 0a. `[ACTION]` Update Claude Code to v2.1.195 (latest as of June 26)
 v2.1.195 fixes background job reliability, hook matchers for hyphenated identifiers (now exact-match — check your hooks), and voice dictation on macOS. v2.1.193 adds live file path autocomplete in `!` bash mode. v2.1.191 brings a 37% CPU reduction during streaming and `/rewind` across `/clear`.
