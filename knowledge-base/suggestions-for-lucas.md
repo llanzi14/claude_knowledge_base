@@ -1,6 +1,6 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-30)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
@@ -149,5 +149,11 @@ Community reports Pro plan ($20/month) runs out after ~12 heavy prompts per sess
 ### 14. `enforceAvailableModels` for team consistency
 If others at Lanzico use Claude Code, the `enforceAvailableModels` managed setting prevents team members from switching to unapproved (expensive) models. Manage via `.claude/settings.json` in a shared config.
 
-### 15. Evaluate Claude Platform on AWS
-If Lanzico is AWS-native, Claude Platform on AWS provides the full API (including Managed Agents) via AWS billing and IAM auth — no separate Anthropic billing account needed.
+### 15. Evaluate Claude on Azure / Claude Platform on AWS for cloud-native workloads
+Two options now available for cloud-native Lanzico workloads:
+- **Azure (Microsoft Foundry):** Claude Opus 4.8 + Haiku 4.5 via Azure with Entra identity, Azure billing, governance, and optional US data zone.
+- **AWS:** Full Claude API (Messages, Files, Batches, Managed Agents) via AWS IAM auth and AWS billing — no separate Anthropic account needed.
+Pick whichever matches your existing cloud identity and billing. [Azure announcement](https://www.anthropic.com/news)
+
+### 16. `[ACTION]` Use MCP Connector Observability to audit active connectors
+Now that Anthropic surfaces connector errors, latency, and token spend per-connector in the org admin panel, run a quick audit of the 8+ MCP connectors active in this session (Notion, Slack, Gmail, Google Drive, Miro, Canva, Clay, Lemlist). Identify which ones are actually used vs. just connected — disconnecting unused connectors reduces token overhead and attack surface. [Releasebot](https://releasebot.io/updates/anthropic/claude)
