@@ -1,10 +1,20 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-01)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -1. `[ACTION]` Update to Claude Code v2.1.197 and try Claude Sonnet 5
+Claude Sonnet 5 shipped June 30 and is now the default model in Claude Code — native 1M-token context window, promotional pricing $2/$10 per Mtok through August 31. Requires updating to v2.1.197+.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent), then run `/model` to confirm Sonnet 5 is available
+- Worth a trial run on a mid-complexity Lanzico task to see if it now covers what previously needed Opus 4.8, at a fraction of the cost
+- [Anthropic](https://www.anthropic.com/news/claude-sonnet-5) / [Changelog](https://code.claude.com/docs/en/changelog)
+
+### -0.5. Fable 5 / Mythos 5 are back — but treat cautiously
+The June 12 export-control suspension was lifted June 30; Fable 5 is available globally again from July 1 (Pro/Max/Team: up to 50% of weekly limits through July 7, then usage credits). This reverses prior guidance in this KB to avoid Fable 5. Given it was suspended once already on national-security grounds, don't rebuild critical automation around it yet — treat as a strong option for interactive/manual work, keep automated pipelines on `claude-opus-4-8` or `claude-sonnet-5` for now.
+- [Anthropic](https://www.anthropic.com/news/redeploying-fable-5)
 
 ### 00. `[ACTION URGENT]` Audit for deprecated model IDs — `claude-sonnet-4` and `claude-opus-4` now return errors
 As of ~June 28, 2026, Anthropic retired the legacy model IDs `claude-sonnet-4` and `claude-opus-4`. Any API call using these IDs returns an error immediately. Replacement IDs: `claude-sonnet-4-6` and `claude-opus-4-8`.
@@ -12,8 +22,8 @@ As of ~June 28, 2026, Anthropic retired the legacy model IDs `claude-sonnet-4` a
 - Update any matches; then re-run CI.
 - [Releasebot](https://releasebot.io/updates/anthropic/claude-developer-platform)
 
-### 0a. `[ACTION]` Update Claude Code to v2.1.195 (latest as of June 26)
-v2.1.195 fixes background job reliability, hook matchers for hyphenated identifiers (now exact-match — check your hooks), and voice dictation on macOS. v2.1.193 adds live file path autocomplete in `!` bash mode. v2.1.191 brings a 37% CPU reduction during streaming and `/rewind` across `/clear`.
+### 0a. `[ACTION]` Update Claude Code to v2.1.197 (superseded from v2.1.195, see item -1 above for Sonnet 5)
+Since v2.1.195: v2.1.196 added org default models, a fix for `.mcp.json` servers auto-spawning in untrusted-but-self-approved workspaces (security), and cut `/code-review` token usage ~25%. v2.1.197 ships Sonnet 5 access. Earlier: v2.1.195 fixed background job reliability, hook matchers for hyphenated identifiers (now exact-match — check your hooks), and voice dictation on macOS.
 - `npm update -g @anthropic-ai/claude-code` or equivalent
 - **Verify after update**: if you have hook names with hyphens (e.g. `pre-commit`), test they still fire — the matching behaviour changed in v2.1.195.
 - [Changelog](https://code.claude.com/docs/en/changelog)
@@ -132,11 +142,13 @@ You have Notion, Slack, Gmail, Google Calendar, Google Drive, Miro, Canva, Clay,
 
 ## Model Strategy
 
-### 12. Current model strategy — Fable 5 offline
-Fable 5 and Mythos 5 remain suspended (US export control, no return date). Active model lineup:
-- **Opus 4.8**: complex multi-file tasks, architecture work, debugging hard problems — current best available
+### 12. Current model strategy — updated 2026-07-01, Fable 5 back online, Sonnet 5 shipped
+Fable 5 and Mythos 5 access was restored July 1 after the export-control suspension was lifted. Claude Sonnet 5 also shipped June 30 with a 1M context window and promo pricing through August 31. Active model lineup:
+- **Fable 5**: top-tier "Mythos-class" work, but restored only 1 day ago after a prior suspension — pilot cautiously, don't yet depend on it for anything time-critical
+- **Opus 4.8**: complex multi-file tasks, architecture work, debugging hard problems — proven, stable default for critical work
 - **Opus 4.8 + Fast mode** (`/fast`): rapid iteration, reviews, quick answers — 2.5× faster at 2× cost
-- **Sonnet 4.6**: balanced speed/capability for mid-complexity tasks
+- **Sonnet 5** (new): 1M context, $2/$10 promo pricing through Aug 31 — try for mid-to-high complexity tasks that don't strictly need Opus; likely the new cost/performance sweet spot given the price and context window
+- **Sonnet 4.6**: balanced speed/capability fallback if Sonnet 5 isn't yet validated for a workflow
 - **Haiku 4.5**: simple lookups, boilerplate, cost-sensitive automations
 
 ### 13. Consider API plan if hitting Pro limits

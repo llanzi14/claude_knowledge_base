@@ -4,6 +4,7 @@ Newest entries first. Findings from Reddit, YouTube, X/Twitter, and blogs. Treat
 
 ## Service & Incident History
 
+- *(2026-07-01)* **Fable 5 & Mythos 5 export-control suspension lifted** — the June 12 US export-control directive that took both models offline globally (see 2026-06-24 entry below) was lifted by the Department of Commerce on June 30. Restoration began July 1. [Anthropic](https://www.anthropic.com/news/redeploying-fable-5)
 - *(2026-06-24)* **Claude outage — June 23** — elevated error rate across all models, approximately 10:02 AM–12:44 PM ET; now resolved. [TechRadar](https://www.techradar.com/news/live/claude-down-june-23-2026)
 - *(2026-06-24)* **Fable 5 & Mythos 5 still offline** — US export-control directive (June 12) remains in effect with no public restoration timeline. Community sites tracking status (e.g., `isfableback.org`). Main workaround: `claude-opus-4-8` or Sonnet 4.6. [Anthropic](https://www.anthropic.com/news/fable-mythos-access)
 
