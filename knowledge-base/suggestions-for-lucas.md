@@ -1,15 +1,23 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-01)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-02)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
 
+### -2. `[ACTION]` Update to Claude Code v2.1.198 — Claude in Chrome is GA, `/dataviz` ships built-in
+As of July 1, Claude in Chrome (browser control extension) is generally available, and a new `/dataviz` skill ships in the box for building consistent charts/dashboards with a runnable color-palette validator. Also changes default behavior: **background agents started from `claude agents` now auto-commit, push, and open a draft PR** when they finish code work in a worktree, instead of pausing to ask first.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent)
+- If you rely on background agents pausing before pushing code, re-check that workflow — the default changed
+- Try `/dataviz` on the next client chart/report instead of ad hoc styling
+- [Changelog](https://code.claude.com/docs/en/changelog)
+
 ### -1. `[ACTION]` Update to Claude Code v2.1.197 and try Claude Sonnet 5
 Claude Sonnet 5 shipped June 30 and is now the default model in Claude Code — native 1M-token context window, promotional pricing $2/$10 per Mtok through August 31. Requires updating to v2.1.197+.
 - `npm update -g @anthropic-ai/claude-code` (or equivalent), then run `/model` to confirm Sonnet 5 is available
 - Worth a trial run on a mid-complexity Lanzico task to see if it now covers what previously needed Opus 4.8, at a fraction of the cost
+- Early partner feedback (Cursor, Zapier) is strongly positive on agentic reliability — multi-step tasks that used to stall now complete end-to-end
 - [Anthropic](https://www.anthropic.com/news/claude-sonnet-5) / [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -0.5. Fable 5 / Mythos 5 are back — but treat cautiously
@@ -142,7 +150,7 @@ You have Notion, Slack, Gmail, Google Calendar, Google Drive, Miro, Canva, Clay,
 
 ## Model Strategy
 
-### 12. Current model strategy — updated 2026-07-01, Fable 5 back online, Sonnet 5 shipped
+### 12. Current model strategy — updated 2026-07-01, Fable 5 back online, Sonnet 5 shipped (still current as of 2026-07-02)
 Fable 5 and Mythos 5 access was restored July 1 after the export-control suspension was lifted. Claude Sonnet 5 also shipped June 30 with a 1M context window and promo pricing through August 31. Active model lineup:
 - **Fable 5**: top-tier "Mythos-class" work, but restored only 1 day ago after a prior suspension — pilot cautiously, don't yet depend on it for anything time-critical
 - **Opus 4.8**: complex multi-file tasks, architecture work, debugging hard problems — proven, stable default for critical work

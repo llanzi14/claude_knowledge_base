@@ -2,6 +2,10 @@
 
 Newest entries first. Findings from Reddit, YouTube, X/Twitter, and blogs. Treat as opinion until verified against official docs.
 
+## Sonnet 5 Reception
+
+- *(2026-07-02)* **Sonnet 5 early feedback strongly positive** — Cursor co-founder Sualeh Asif: "agents stay on plan, follow our conventions, and ship clean multi-step changes, all at an efficient cost." A Zapier engineer reports multi-step automations (e.g., updating Salesforce tiers + sending an announcement) that used to stall halfway with prior models now complete end-to-end. Anthropic reports lower hallucination/sycophancy than Sonnet 4.6, better refusal of malicious requests, and improved prompt-injection resistance in agentic contexts. No negative-sentiment threads surfaced yet — expect more (including critical takes) as broader hands-on usage accumulates. [VentureBeat](https://venturebeat.com/technology/anthropic-launches-claude-sonnet-5-at-a-steep-discount-to-its-top-model-as-the-company-races-toward-a-blockbuster-ipo) / [TechCrunch](https://techcrunch.com/2026/06/30/anthropic-launches-claude-sonnet-5-as-a-cheaper-way-to-run-agents/)
+
 ## Service & Incident History
 
 - *(2026-07-01)* **Fable 5 & Mythos 5 export-control suspension lifted** — the June 12 US export-control directive that took both models offline globally (see 2026-06-24 entry below) was lifted by the Department of Commerce on June 30. Restoration began July 1. [Anthropic](https://www.anthropic.com/news/redeploying-fable-5)
