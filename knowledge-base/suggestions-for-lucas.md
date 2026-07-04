@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-02)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-04)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -3. `[ACTION]` Check unattended/scheduled runs for `AskUserQuestion` hang risk (v2.1.200)
+As of v2.1.200 (July 3), `AskUserQuestion` dialogs no longer auto-continue by default — an idle dialog now waits indefinitely instead of eventually proceeding. This routine and any other scheduled/background Claude Code automation at Lanzico could hang indefinitely if a code path ever triggers `AskUserQuestion` with nobody available to answer.
+- Audit scheduled routines (like this one) and any `-p`/background agent workflows for prompts that could surface `AskUserQuestion`
+- If found, set an idle timeout via `/config` so the run degrades gracefully instead of hanging forever
+- Separately, the permission mode formerly labeled "default" is now shown as "Manual" in the CLI/VS Code/JetBrains — cosmetic rename only, no action needed beyond awareness
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -2. `[ACTION]` Update to Claude Code v2.1.198 — Claude in Chrome is GA, `/dataviz` ships built-in
 As of July 1, Claude in Chrome (browser control extension) is generally available, and a new `/dataviz` skill ships in the box for building consistent charts/dashboards with a runnable color-palette validator. Also changes default behavior: **background agents started from `claude agents` now auto-commit, push, and open a draft PR** when they finish code work in a worktree, instead of pausing to ask first.
