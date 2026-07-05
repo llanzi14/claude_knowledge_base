@@ -1,6 +1,6 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-04)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-05)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
