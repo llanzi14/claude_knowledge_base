@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-05)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-07)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -4. `[ACTION]` Set Claude Enterprise/Team spend alerts and model entitlements now
+Anthropic shipped richer admin analytics, per-role model entitlements, and spend-threshold alerts (75%/90% of org limit) for Claude Enterprise on July 2. Unconfirmed aggregator reports this week claim Microsoft cut Claude Code for ~5,000 engineers over runaway token costs (~$2,000/engineer/month) — treat that specific story as unverified, but it's a timely reminder that token spend on agentic workflows (including this KB routine) can scale faster than expected without a cap.
+- If Lanzico is on Enterprise/Team, turn on spend alerts and set model defaults per role so routine tasks don't default to the priciest model
+- Otherwise, keep an eye on this routine's own token usage as a sanity check
+- [Claude blog](https://claude.com/blog/giving-admins-more-visibility-and-control-over-claude-usage-and-spend)
 
 ### -3. `[ACTION]` Check unattended/scheduled runs for `AskUserQuestion` hang risk (v2.1.200)
 As of v2.1.200 (July 3), `AskUserQuestion` dialogs no longer auto-continue by default — an idle dialog now waits indefinitely instead of eventually proceeding. This routine and any other scheduled/background Claude Code automation at Lanzico could hang indefinitely if a code path ever triggers `AskUserQuestion` with nobody available to answer.
