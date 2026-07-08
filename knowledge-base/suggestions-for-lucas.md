@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-07)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-08)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -5. Try Cowork on mobile/web, and check the new Microsoft 365 write tools
+Cowork expanded from desktop-only to web and mobile on July 7 (remote sessions, synced files, shared Chat/Cowork home — starting on Max plan). Separately, Claude gained Microsoft 365 write tools this week: drafting/sending email, managing calendar events, and creating/updating OneDrive/SharePoint files, not just reading them.
+- If Lucas is on the Max plan, try a Cowork session from phone/web for a task that doesn't need desktop file access
+- If Lanzico or a client runs on M365, the write tools could replace manual steps in report/email drafting — worth a trial before building custom integrations for the same purpose
+- [TechCrunch](https://techcrunch.com/2026/07/07/the-coding-agent-wars-are-spilling-into-the-rest-of-the-office-claude-cowork/) / [blog.mean.ceo](https://blog.mean.ceo/anthropic-claude-news-july-2026/)
 
 ### -4. `[ACTION]` Set Claude Enterprise/Team spend alerts and model entitlements now
 Anthropic shipped richer admin analytics, per-role model entitlements, and spend-threshold alerts (75%/90% of org limit) for Claude Enterprise on July 2. Unconfirmed aggregator reports this week claim Microsoft cut Claude Code for ~5,000 engineers over runaway token costs (~$2,000/engineer/month) — treat that specific story as unverified, but it's a timely reminder that token spend on agentic workflows (including this KB routine) can scale faster than expected without a cap.
