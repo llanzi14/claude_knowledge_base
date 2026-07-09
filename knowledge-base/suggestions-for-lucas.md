@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-08)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-09)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -6. `[ACTION]` Update to Claude Code v2.1.204+ — fixes idle-reap risk in headless `SessionStart` hooks
+v2.1.204 (2026-07-08) fixed hook events not streaming during `SessionStart` hooks in headless sessions, which could get a remote/background worker idle-reaped mid-hook. This applies directly to this KB routine and any other scheduled/headless Claude Code automation that uses a `SessionStart` hook.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.205 (latest, also picks up the fabricated-approval hardening below)
+- If this routine or any other scheduled job has ever failed mysteriously partway through startup, this fix is the likely explanation
+- Separately, v2.1.205 makes background task notifications explicitly state that no human input has occurred — a hardening measure directly relevant to unattended runs like this one, worth being aware of if writing prompts that reason about "the user confirmed X"
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -5. Try Cowork on mobile/web, and check the new Microsoft 365 write tools
 Cowork expanded from desktop-only to web and mobile on July 7 (remote sessions, synced files, shared Chat/Cowork home — starting on Max plan). Separately, Claude gained Microsoft 365 write tools this week: drafting/sending email, managing calendar events, and creating/updating OneDrive/SharePoint files, not just reading them.
