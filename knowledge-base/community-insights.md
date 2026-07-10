@@ -2,6 +2,10 @@
 
 Newest entries first. Findings from Reddit, YouTube, X/Twitter, and blogs. Treat as opinion until verified against official docs.
 
+## Product Reception
+
+- *(2026-07-10)* **Mixed/skeptical press reaction to Claude Reflect** — the new usage-habits dashboard (see `releases-and-features.md`, 2026-07-09) drew a skeptical TechCrunch take ("quietly selling you on AI") alongside Spotify-Wrapped/Digital-Wellbeing comparisons from Engadget and Android Authority, despite Anthropic's stated wellbeing framing (quiet hours, break nudges). Early signal, not consensus — worth revisiting once more hands-on user reaction accumulates. [TechCrunch](https://techcrunch.com/2026/07/09/anthropics-new-claude-feature-is-quietly-selling-you-on-ai/)
+
 ## Sonnet 5 Reception
 
 - *(2026-07-02)* **Sonnet 5 early feedback strongly positive** — Cursor co-founder Sualeh Asif: "agents stay on plan, follow our conventions, and ship clean multi-step changes, all at an efficient cost." A Zapier engineer reports multi-step automations (e.g., updating Salesforce tiers + sending an announcement) that used to stall halfway with prior models now complete end-to-end. Anthropic reports lower hallucination/sycophancy than Sonnet 4.6, better refusal of malicious requests, and improved prompt-injection resistance in agentic contexts. No negative-sentiment threads surfaced yet — expect more (including critical takes) as broader hands-on usage accumulates. [VentureBeat](https://venturebeat.com/technology/anthropic-launches-claude-sonnet-5-at-a-steep-discount-to-its-top-model-as-the-company-races-toward-a-blockbuster-ipo) / [TechCrunch](https://techcrunch.com/2026/06/30/anthropic-launches-claude-sonnet-5-as-a-cheaper-way-to-run-agents/)

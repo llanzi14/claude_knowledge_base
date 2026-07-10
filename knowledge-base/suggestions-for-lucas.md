@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-09)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-10)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -7. Try Claude Reflect, and run the new `/doctor` CLAUDE.md-trim check
+Two small but relevant items from 2026-07-09: **Claude Reflect** (beta) is a usage-habits dashboard on Free/Pro/Max that summarizes what you use Claude for, when, and how — worth a look for Lucas's own usage patterns once Memory is on, though note press reaction has been mixed (see `community-insights.md`). Separately, Claude Code v2.1.206 added a `/doctor` check that proposes trimming checked-in `CLAUDE.md` files down to what Claude can't already derive from the codebase — a good match for the "CLAUDE.md under 200 lines" rule already in this KB.
+- Turn on Memory and check Settings → Reflect for a usage recap
+- Run `/doctor` (or `/checkup`) against Lanzico's `CLAUDE.md` files next update and apply any trim suggestions
+- [MacRumors](https://www.macrumors.com/2026/07/09/anthropic-reflect-claude-tracking/) / [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -6. `[ACTION]` Update to Claude Code v2.1.204+ — fixes idle-reap risk in headless `SessionStart` hooks
 v2.1.204 (2026-07-08) fixed hook events not streaming during `SessionStart` hooks in headless sessions, which could get a remote/background worker idle-reaped mid-hook. This applies directly to this KB routine and any other scheduled/headless Claude Code automation that uses a `SessionStart` hook.
