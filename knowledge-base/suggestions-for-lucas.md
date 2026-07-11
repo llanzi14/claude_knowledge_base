@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-10)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-11)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -8. `[ACTION]` Update to Claude Code v2.1.207 — two security fixes directly relevant to automated runs
+v2.1.207 (2026-07-11) fixes a bug where remote managed settings applied from a non-interactive run (`claude -p`, the SDK) were recorded as consented **without ever showing the security consent dialog** — this affects headless/scheduled automation like this KB routine. It also closes a shell-injection vector in plugin hooks/monitors/MCP `headersHelper` (`${user_config.*}` interpolation in shell-form commands is now rejected). Separately, auto mode **no longer reads config from repo-resident `.claude/settings.local.json`** — it now only honors `~/.claude/settings.json`.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.207
+- If any Lanzico plugin hooks/monitors use `${user_config.*}` in a shell-form command, they'll now be rejected — switch to exec form (`args` array) or `$CLAUDE_PLUGIN_OPTION_<KEY>`
+- If auto mode was ever configured via `.claude/settings.local.json` in any repo, re-add it to `~/.claude/settings.json` — it silently stopped applying
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -7. Try Claude Reflect, and run the new `/doctor` CLAUDE.md-trim check
 Two small but relevant items from 2026-07-09: **Claude Reflect** (beta) is a usage-habits dashboard on Free/Pro/Max that summarizes what you use Claude for, when, and how — worth a look for Lucas's own usage patterns once Memory is on, though note press reaction has been mixed (see `community-insights.md`). Separately, Claude Code v2.1.206 added a `/doctor` check that proposes trimming checked-in `CLAUDE.md` files down to what Claude can't already derive from the codebase — a good match for the "CLAUDE.md under 200 lines" rule already in this KB.
