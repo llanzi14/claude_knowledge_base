@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-11)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-13)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -9. `[ACTION]` Weekly Claude Code rate limits revert tonight (2026-07-13, 6PM PDT)
+The 50% weekly-limit boost that's been live since May 13 for Pro/Max/Team/seat-based Enterprise expires today with no announced extension. If any Lanzico workflow (including scheduled routines like this one) runs close to the weekly cap, expect less headroom starting tomorrow.
+- Check current weekly usage via `/usage-credits` or the Claude console before the boost lapses
+- If usage regularly approaches the cap, consider spacing out non-urgent scheduled runs or moving cost-sensitive automation to Haiku 4.5
+- [AI Catchup](https://aicatchup.com/news/claude-code-weekly-limits-50-percent-promo) / [ChatForest](https://chatforest.com/builders-log/claude-code-weekly-limit-50-percent-boost-expires-july-13-builder-action-guide/)
 
 ### -8. `[ACTION]` Update to Claude Code v2.1.207 — two security fixes directly relevant to automated runs
 v2.1.207 (2026-07-11) fixes a bug where remote managed settings applied from a non-interactive run (`claude -p`, the SDK) were recorded as consented **without ever showing the security consent dialog** — this affects headless/scheduled automation like this KB routine. It also closes a shell-injection vector in plugin hooks/monitors/MCP `headersHelper` (`${user_config.*}` interpolation in shell-form commands is now rejected). Separately, auto mode **no longer reads config from repo-resident `.claude/settings.local.json`** — it now only honors `~/.claude/settings.json`.

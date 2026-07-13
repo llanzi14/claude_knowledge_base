@@ -22,6 +22,7 @@ Newest entries first. Findings from Reddit, YouTube, X/Twitter, and blogs. Treat
 
 ## Reddit (r/ClaudeAI, r/ClaudeCode)
 
+- *(2026-07-13)* **r/ClaudeAI reaches ~1.0M members** — up from ~747K on 2026-06-29, continued rapid growth. No new consensus tips surfaced this cycle. [GummySearch](https://gummysearch.com/r/ClaudeAI/)
 - *(2026-06-29)* **r/ClaudeAI surpasses 747K members** — Community continues rapid growth; rate limits on the Pro plan (even post doubling in June) remain the single most-discussed frustration. No new consensus tips this cycle. [AI Tool Discovery](https://www.aitooldiscovery.com/guides/claude-reddit)
 - *(2026-06-22)* **r/ClaudeCode now at 4,200+ weekly contributors** — 3× the size of r/Codex; Claude Code is the most-discussed AI coding agent on Reddit. Community consensus on setups has consolidated significantly in 2026. [MorphLLM](https://www.morphllm.com/claude-code-reddit)
 - *(2026-06-22)* **CLAUDE.md under 200 lines** — the single most cited rule; files longer than this cause Claude to drop instructions. Use hierarchical sub-files in nested directories for per-domain rules. [MorphLLM](https://www.morphllm.com/claude-code-reddit)
