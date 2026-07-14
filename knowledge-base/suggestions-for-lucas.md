@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-13)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-14)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -10. `[ACTION]` Update to Claude Code v2.1.208 — memory-leak and headless-reliability batch
+Shipped 2026-07-14. Fixes several memory leaks that matter for long-running or scheduled sessions (MCP stdio server stderr, LSP documents, async hook output, headless/SDK tool-result payload growth), plus headless `stream-json` hangs and crashes that could silently kill an unattended run. Also fixes a Bedrock SSO auth regression from 2.1.207, and cuts transcript size up to 79x / speeds up tool rounds up to 7x for MCP-heavy sessions.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.208
+- Directly relevant to this KB routine itself and any other scheduled/headless Lanzico automation — the memory-leak and hang fixes reduce the odds of a silent failure
+- If any Lanzico auth uses AWS SSO with Bedrock where the SSO region differs from the Bedrock region, this update fixes a regression that broke that specific setup
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -9. `[ACTION]` Weekly Claude Code rate limits revert tonight (2026-07-13, 6PM PDT)
 The 50% weekly-limit boost that's been live since May 13 for Pro/Max/Team/seat-based Enterprise expires today with no announced extension. If any Lanzico workflow (including scheduled routines like this one) runs close to the weekly cap, expect less headroom starting tomorrow.

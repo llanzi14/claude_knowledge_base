@@ -29,6 +29,11 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 - **Auto mode for unattended runs** (2026-06-22) — `claude --permission-mode auto -p "fix all lint errors"` — a classifier blocks risky actions and scope escalation without prompts. [Best practices](https://code.claude.com/docs/en/best-practices)
 - **`Tool(param:value)` permission rules** (2026-06-22) — new fine-grained permission syntax in v2.1.178 lets you allow a tool only with specific parameter values. [Changelog](https://code.claude.com/docs/en/changelog)
 
+## Tool & Output Configuration
+
+- **MCP servers worth starting with** (2026-07-14) — community consensus for a minimal-but-useful starting set: Playwright (browser testing/UI verification), PostgreSQL/MySQL (direct schema queries), Slack (reading bug reports/thread context), Figma (design-to-code). `[ACTION]` Cross-check against Lanzico's connected MCP servers (Notion, Slack, Gmail, Calendar, Drive, Miro, Canva, Clay, Lemlist already connected in this session) — Playwright and a DB connector look like the notable gaps. [Chudi Nnorukam](https://chudi.dev/blog/claude-code-complete-guide)
+- **Set an output style via `/config`** (2026-07-14) — choose Explanatory (detailed/step-by-step), Concise (brief/action-focused), or Technical (precise/jargon-friendly) instead of leaving default verbosity. [Chudi Nnorukam](https://chudi.dev/blog/claude-code-complete-guide)
+
 ## Project Setup (Previously Documented)
 
 - **Plan before implementing** (2026-06-12) — use plan mode to separate research/exploration from execution; reviewing a spec before coding raises success rates substantially. [Official best practices](https://code.claude.com/docs/en/best-practices)
