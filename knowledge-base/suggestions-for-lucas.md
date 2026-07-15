@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-14)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-15)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -11. `[ACTION]` Update to Claude Code v2.1.210 — closes a prompt-injection path in unattended runs like this one
+Shipped 2026-07-15. Fixes the `ultracode` keyword opt-in firing on non-human-originated input (webhook payloads, relayed PR comments) — previously, external content could trigger an expensive multi-agent Workflow run without a real user asking for it. Also hardens the Agent tool against indirect prompt injection via content a subagent reads, and fixes `isolation: 'worktree'` subagents being able to run git-mutating commands against the main repo checkout instead of their own worktree.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.210
+- Directly relevant to this KB routine, which runs unattended and reacts to GitHub webhook activity/PR comments — and to any other Lanzico automation using Workflow or worktree isolation
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -10. `[ACTION]` Update to Claude Code v2.1.208 — memory-leak and headless-reliability batch
 Shipped 2026-07-14. Fixes several memory leaks that matter for long-running or scheduled sessions (MCP stdio server stderr, LSP documents, async hook output, headless/SDK tool-result payload growth), plus headless `stream-json` hangs and crashes that could silently kill an unattended run. Also fixes a Bedrock SSO auth regression from 2.1.207, and cuts transcript size up to 79x / speeds up tool rounds up to 7x for MCP-heavy sessions.
