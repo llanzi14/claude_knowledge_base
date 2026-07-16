@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-15)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-16)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -12. `[ACTION]` Update to Claude Code v2.1.211 — hook `ask` can no longer be silently overridden by auto mode
+Shipped 2026-07-15. Auto mode previously could override a `PreToolUse` hook's `ask` decision for unsandboxed Bash; a hook returning "ask" now always floors the decision at a human prompt. Also fixes permission previews relayed to chat channels (e.g. Slack approval flows) to neutralize bidirectional-override/zero-width/look-alike-quote characters, preventing a malicious tool input from visually altering what an approver sees.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.211
+- If any Lanzico hook uses `ask` on Bash to force a human check before a risky command, this fix means that gate is now reliable under auto mode — worth confirming the hook is actually configured as intended
+- If any approval flow surfaces permission previews via Slack/Claude Tag, this closes a visual-spoofing path in the approval text itself
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -11. `[ACTION]` Update to Claude Code v2.1.210 — closes a prompt-injection path in unattended runs like this one
 Shipped 2026-07-15. Fixes the `ultracode` keyword opt-in firing on non-human-originated input (webhook payloads, relayed PR comments) — previously, external content could trigger an expensive multi-agent Workflow run without a real user asking for it. Also hardens the Agent tool against indirect prompt injection via content a subagent reads, and fixes `isolation: 'worktree'` subagents being able to run git-mutating commands against the main repo checkout instead of their own worktree.
