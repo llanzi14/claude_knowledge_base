@@ -1,10 +1,25 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-15)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-17)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -13. `[ACTION]` Update to Claude Code v2.1.212 — closes a plan-mode Bash-permission bypass
+Shipped 2026-07-17. Plan mode was auto-running file-modifying Bash commands (`touch`, `rm`, etc.) without a permission prompt or SDK `canUseTool` callback — now fixed. Also adds session-wide caps on WebSearch calls (200) and subagent spawns (200) to stop runaway loops, and auto-backgrounds MCP tool calls over 2 minutes instead of stalling the session.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.212
+- If any Lanzico session or automation uses plan mode, this closes a real gap — file-modifying Bash could previously run unapproved during planning
+- Note the new 200/200 WebSearch and subagent-spawn ceilings if any Workflow-based automation fans out wide (tunable via `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` / `CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION`)
+- [Changelog](https://code.claude.com/docs/en/changelog)
+
+### -12. `[ACTION]` Update to Claude Code v2.1.211 — chat-approval spoofing fix + hook `ask`-override fix
+Shipped 2026-07-15. Fixes permission previews relayed to chat channels (e.g. Slack approvals) not neutralizing bidirectional-override/zero-width/look-alike characters — previously a malicious tool input could visually alter what the approval message appeared to say. Also fixes auto mode silently overriding a hook's explicit `ask` decision for unsandboxed Bash. Separately fixes a prompt-caching billing regression on Bedrock/Vertex/Mantle/Foundry that was billing cached system context as fresh input tokens every request.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.211+
+- If tool-call approvals are ever relayed through Slack or another chat channel for Lanzico automations, this closes a spoofing vector — update promptly
+- If any hook gates unsandboxed Bash with an `ask` decision, verify it's now actually honored
+- If Lanzico runs Claude Code via Bedrock/Vertex/Mantle/Foundry, this fixes an overbilling bug on cached context
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -11. `[ACTION]` Update to Claude Code v2.1.210 — closes a prompt-injection path in unattended runs like this one
 Shipped 2026-07-15. Fixes the `ultracode` keyword opt-in firing on non-human-originated input (webhook payloads, relayed PR comments) — previously, external content could trigger an expensive multi-agent Workflow run without a real user asking for it. Also hardens the Agent tool against indirect prompt injection via content a subagent reads, and fixes `isolation: 'worktree'` subagents being able to run git-mutating commands against the main repo checkout instead of their own worktree.
