@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-17)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-18)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -14. `[ACTION]` Update to Claude Code v2.1.214 — permission-bypass batch, check `dir/**` allow rules
+Shipped 2026-07-18. Several Bash/permission-check fixes: single-segment `dir/**` allow rules (e.g. `Edit(src/**)`) were wrongly auto-approving writes to any nested directory of that name anywhere in the tree, not just under the working directory — the most consequential fix, since it means any such rule in a Lanzico `.claude/settings.json` was silently broader than intended. Also closes gaps where very long Bash commands (>10,000 chars), zsh variable subscripts in `[[ ]]`, and certain `help`/`man` invocations could run without a prompt. New `EndConversation` tool lets Claude end a session with an abusive/jailbreak user. Separately fixes scheduled tasks refusing their own configured prompt as untrusted input — directly relevant since this KB routine itself runs as a scheduled task.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.214
+- Audit any Lanzico `.claude/settings.json` for single-segment `dir/**` allow rules and re-verify the intended scope
+- [GitHub CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 
 ### -13. `[ACTION]` Update to Claude Code v2.1.212 — closes a plan-mode Bash-permission bypass
 Shipped 2026-07-17. Plan mode was auto-running file-modifying Bash commands (`touch`, `rm`, etc.) without a permission prompt or SDK `canUseTool` callback — now fixed. Also adds session-wide caps on WebSearch calls (200) and subagent spawns (200) to stop runaway loops, and auto-backgrounds MCP tool calls over 2 minutes instead of stalling the session.
