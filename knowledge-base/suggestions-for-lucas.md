@@ -1,10 +1,22 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-18)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-21)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -17. `[ACTION]` Update to Claude Code v2.1.216 — closes a symlink write-outside-project gap for scheduled tasks
+Shipped 2026-07-20. Fixes workflow saves and **scheduled-task writes following a symlink at `.claude`**, which could previously redirect writes outside the project — directly relevant since this KB routine itself runs as a scheduled task writing to this repo. Also fixes worktree-isolated subagents redirecting git into the shared checkout via `git -C`/`--git-dir`/`GIT_DIR`/`GIT_WORK_TREE`, a quadratic slowdown in long sessions, and auto mode misreading an OAuth-token-expiry error as a real permission denial.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.216
+- If any Lanzico repo has a `.claude` symlink (intentional or accidental), verify scheduled-task/workflow writes land where expected post-update
+- [GitHub CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
+
+### -16. `[ACTION]` Try Live Artifacts — published artifacts can now call your MCP connectors on view
+As of the week of 2026-07-16, a published Claude Artifact can call a viewer's own MCP connectors each time it's opened, turning a static report into a live dashboard that refreshes without re-running the session. Public sharing links and Team/Enterprise editor roles (shared live editing) shipped alongside it. Lucas already has Notion, Slack, Gmail, Calendar, Drive, Miro, Canva, Clay, and Lemlist connected — a natural fit for a client-facing pipeline/status dashboard that should always show current data instead of a snapshot.
+- Next time an Artifact is built for a client report, consider wiring it to a relevant connector (e.g. Notion or a CRM view) instead of a one-time data pull
+- Check the `artifact-capabilities` skill before declaring any live/connected capability on a published artifact
+- [X/ClaudeDevs](https://x.com/ClaudeDevs/status/2077489907350856038) / [AlternativeTo](https://alternativeto.net/news/2026/7/claude-code-artifacts-add-mcp-connector-support-for-dynamic-data/)
 
 ### -15. `[ACTION]` Update to Claude Code v2.1.215 — `/verify` and `/code-review` no longer auto-run
 Shipped 2026-07-19. Single change, but a real behavior shift: Claude previously could self-trigger the `/verify` and `/code-review` skills on its own after making edits; it no longer does, they now require an explicit invocation. Lucas has both skills configured in this environment.
