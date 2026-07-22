@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-21)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-22)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -18. `[ACTION]` Update to Claude Code v2.1.217 — new subagent concurrency/nesting/budget caps
+Shipped 2026-07-21. Adds a **concurrent-subagent cap** (default 20, `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`) separate from the existing 200-total-per-session cap, and **subagents no longer spawn nested subagents by default** (`CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` to opt back in). Also fixes `--max-budget-usd` not actually stopping background subagents once the budget is hit, and a memory leak from retaining full untruncated MCP tool output after truncation.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.217
+- If any Lanzico Workflow does wide fan-out (>20 concurrent subagents) or relies on nested subagent spawning, it will silently hit the new default caps — set the env vars explicitly if that's intentional
+- If `--max-budget-usd` is used to cap spend on background agents, note it previously didn't enforce correctly — now it does
+- [GitHub CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 
 ### -17. `[ACTION]` Update to Claude Code v2.1.216 — closes a symlink write-outside-project gap for scheduled tasks
 Shipped 2026-07-20. Fixes workflow saves and **scheduled-task writes following a symlink at `.claude`**, which could previously redirect writes outside the project — directly relevant since this KB routine itself runs as a scheduled task writing to this repo. Also fixes worktree-isolated subagents redirecting git into the shared checkout via `git -C`/`--git-dir`/`GIT_DIR`/`GIT_WORK_TREE`, a quadratic slowdown in long sessions, and auto mode misreading an OAuth-token-expiry error as a real permission denial.
