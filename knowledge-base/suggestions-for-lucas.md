@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-22)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-23)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -19. `[ACTION]` Update to Claude Code v2.1.218 — check `context: fork` skills and auto-mode dangerous-command handling
+Shipped 2026-07-22. Skills declaring `context: fork` now run in the **background by default** (opt out per-skill with `background: false`) — check whether any Lanzico skill using `context: fork` should stay foregrounded. Separately, auto mode's dangerous-command checks (`rm -rf`, background `&`, suspicious Windows paths) now use **classifier adjudication instead of always showing a permission dialog** — worth a quick sanity check that this doesn't loosen a guardrail relied on for unattended runs. Also: `/code-review` now runs as a background subagent (keeps the conversation clear), and `/deep-research` no longer auto-launches (manual invocation only).
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.218
+- Audit Lanzico `.claude/skills/*` for `context: fork` frontmatter and decide if `background: false` is needed anywhere
+- [GitHub CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) / [Release](https://github.com/anthropics/claude-code/releases/tag/v2.1.218)
 
 ### -18. `[ACTION]` Update to Claude Code v2.1.217 — new subagent concurrency/nesting/budget caps
 Shipped 2026-07-21. Adds a **concurrent-subagent cap** (default 20, `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`) separate from the existing 200-total-per-session cap, and **subagents no longer spawn nested subagents by default** (`CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` to opt back in). Also fixes `--max-budget-usd` not actually stopping background subagents once the budget is hit, and a memory leak from retaining full untruncated MCP tool output after truncation.
