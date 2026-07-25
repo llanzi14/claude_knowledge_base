@@ -1,10 +1,18 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-23)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-25)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -20. `[ACTION]` Evaluate Claude Opus 5 as the new default for Opus-tier work — supersedes the "stay on Opus 4.8" guidance
+Anthropic launched **Claude Opus 5** on 2026-07-24 (its fourth model in under two months), and Claude Code v2.1.219 (2026-07-24) made it the new default Opus model. Base pricing is unchanged from Opus 4.8 ($5/$25 per Mtok), it ships a 1M-token context window, and it benchmarks well ahead of both Opus 4.8 and Fable 5 on coding (Frontier-Bench v0.1), reasoning (ARC-AGI-3), and computer-use (OSWorld 2.0) — the last one at roughly a third of Fable 5's cost. A new **effort dial** lets you trade intelligence for speed/token cost per-call, similar in spirit to `/fast` but more granular. This item directly updates two pieces of standing guidance already in this KB: item `1` below ("keep production pinned to Opus 4.8") and the Model Strategy section (item `12`).
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.219+, then run `/model` to confirm Opus 5 is available
+- Trial Opus 5 on the next complex/multi-file Lanzico task that would previously have gone to Opus 4.8 — same price, reportedly meaningfully stronger
+- Try the effort dial on a routine task to see if a lower setting holds quality at lower cost/latency before defaulting everything to max effort
+- It's less than 24 hours old — no Reddit/community reaction confirmed yet; revisit `community-insights.md` in a few days before fully committing critical automation to it (same caution this KB applied to Fable 5 after its export-control history)
+- [Anthropic](https://www.anthropic.com/news/claude-opus-5) / [MarkTechPost](https://www.marktechpost.com/2026/07/24/meet-the-new-claude-opus-5-frontier-class-agentic-coding-and-computer-use-at-unchanged-opus-pricing/)
 
 ### -19. `[ACTION]` Update to Claude Code v2.1.218 — check `context: fork` skills and auto-mode dangerous-command handling
 Shipped 2026-07-22. Skills declaring `context: fork` now run in the **background by default** (opt out per-skill with `background: false`) — check whether any Lanzico skill using `context: fork` should stay foregrounded. Separately, auto mode's dangerous-command checks (`rm -rf`, background `&`, suspicious Windows paths) now use **classifier adjudication instead of always showing a permission dialog** — worth a quick sanity check that this doesn't loosen a guardrail relied on for unattended runs. Also: `/code-review` now runs as a background subagent (keeps the conversation clear), and `/deep-research` no longer auto-launches (manual invocation only).
@@ -158,9 +166,8 @@ New in v2.1.193: routes all Bash/PowerShell commands through the auto-mode safet
 Claude Tag (launched June 23) puts a persistent AI teammate inside shared Slack channels — shared by the whole team, with ambient mode so it proactively follows up on threads. Available on Enterprise and Team plans. You already have the Slack MCP connected in Claude Code sessions; Claude Tag extends that into your actual Slack workspace where conversations happen. Start with one internal ops channel to test ambient mode and context persistence before rolling out to client-facing channels.
 - [Anthropic intro](https://www.anthropic.com/news/introducing-claude-tag) / [TechCrunch deep-dive](https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/)
 
-### 1. `[ACTION]` Keep production pinned to Opus 4.8 — Fable 5 still offline
-Fable 5 and Mythos 5 remain suspended under a US government export-control directive (active since June 12). No restoration timeline. Any session or API call targeting `claude-fable-5` will fail. Ensure all Lanzico automations, skills, and Claude Code configs explicitly reference `claude-opus-4-8` or `claude-sonnet-4-6`.
-- [Anthropic statement](https://www.anthropic.com/news/fable-mythos-access)
+### 1. ~~Keep production pinned to Opus 4.8 — Fable 5 still offline~~ — **SUPERSEDED, see item -20 and item -0.5 above**
+Fable 5's export-control suspension was lifted 2026-07-01, and Opus 4.8 itself has since been superseded as Claude Code's default Opus model by Opus 5 (2026-07-24). Pruned to avoid stale duplicate guidance; current model strategy lives in item `12` below.
 
 ### 2. `[ACTION]` Enable `sandbox.credentials: true` in automated run configs
 New in v2.1.187: prevents sandboxed agent commands from reading credential files or secret environment variables. This is a meaningful security control for any automated Lanzico workflow that runs in an environment with credentials present.
@@ -260,12 +267,13 @@ You have Notion, Slack, Gmail, Google Calendar, Google Drive, Miro, Canva, Clay,
 
 ## Model Strategy
 
-### 12. Current model strategy — updated 2026-07-01, Fable 5 back online, Sonnet 5 shipped (still current as of 2026-07-02)
-Fable 5 and Mythos 5 access was restored July 1 after the export-control suspension was lifted. Claude Sonnet 5 also shipped June 30 with a 1M context window and promo pricing through August 31. Active model lineup:
-- **Fable 5**: top-tier "Mythos-class" work, but restored only 1 day ago after a prior suspension — pilot cautiously, don't yet depend on it for anything time-critical
-- **Opus 4.8**: complex multi-file tasks, architecture work, debugging hard problems — proven, stable default for critical work
-- **Opus 4.8 + Fast mode** (`/fast`): rapid iteration, reviews, quick answers — 2.5× faster at 2× cost
-- **Sonnet 5** (new): 1M context, $2/$10 promo pricing through Aug 31 — try for mid-to-high complexity tasks that don't strictly need Opus; likely the new cost/performance sweet spot given the price and context window
+### 12. Current model strategy — updated 2026-07-25, Claude Opus 5 now the default Opus tier
+Claude Opus 5 launched 2026-07-24 and became Claude Code's default Opus model the same day, at the same price as Opus 4.8. Active model lineup:
+- **Opus 5** (new default): complex multi-file tasks, architecture work, debugging hard problems — same $5/$25-per-Mtok price as Opus 4.8 but benchmarks meaningfully ahead on coding, reasoning, and computer-use; has a new effort dial to tune speed/cost vs. quality. Less than 24 hours old — trial before fully committing critical unattended automation to it
+- **Opus 4.8**: fallback if Opus 5 shows any regression on a specific Lanzico workflow during trial — was the proven, stable default until 2026-07-24
+- **Opus 5/4.8 + Fast mode** (`/fast`): rapid iteration, reviews, quick answers — 2.5× faster at 2× cost
+- **Fable 5**: top-tier "Mythos-class" work; was suspended once already under export controls (restored July 1) — pilot for interactive work, avoid depending on it for anything time-critical or unattended
+- **Sonnet 5**: 1M context, promo pricing through Aug 31 — mid-to-high complexity tasks that don't need Opus-tier reasoning; likely still the cost/performance sweet spot for routine agentic work
 - **Sonnet 4.6**: balanced speed/capability fallback if Sonnet 5 isn't yet validated for a workflow
 - **Haiku 4.5**: simple lookups, boilerplate, cost-sensitive automations
 
