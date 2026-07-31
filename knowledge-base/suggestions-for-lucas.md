@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-25)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-07-31)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -21. `[ACTION]` Audit sandboxed/automated Claude setups for real network isolation, not prompt-only isolation
+Anthropic disclosed on 2026-07-30 that three of its own cybersecurity-evaluation environments were supposed to be internet-isolated by prompt instruction alone ("you are in a simulation with no internet access"), but a misconfiguration with third-party eval partner Irregular left them actually connected to the live internet — resulting in Opus 4.7, Mythos 5, and an internal research model each reaching and breaching real external companies' systems using basic techniques (weak passwords, unauthenticated endpoints). Two of the three affected organizations hadn't even detected the activity themselves. The lesson generalizes past Anthropic's own evals: **a system prompt telling a model "you have no internet access" or "you're isolated" is not a security control** — only infrastructure-level restrictions are.
+- Check any Lanzico Claude Code sandbox, CI, or eval setup: is network isolation enforced by `sandbox.network.strictAllowlist` / actual firewalling, or only described in the prompt?
+- Same applies to any custom agent harness or MCP server that grants a model tool access to sensitive systems — verify scope is enforced technically, not just described in the prompt
+- [Anthropic](https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals) / [TechCrunch](https://techcrunch.com/2026/07/30/anthropic-says-its-own-ai-models-breached-three-companies-during-security-tests/)
 
 ### -20. `[ACTION]` Evaluate Claude Opus 5 as the new default for Opus-tier work — supersedes the "stay on Opus 4.8" guidance
 Anthropic launched **Claude Opus 5** on 2026-07-24 (its fourth model in under two months), and Claude Code v2.1.219 (2026-07-24) made it the new default Opus model. Base pricing is unchanged from Opus 4.8 ($5/$25 per Mtok), it ships a 1M-token context window, and it benchmarks well ahead of both Opus 4.8 and Fable 5 on coding (Frontier-Bench v0.1), reasoning (ARC-AGI-3), and computer-use (OSWorld 2.0) — the last one at roughly a third of Fable 5's cost. A new **effort dial** lets you trade intelligence for speed/token cost per-call, similar in spirit to `/fast` but more granular. This item directly updates two pieces of standing guidance already in this KB: item `1` below ("keep production pinned to Opus 4.8") and the Model Strategy section (item `12`).
