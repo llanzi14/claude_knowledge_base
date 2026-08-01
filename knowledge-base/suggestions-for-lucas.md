@@ -1,6 +1,6 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-07-31)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-01)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
@@ -85,11 +85,11 @@ Shipped 2026-07-14. Fixes several memory leaks that matter for long-running or s
 - If any Lanzico auth uses AWS SSO with Bedrock where the SSO region differs from the Bedrock region, this update fixes a regression that broke that specific setup
 - [Changelog](https://code.claude.com/docs/en/changelog)
 
-### -9. `[ACTION]` Weekly Claude Code rate limits revert tonight (2026-07-13, 6PM PDT)
-The 50% weekly-limit boost that's been live since May 13 for Pro/Max/Team/seat-based Enterprise expires today with no announced extension. If any Lanzico workflow (including scheduled routines like this one) runs close to the weekly cap, expect less headroom starting tomorrow.
-- Check current weekly usage via `/usage-credits` or the Claude console before the boost lapses
-- If usage regularly approaches the cap, consider spacing out non-urgent scheduled runs or moving cost-sensitive automation to Haiku 4.5
-- [AI Catchup](https://aicatchup.com/news/claude-code-weekly-limits-50-percent-promo) / [ChatForest](https://chatforest.com/builders-log/claude-code-weekly-limit-50-percent-boost-expires-july-13-builder-action-guide/)
+### -9. ~~Weekly Claude Code rate limits revert~~ — **CORRECTED 2026-08-01: boost extended through 2026-08-19, still active**
+This item previously said the 50% weekly-limit boost (live since May 13 for Pro/Max/Team/seat-based Enterprise) would expire 2026-07-13 with no extension. That was wrong — Anthropic extended it the same day, now running through **2026-08-19**. No headroom reduction has actually happened; disregard the original "space out runs" guidance below.
+- If Lanzico usage is currently planned around reduced headroom starting mid-July, that constraint doesn't apply — the +50% boost has been continuously active
+- Mark **2026-08-19** as the date to actually watch for a reversion, and check this KB again before then
+- [Help Net Security](https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/) / [ClaudeDevs on X](https://x.com/ClaudeDevs/status/2078511173759324328)
 
 ### -8. `[ACTION]` Update to Claude Code v2.1.207 — two security fixes directly relevant to automated runs
 v2.1.207 (2026-07-11) fixes a bug where remote managed settings applied from a non-interactive run (`claude -p`, the SDK) were recorded as consented **without ever showing the security consent dialog** — this affects headless/scheduled automation like this KB routine. It also closes a shell-injection vector in plugin hooks/monitors/MCP `headersHelper` (`${user_config.*}` interpolation in shell-form commands is now rejected). Separately, auto mode **no longer reads config from repo-resident `.claude/settings.local.json`** — it now only honors `~/.claude/settings.json`.
