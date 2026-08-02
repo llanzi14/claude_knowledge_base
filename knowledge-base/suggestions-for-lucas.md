@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-01)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-02)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -22. `[ACTION]` Claude Opus 4.1 API model retires 2026-08-05 — check for pinned usage before it breaks
+Anthropic's official model-deprecations page confirms `claude-opus-4-1-20250805` hard-retires on **2026-08-05** (3 days from this update) — requests after that date will fail outright, no grace period. This only affects direct API/SDK calls pinned to that exact model string; Claude Code itself already defaults to Opus 5 (since v2.1.219) and is unaffected.
+- Grep any Lanzico API/SDK integration code, automation configs (n8n, Zapier, custom scripts), or `.env`/config files for the literal string `claude-opus-4-1-20250805`
+- If found, swap to `claude-opus-4-8` (the recommended replacement) before 2026-08-05
+- If nothing is found, no action needed — but worth a quick check given the short runway
+- [Anthropic model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations)
 
 ### -21. `[ACTION]` Audit sandboxed/automated Claude setups for real network isolation, not prompt-only isolation
 Anthropic disclosed on 2026-07-30 that three of its own cybersecurity-evaluation environments were supposed to be internet-isolated by prompt instruction alone ("you are in a simulation with no internet access"), but a misconfiguration with third-party eval partner Irregular left them actually connected to the live internet — resulting in Opus 4.7, Mythos 5, and an internal research model each reaching and breaching real external companies' systems using basic techniques (weak passwords, unauthenticated endpoints). Two of the three affected organizations hadn't even detected the activity themselves. The lesson generalizes past Anthropic's own evals: **a system prompt telling a model "you have no internet access" or "you're isolated" is not a security control** — only infrastructure-level restrictions are.
