@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-02)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-03)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -23. `[ACTION]` Confirm which Claude plan Lanzico is on — Fable 5 is no longer free-to-use on Pro/Team Standard
+As of 2026-07-20, Fable 5 access diverged by plan tier: Max/Team Premium keep it included (50% of weekly limits); **Pro and Team Standard now pay metered credits** ($10/$50 per Mtok input/output) after a one-time $100 grant that expired 2026-08-02. This directly affects the Model Strategy guidance below (item 12), which recommended piloting Fable 5 without noting it may now carry a per-token cost depending on plan.
+- Check Lucas's current plan tier before using Fable 5 for anything beyond a quick trial
+- If on Pro/Team Standard, treat Fable 5 usage as a metered expense on par with direct API calls, not an included feature
+- [Enterprise DNA](https://enterprisedna.co/resources/ai-pulse/ai-pulse-2026-07-27-anthropic-forces-claude-fable-5-off-included-usage-onto-mete/)
 
 ### -22. `[ACTION]` Claude Opus 4.1 API model retires 2026-08-05 — check for pinned usage before it breaks
 Anthropic's official model-deprecations page confirms `claude-opus-4-1-20250805` hard-retires on **2026-08-05** (3 days from this update) — requests after that date will fail outright, no grace period. This only affects direct API/SDK calls pinned to that exact model string; Claude Code itself already defaults to Opus 5 (since v2.1.219) and is unaffected.
@@ -285,7 +291,7 @@ Claude Opus 5 launched 2026-07-24 and became Claude Code's default Opus model th
 - **Opus 5** (new default): complex multi-file tasks, architecture work, debugging hard problems — same $5/$25-per-Mtok price as Opus 4.8 but benchmarks meaningfully ahead on coding, reasoning, and computer-use; has a new effort dial to tune speed/cost vs. quality. Less than 24 hours old — trial before fully committing critical unattended automation to it
 - **Opus 4.8**: fallback if Opus 5 shows any regression on a specific Lanzico workflow during trial — was the proven, stable default until 2026-07-24
 - **Opus 5/4.8 + Fast mode** (`/fast`): rapid iteration, reviews, quick answers — 2.5× faster at 2× cost
-- **Fable 5**: top-tier "Mythos-class" work; was suspended once already under export controls (restored July 1) — pilot for interactive work, avoid depending on it for anything time-critical or unattended
+- **Fable 5**: top-tier "Mythos-class" work; was suspended once already under export controls (restored July 1) — pilot for interactive work, avoid depending on it for anything time-critical or unattended. **As of 2026-07-20, only included on Max/Team Premium (50% of weekly limits); Pro/Team Standard now pay metered credits ($10/$50 per Mtok) — confirm plan tier before relying on it**
 - **Sonnet 5**: 1M context, promo pricing through Aug 31 — mid-to-high complexity tasks that don't need Opus-tier reasoning; likely still the cost/performance sweet spot for routine agentic work
 - **Sonnet 4.6**: balanced speed/capability fallback if Sonnet 5 isn't yet validated for a workflow
 - **Haiku 4.5**: simple lookups, boilerplate, cost-sensitive automations
