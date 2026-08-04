@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-03)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-04)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -24. `[ACTION]` Update to Claude Code v2.1.221 — two permission-bypass fixes, plus a background-automation behavior change worth auditing
+Shipped 2026-08-04. Two security fixes close real permission-check bypasses: a zsh `[[ ]]` regex-conditional Bash bypass, and a Windows PowerShell bypass via quote characters in file paths — both previously let commands run without the expected prompt. Separately, **background sessions now commit and push to preserve work, open a draft PR only when the task calls for one, follow the repo's CLAUDE.md git instructions, and always report where the work landed** — this is a new default, not an opt-in.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.221 for the security fixes
+- Audit any Lanzico scheduled task, cron job, or background Claude Code automation that does **not** carry explicit git-push instructions (this KB's own `ROUTINE.md` does, so it's unaffected) — it may now open an unexpected draft PR instead of landing changes directly, or vice versa depending on what its CLAUDE.md says
+- If any sandboxed Lanzico automation handles credential files, evaluate the new `mode: "mask"` sandbox setting (Linux/WSL) as a safer middle ground between `deny` and full exposure
+- [GitHub CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 
 ### -23. `[ACTION]` Confirm which Claude plan Lanzico is on — Fable 5 is no longer free-to-use on Pro/Team Standard
 As of 2026-07-20, Fable 5 access diverged by plan tier: Max/Team Premium keep it included (50% of weekly limits); **Pro and Team Standard now pay metered credits** ($10/$50 per Mtok input/output) after a one-time $100 grant that expired 2026-08-02. This directly affects the Model Strategy guidance below (item 12), which recommended piloting Fable 5 without noting it may now carry a per-token cost depending on plan.
