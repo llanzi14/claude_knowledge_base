@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-04)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-05)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -25. `[ACTION]` Update to Claude Code v2.1.222 — worktree-isolation git bypass + PreToolUse hook bypass, both security fixes
+Shipped 2026-08-05, fix-only release. Two security fixes close real gaps: worktree-isolated sessions/subagents could run destructive git commands against the **main checkout** instead of staying confined to their own isolated worktree (isolation now correctly covers file edits and Bash in every session type); and `PreToolUse` auto-allow hooks were silently **not enforcing tool restrictions inside background agent tasks** (summaries, compaction, renames).
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.222
+- If any Lanzico `Workflow` script uses `isolation: 'worktree'` to let parallel agents mutate files safely, this fix is the reason that isolation now actually holds against git commands — worth confirming the update landed before relying on it further
+- If any Lanzico automation uses `PreToolUse` hooks to restrict what a background/scheduled agent can do, re-verify those restrictions after updating — they may have been silently bypassed in background tasks before this fix
+- [GitHub CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 
 ### -24. `[ACTION]` Update to Claude Code v2.1.221 — two permission-bypass fixes, plus a background-automation behavior change worth auditing
 Shipped 2026-08-04. Two security fixes close real permission-check bypasses: a zsh `[[ ]]` regex-conditional Bash bypass, and a Windows PowerShell bypass via quote characters in file paths — both previously let commands run without the expected prompt. Separately, **background sessions now commit and push to preserve work, open a draft PR only when the task calls for one, follow the repo's CLAUDE.md git instructions, and always report where the work landed** — this is a new default, not an opt-in.
@@ -19,11 +26,11 @@ As of 2026-07-20, Fable 5 access diverged by plan tier: Max/Team Premium keep it
 - If on Pro/Team Standard, treat Fable 5 usage as a metered expense on par with direct API calls, not an included feature
 - [Enterprise DNA](https://enterprisedna.co/resources/ai-pulse/ai-pulse-2026-07-27-anthropic-forces-claude-fable-5-off-included-usage-onto-mete/)
 
-### -22. `[ACTION]` Claude Opus 4.1 API model retires 2026-08-05 — check for pinned usage before it breaks
-Anthropic's official model-deprecations page confirms `claude-opus-4-1-20250805` hard-retires on **2026-08-05** (3 days from this update) — requests after that date will fail outright, no grace period. This only affects direct API/SDK calls pinned to that exact model string; Claude Code itself already defaults to Opus 5 (since v2.1.219) and is unaffected.
+### -22. `[ACTION]` Claude Opus 4.1 API model retirement is now in effect — check for pinned usage
+Anthropic's official model-deprecations page confirms `claude-opus-4-1-20250805` hard-retired on **2026-08-05 — that date has now passed**; requests pinned to that exact model string now fail outright, no grace period. This only affects direct API/SDK calls pinned to that exact model string; Claude Code itself already defaults to Opus 5 (since v2.1.219) and is unaffected.
 - Grep any Lanzico API/SDK integration code, automation configs (n8n, Zapier, custom scripts), or `.env`/config files for the literal string `claude-opus-4-1-20250805`
-- If found, swap to `claude-opus-4-8` (the recommended replacement) before 2026-08-05
-- If nothing is found, no action needed — but worth a quick check given the short runway
+- If found, swap to `claude-opus-4-8` (the recommended replacement) immediately — requests are failing now, not on a countdown
+- If nothing is found, no action needed
 - [Anthropic model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations)
 
 ### -21. `[ACTION]` Audit sandboxed/automated Claude setups for real network isolation, not prompt-only isolation
