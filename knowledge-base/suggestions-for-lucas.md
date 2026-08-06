@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-05)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-06)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -26. `[ACTION]` Update to Claude Code v2.1.223 — Workflow sandbox `import()` escape + Bash permission-hiding bypass, both security fixes
+Shipped 2026-08-06. Two fixes matter directly to how Lanzico automation runs: Workflow scripts could previously use dynamic `import()` to execute code **outside the workflow sandbox** — closes a real gap for anyone (including this KB routine) that calls the `Workflow` tool; and a crafted Bash command could hide part of itself from the permission-approval dialog (tab/invisible-Unicode padding was a variant of the same bug), so what got shown for approval didn't always match what would run.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.223
+- If any Lanzico workflow script takes user- or model-generated strings into a dynamic `import()`-like pattern, treat the old behavior as having been exploitable pre-update
+- Bonus: `/review` is now an alias of `/code-review` (supports `/code-review <level> <pr#>` and an `ultra` deep-cloud-review level) — no action needed, just note the alias if muscle memory still reaches for `/review`
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -25. `[ACTION]` Update to Claude Code v2.1.222 — worktree-isolation git bypass + PreToolUse hook bypass, both security fixes
 Shipped 2026-08-05, fix-only release. Two security fixes close real gaps: worktree-isolated sessions/subagents could run destructive git commands against the **main checkout** instead of staying confined to their own isolated worktree (isolation now correctly covers file edits and Bash in every session type); and `PreToolUse` auto-allow hooks were silently **not enforcing tool restrictions inside background agent tasks** (summaries, compaction, renames).
