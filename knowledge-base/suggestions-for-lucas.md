@@ -1,10 +1,18 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-06)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-07)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -27. `[ACTION]` Update to Claude Code v2.1.224 — sandbox deny-rule bypass fix, plus two new capabilities worth evaluating
+Shipped 2026-08-07. **Security fix**: sandbox filesystem deny entries with a trailing slash were bypassable on Linux/macOS — update promptly if any Lanzico sandboxed automation relies on deny rules to block access to specific paths. Separately, two new capabilities change what's worth building: **cross-session messaging** (`SendMessage`/`ListAgents`) lets one Claude Code session message another directly, a session-to-session primitive distinct from spawning a subagent with the Agent tool; and the **200-subagent-per-session spawn cap from v2.1.212 has been removed**, so wide `Workflow` fan-out (like this KB routine could use for a larger research sweep) is no longer capped at the session level — the separate 20-concurrent cap from v2.1.217 still limits how many run at once. Also new: `claude self-hosted-runner` for Team/Enterprise to host sessions on their own infrastructure.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.224
+- Re-verify any Lanzico sandbox config that uses filesystem deny rules with a trailing slash — it may have been silently bypassable before this fix
+- Consider whether a long-running or multi-agent Lanzico workflow could use `SendMessage`/`ListAgents` to coordinate across sessions instead of one large single-session Workflow
+- If Lanzico ever needed more than 200 subagents in one session (unlikely today, but relevant if a research/audit task scales up), that ceiling is gone
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -26. `[ACTION]` Update to Claude Code v2.1.223 — Workflow sandbox `import()` escape + Bash permission-hiding bypass, both security fixes
 Shipped 2026-08-06. Two fixes matter directly to how Lanzico automation runs: Workflow scripts could previously use dynamic `import()` to execute code **outside the workflow sandbox** — closes a real gap for anyone (including this KB routine) that calls the `Workflow` tool; and a crafted Bash command could hide part of itself from the permission-approval dialog (tab/invisible-Unicode padding was a variant of the same bug), so what got shown for approval didn't always match what would run.
