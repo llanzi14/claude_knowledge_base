@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-07)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-08)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -28. `[ACTION]` Update to Claude Code v2.1.225 — fixes a headless-session token-refresh bug this KB routine's own automation model is exposed to
+Shipped 2026-08-08. A transient 401 could replace a long-lived `CLAUDE_CODE_OAUTH_TOKEN` with a stored login's short-lived token, breaking headless sessions until restart — this is directly relevant to any Lanzico scheduled/headless Claude Code automation (including this KB routine) that authenticates via `CLAUDE_CODE_OAUTH_TOKEN` rather than an interactive login. Also fixed: MCP OAuth servers on macOS failing with 401 bursts after a keychain timeout, and cross-session messages staying parked without notice in headless sessions. v2.1.226 shipped the same day with no notable user-facing changes detailed.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.225+
+- If any Lanzico scheduled/cron Claude Code run has shown unexplained headless auth failures requiring a restart, this fix is the likely explanation — worth updating before assuming it's a token expiry/rotation problem on the Lanzico side
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -27. `[ACTION]` Update to Claude Code v2.1.224 — sandbox deny-rule bypass fix, plus two new capabilities worth evaluating
 Shipped 2026-08-07. **Security fix**: sandbox filesystem deny entries with a trailing slash were bypassable on Linux/macOS — update promptly if any Lanzico sandboxed automation relies on deny rules to block access to specific paths. Separately, two new capabilities change what's worth building: **cross-session messaging** (`SendMessage`/`ListAgents`) lets one Claude Code session message another directly, a session-to-session primitive distinct from spawning a subagent with the Agent tool; and the **200-subagent-per-session spawn cap from v2.1.212 has been removed**, so wide `Workflow` fan-out (like this KB routine could use for a larger research sweep) is no longer capped at the session level — the separate 20-concurrent cap from v2.1.217 still limits how many run at once. Also new: `claude self-hosted-runner` for Team/Enterprise to host sessions on their own infrastructure.
