@@ -79,6 +79,7 @@ Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
 ## Security
 
+- **`[ACTION]` Claude Enterprise "inference hooks" — inline DLP, beta since 2026-08-05** (added 2026-08-09) — org compliance/security teams can route every Claude Enterprise prompt and tool-call response (chat, Claude Code, Cowork) through their own DLP/security server for a real-time allow/deny verdict before Claude generates a response. Signed HTTPS POST of the transcript, ~5s timeout; pre-integrated with Netskope, Palo Alto Networks, Zscaler, Proofpoint. Also usable for transcript archival, prompt telemetry, or custom policy engines (model allowlists, project scoping). `[ACTION]` Enterprise-tier only — relevant if Lanzico or a client is on Claude Enterprise with an existing DLP vendor; otherwise no action. [Claude blog](https://claude.com/blog/claude-enterprise-inference-hooks)
 - **Claude Security** (2026-06-22) — Anthropic product using Opus 4.8 to scan codebases and suggest patches. `[ACTION]` Evaluate for Lanzico security auditing pipeline. [Anthropic](https://www.anthropic.com/news)
 
 ## MCP Servers (General)
