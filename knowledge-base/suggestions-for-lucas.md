@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-10)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-12)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -30. `[ACTION]` Update to Claude Code v2.1.228 — skill-sync hardening + two releases behind
+Two releases shipped since the last logged v2.1.226 (2026-08-08): v2.1.227 (2026-08-10, feature-flag/subscription-tier fix, GitHub Action Bash fix) and v2.1.228 (2026-08-11, hardens skills synced from claude.ai against shadowing local commands/MCP prompts and running `!`/`@` expansions on your machine). No urgent exposure — Lanzico's skills (`content-writer`, `business-analyst`, `marketing-researcher`, etc.) are local, not claude.ai-synced — but worth updating for the accumulated fixes, and worth remembering this hardening exists before ever pulling in a skill via claude.ai sync.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.228
+- No specific Lanzico config to change; this closes a gap that only applies to claude.ai-synced skills
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -29. `[ACTION]` Auto Mode becomes the default in Claude Code for Pro/Max/Team on 2026-08-14 — review permission settings before then
 Announced 2026-08-09, rolling out 2026-08-14. Claude Code will start auto-approving tool calls by default (a classifier blocks only what it flags as irreversible/destructive/external-facing) instead of prompting for every action — a real change to how much oversight Lanzico gets by default on any Pro/Max/Team seat. Anthropic's own data shows the classifier outperforms manual human approval (89% vs. 13.6% dangerous-command catch rate) and held up against 720 indirect prompt-injection attempts in third-party testing, but this KB has also logged several auto-mode classifier bugs over the past two months (misclassifying safety-filter refusals, OAuth-401 errors, etc.) — the classifier is good but not infallible.

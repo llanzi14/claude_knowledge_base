@@ -4,6 +4,7 @@ Newest entries first. Findings from Reddit, YouTube, X/Twitter, and blogs. Treat
 
 ## Product Reception
 
+- *(2026-08-12)* **Cautious/skeptical expert reaction to Auto Mode's default rollout** — Simon Willison (well-known independent LLM commentator) says he'd "love to believe" Anthropic has solved agentic-coding permission safety, noting he predicted 2026 would bring "a challenger disaster for coding agents security," but wants more independent confirmation beyond Anthropic's own self-reported classifier stats (89% vs. 13.6% catch rate) before treating auto-mode-as-default as settled. Consistent with this KB's existing note (see `-29` in `suggestions-for-lucas.md`) that the classifier has had several logged bugs over the past two months — worth keeping Lanzico's own permission settings review (due before the 2026-08-14 rollout) grounded in that skepticism rather than Anthropic's numbers alone. [Simon Willison](https://simonwillison.net/2026/Aug/8/auto-mode/)
 - *(2026-07-10)* **Mixed/skeptical press reaction to Claude Reflect** — the new usage-habits dashboard (see `releases-and-features.md`, 2026-07-09) drew a skeptical TechCrunch take ("quietly selling you on AI") alongside Spotify-Wrapped/Digital-Wellbeing comparisons from Engadget and Android Authority, despite Anthropic's stated wellbeing framing (quiet hours, break nudges). Early signal, not consensus — worth revisiting once more hands-on user reaction accumulates. [TechCrunch](https://techcrunch.com/2026/07/09/anthropics-new-claude-feature-is-quietly-selling-you-on-ai/)
 
 ## Sonnet 5 Reception
