@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-12)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-13)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -31. `[ACTION]` Update to Claude Code v2.1.229 — `/commit-push-pr` dangerous-git-flag guard + reliability fixes
+Shipped 2026-08-12. `/commit-push-pr` no longer auto-approves dangerous git flags (e.g. `--force`) as part of its commit/push/PR flow — worth updating for if this KB routine or any other Lanzico automation uses that skill. Also fixes a 32MB request-limit failure and a 400 error from whitespace-only messages in SDK/`stream-json` sessions, both relevant to long-running or programmatic automation, and requires Windows self-hosted runners to pass an explicit `--base-dir`.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.229
+- If any Lanzico workflow relies on `/commit-push-pr`, note it can no longer silently push with a dangerous git flag — that's a safety improvement, not a regression to work around
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -30. `[ACTION]` Update to Claude Code v2.1.228 — skill-sync hardening + two releases behind
 Two releases shipped since the last logged v2.1.226 (2026-08-08): v2.1.227 (2026-08-10, feature-flag/subscription-tier fix, GitHub Action Bash fix) and v2.1.228 (2026-08-11, hardens skills synced from claude.ai against shadowing local commands/MCP prompts and running `!`/`@` expansions on your machine). No urgent exposure — Lanzico's skills (`content-writer`, `business-analyst`, `marketing-researcher`, etc.) are local, not claude.ai-synced — but worth updating for the accumulated fixes, and worth remembering this hardening exists before ever pulling in a skill via claude.ai sync.
