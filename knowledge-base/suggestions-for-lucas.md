@@ -1,10 +1,25 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-13)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-14)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -32. `[ACTION]` Update to Claude Code v2.1.232 — two permission-bypass security fixes, plus subagent forking now on by default
+Shipped 2026-08-13 (with v2.1.231 the same day, a smaller MCP OAuth fix). Two security fixes worth updating for promptly: a PowerShell permission-check bypass via variable-writing parameters, and a Windows permission-check bypass via Git Bash symlink handling — both previously let commands run without the expected approval prompt. Separately, **subagent forking is now on by default with full conversation and prompt-cache inheritance** — forked/background subagents now start from the parent session's context and cache instead of a clean slate, a real behavior change for any Lanzico Workflow or Agent-tool usage that assumed subagents begin fresh.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.232
+- If any Lanzico Windows automation uses Git Bash with symlinks, or PowerShell commands with variable-writing parameters, this closes a real permission-bypass gap
+- Re-check any Workflow/subagent-based Lanzico automation that relies on a subagent starting with zero prior context — that assumption may no longer hold
+- Bonus: `@`-mention now lets one Claude Code session message another directly from the prompt, and GitLab is now supported as a plugin marketplace source with token-family secret redaction
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
+
+### -29. `[ACTION]` Auto Mode is now the default in Claude Code for Pro/Max/Team — LIVE as of 2026-08-14, verify permission settings now
+**Status update**: this item was "due before 2026-08-14" — that date is today, and the rollout shipped on schedule. Claude Code now auto-approves tool calls by default on Pro/Max/Team seats (a classifier blocks only what it flags as irreversible/destructive/external-facing) instead of prompting for every action. Anthropic's own data shows the classifier outperforms manual human approval (89% vs. 13.6% dangerous-command catch rate) and held up against 720 indirect prompt-injection attempts in third-party testing, but this KB has also logged several auto-mode classifier bugs over the past two months (misclassifying safety-filter refusals, OAuth-401 errors, etc.) — the classifier is good but not infallible, and independent commentary (Simon Willison, `community-insights.md` 2026-08-12) urges caution beyond Anthropic's self-reported numbers.
+- **This KB routine itself runs headless/unattended on a scheduled trigger — if it's on a Pro/Max/Team seat, its own default permission behavior changed today.** Confirm this is still the intended posture, or pin explicit settings if not.
+- Check `.claude/settings.json` (project and user level) for any Lanzico repo where per-call approval was relied on as a safety net, and add explicit `ask`/`deny` rules for sensitive operations (deploys, destructive git, credential access) rather than trusting the classifier alone
+- Enterprise/API/Bedrock/Vertex/Foundry remain opt-in for now (a default flip is "planned within the following month" — watch for that date)
+- [Claude blog](https://claude.com/blog/auto-mode-default-in-claude-code)
 
 ### -31. `[ACTION]` Update to Claude Code v2.1.229 — `/commit-push-pr` dangerous-git-flag guard + reliability fixes
 Shipped 2026-08-12. `/commit-push-pr` no longer auto-approves dangerous git flags (e.g. `--force`) as part of its commit/push/PR flow — worth updating for if this KB routine or any other Lanzico automation uses that skill. Also fixes a 32MB request-limit failure and a 400 error from whitespace-only messages in SDK/`stream-json` sessions, both relevant to long-running or programmatic automation, and requires Windows self-hosted runners to pass an explicit `--base-dir`.
@@ -17,13 +32,6 @@ Two releases shipped since the last logged v2.1.226 (2026-08-08): v2.1.227 (2026
 - `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.228
 - No specific Lanzico config to change; this closes a gap that only applies to claude.ai-synced skills
 - [Docs changelog](https://code.claude.com/docs/en/changelog)
-
-### -29. `[ACTION]` Auto Mode becomes the default in Claude Code for Pro/Max/Team on 2026-08-14 — review permission settings before then
-Announced 2026-08-09, rolling out 2026-08-14. Claude Code will start auto-approving tool calls by default (a classifier blocks only what it flags as irreversible/destructive/external-facing) instead of prompting for every action — a real change to how much oversight Lanzico gets by default on any Pro/Max/Team seat. Anthropic's own data shows the classifier outperforms manual human approval (89% vs. 13.6% dangerous-command catch rate) and held up against 720 indirect prompt-injection attempts in third-party testing, but this KB has also logged several auto-mode classifier bugs over the past two months (misclassifying safety-filter refusals, OAuth-401 errors, etc.) — the classifier is good but not infallible.
-- Before 2026-08-14, check `.claude/settings.json` (project and user level) for any Lanzico repo where per-call approval is relied on as a safety net, and add explicit `ask`/`deny` rules for sensitive operations (deploys, destructive git, credential access) rather than trusting the classifier alone
-- This KB routine itself runs headless/unattended — confirm its own permission posture is still what's intended once auto mode is the default rather than an opt-in
-- Enterprise/API/Bedrock/Vertex/Foundry are unaffected for now (opt-in), so this only matters for Pro/Max/Team usage
-- [Claude blog](https://claude.com/blog/auto-mode-default-in-claude-code)
 
 ### -28. `[ACTION]` Update to Claude Code v2.1.225 — fixes a headless-session token-refresh bug this KB routine's own automation model is exposed to
 Shipped 2026-08-08. A transient 401 could replace a long-lived `CLAUDE_CODE_OAUTH_TOKEN` with a stored login's short-lived token, breaking headless sessions until restart — this is directly relevant to any Lanzico scheduled/headless Claude Code automation (including this KB routine) that authenticates via `CLAUDE_CODE_OAUTH_TOKEN` rather than an interactive login. Also fixed: MCP OAuth servers on macOS failing with 401 bursts after a keychain timeout, and cross-session messages staying parked without notice in headless sessions. v2.1.226 shipped the same day with no notable user-facing changes detailed.
