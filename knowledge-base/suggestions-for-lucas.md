@@ -6,6 +6,13 @@ Generated `(2026-06-29)`, updated `(2026-08-15)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -33. `[ACTION]` Update to Claude Code v2.1.233 — NTLM credential-leak fix, and Todo/task tools now OFF by default on newer models
+Shipped 2026-08-14. **Security**: fixed Windows NT `\??\`-prefixed paths bypassing UNC path validation, an NTLM credential-leak vector — update promptly on any Windows machine running Claude Code. Separately, and more likely to actually bite: **`TaskCreate`/`TaskGet`/`TaskUpdate`/`TaskList` and `TodoWrite` are no longer available by default** on Opus 4.8, Sonnet 5, Fable 5, Mythos 5, and newer models. If any Lanzico skill, agent definition, or Workflow script depends on these tools existing for planning/progress tracking, it will silently lose that capability after updating.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.233
+- Set `CLAUDE_CODE_ENABLE_TODO_TOOLS=1` (env var) if any Lanzico automation needs the Todo/Task tools restored
+- Bonus: GitLab merge request URLs now work with `--worktree`/`claude agents`, and a Windows `cd && ... > file` auto-mode regression from v2.1.232 is fixed
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
+
 ### -32. `[ACTION]` Update to Claude Code v2.1.232 — two permission-bypass security fixes, plus subagent forking now on by default
 Shipped 2026-08-13 (with v2.1.231 the same day, a smaller MCP OAuth fix). Two security fixes worth updating for promptly: a PowerShell permission-check bypass via variable-writing parameters, and a Windows permission-check bypass via Git Bash symlink handling — both previously let commands run without the expected approval prompt. Separately, **subagent forking is now on by default with full conversation and prompt-cache inheritance** — forked/background subagents now start from the parent session's context and cache instead of a clean slate, a real behavior change for any Lanzico Workflow or Agent-tool usage that assumed subagents begin fresh.
 - `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.232
