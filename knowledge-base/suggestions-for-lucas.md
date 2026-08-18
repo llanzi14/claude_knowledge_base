@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-15)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-18)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -34. `[ACTION]` Update to Claude Code v2.1.234 — MCP diagnostics secret-leak fix, and enable auto-resume on usage-limit reset
+Shipped 2026-08-17. **Security**: MCP diagnostics output was printing resolved secret values instead of masking them — update promptly if this KB routine or any other Lanzico automation ever runs `/mcp` diagnostics with live credentials configured. Separately, a genuinely useful new capability for unattended automation: Claude Code sessions can now **auto-resume automatically once a hit usage limit resets**, instead of staying blocked until someone manually restarts them — worth turning on for this KB routine and any other scheduled Lanzico automation running on a capped plan (Pro/Max/Team), since a hit limit previously meant a stalled/missed run.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.234
+- Check `/config` for the new auto-resume-on-limit-reset toggle and enable it for this KB routine's own session if not already on
+- Bonus: GitLab merge request status badges now show in the footer/statusline, and the `claude-api` skill's prompt-cache context cost dropped roughly 200k → 25k tokens
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -33. `[ACTION]` Update to Claude Code v2.1.233 — NTLM credential-leak fix, and Todo/task tools now OFF by default on newer models
 Shipped 2026-08-14. **Security**: fixed Windows NT `\??\`-prefixed paths bypassing UNC path validation, an NTLM credential-leak vector — update promptly on any Windows machine running Claude Code. Separately, and more likely to actually bite: **`TaskCreate`/`TaskGet`/`TaskUpdate`/`TaskList` and `TodoWrite` are no longer available by default** on Opus 4.8, Sonnet 5, Fable 5, Mythos 5, and newer models. If any Lanzico skill, agent definition, or Workflow script depends on these tools existing for planning/progress tracking, it will silently lose that capability after updating.
