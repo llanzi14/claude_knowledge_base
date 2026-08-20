@@ -6,6 +6,13 @@ Generated `(2026-06-29)`, updated `(2026-08-19)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -36. `[ACTION]` Update to Claude Code v2.1.236/v2.1.237 — `ANTHROPIC_DEFAULT_MODEL`, cross-session idle notice, built-in Concise output style
+Shipped 2026-08-19 and 2026-08-20. Three items relevant to this KB routine and other scheduled/multi-session Lanzico automation: (1) new `ANTHROPIC_DEFAULT_MODEL` env var sets the model new sessions start on (a `/model` pick still overrides and persists, unlike `ANTHROPIC_MODEL`) — useful for pinning a default model per automation without touching each session's settings; (2) `notify_when_idle` added to cross-session `SendMessage` — one Claude Code session on the same machine can now ask another to send a single notice when it next goes idle, opt-in and one-shot, no polling required; (3) v2.1.237 ships a **built-in "Concise" output style** (select under Output style in `/config`) that leads with results and skips preamble/narration while doing the work just as thoroughly — this KB previously logged Concise as a community-recommended `/config` option (2026-07-14 best-practices entry); it's now first-party, worth turning on for scheduled/headless routines like this one where narration isn't read live. Also fixed: sandbox wildcard read-deny rules on macOS (e.g. `**/.env`) now properly cover matched directories and can't be bypassed by renaming; several fullscreen-renderer, `/model`-picker, and background-session stability fixes; prompt caching fixed for sessions using an LLM gateway or custom base URL.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.237
+- Consider enabling the built-in Concise output style for this KB routine's own session and other unattended Lanzico automation
+- If any Lanzico setup runs multiple concurrent Claude Code sessions on one machine, `notify_when_idle` replaces manual polling for "is session X done yet"
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
+
 ### -35. `[ACTION]` Update to Claude Code v2.1.235 — permission-dialog display/scope mismatch fix
 Shipped 2026-08-18. **Security-relevant**: permission dialogs could previously show display text or a "don't ask again" scope that didn't always match what the grant actually covered — now always matches. Worth updating for on any Lanzico automation that relies on `.claude/settings.json` "don't ask again" grants matching their displayed scope, including this KB routine's own session. Also fixes whole-prompt-cache invalidation on a language server disconnect/reconnect mid-session (relevant to IDE-integrated sessions) and `SendMessage` silently dropping oversized messages instead of refusing them upfront.
 - `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.235
@@ -181,12 +188,11 @@ Shipped 2026-07-14. Fixes several memory leaks that matter for long-running or s
 - If any Lanzico auth uses AWS SSO with Bedrock where the SSO region differs from the Bedrock region, this update fixes a regression that broke that specific setup
 - [Changelog](https://code.claude.com/docs/en/changelog)
 
-### -9. `[ACTION]` Weekly Claude Code rate-limit boost expires tonight, 2026-08-19 11:59 PM PT — check tomorrow whether it actually reverted
-The 50% weekly-limit boost (live since May 13 for Pro/Max/Team/seat-based Enterprise, previously extended three times) is currently scheduled to expire tonight with no fourth-extension announcement found as of this run. Limits should revert to standard plan levels automatically — no config change needed — but this KB has now logged this exact promo being extended three separate times past its stated end date, so treat tonight's expiry as unconfirmed until verified.
-- No action needed tonight; the reversion (if it happens) is automatic
-- Check `/usage` or this KB's next run to confirm whether the boost actually reverted or was extended a fourth time — if extended again, update this item rather than re-adding it as new
-- If Lanzico's usage patterns were relying on the +50% headroom for any scheduled/automated run (including this KB routine), be aware weekly limits may tighten starting tomorrow
-- [Help Net Security](https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/) / [Coograph](https://coograph.com/blog/2026-08-06-claude-code-limit-rollback)
+### -9. Weekly Claude Code rate-limit boost — extended a fourth time, through 2026-08-31, Anthropic now says it "hopes" to make it permanent
+**CORRECTED 2026-08-20: did not revert as scheduled.** The 50% weekly-limit boost (live since May 13 for Pro/Max/Team/seat-based Enterprise) was set to expire 2026-08-19 11:59 PM PT per the previous entry — this KB's fourth time logging this exact promo about to lapse. Anthropic extended it the same day, now running through **2026-08-31**, and for the first time explicitly floated permanence rather than framing it as a one-off: "We hope to make this a permanent change to our plans, but strong demand for our models means that capacity may be tight over the coming weeks." No action needed either way — no config change required for the boost itself.
+- No action needed; if it lapses or converts to permanent, this KB will catch it on the next relevant run
+- Given the track record (four extensions since May), don't plan Lanzico automation capacity around the boost disappearing on any particular date — but also don't assume it's now permanent until Anthropic confirms
+- [ClaudeDevs on X](https://x.com/ClaudeDevs/status/2089798442306711646) / [KuCoin](https://www.kucoin.com/news/flash/anthropic-extends-claude-code-weekly-limit-increase-by-50-until-august-31)
 
 ### -8. `[ACTION]` Update to Claude Code v2.1.207 — two security fixes directly relevant to automated runs
 v2.1.207 (2026-07-11) fixes a bug where remote managed settings applied from a non-interactive run (`claude -p`, the SDK) were recorded as consented **without ever showing the security consent dialog** — this affects headless/scheduled automation like this KB routine. It also closes a shell-injection vector in plugin hooks/monitors/MCP `headersHelper` (`${user_config.*}` interpolation in shell-form commands is now rejected). Separately, auto mode **no longer reads config from repo-resident `.claude/settings.local.json`** — it now only honors `~/.claude/settings.json`.
