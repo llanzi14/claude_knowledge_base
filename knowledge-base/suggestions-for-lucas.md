@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-19)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-21)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -37. `[ACTION]` Update to Claude Code v2.1.238 — plugin `headersHelper` trust-dialog gating, unbounded-memory fix, cross-session `SendMessage` no longer fails silently
+Shipped 2026-08-20 — the largest single-day changelog logged in this KB (~30 items). Three items worth acting on: (1) plugin marketplaces' new `headersHelper` (a configured command that mints HTTP headers, e.g. a short-lived auth token, for catalog/archive fetches) now requires the project's trust dialog to have been accepted and runs without inherited credential env vars — if Lanzico ever adds a custom or third-party plugin marketplace, confirm it isn't relying on the old, less-gated behavior; (2) fixed unbounded memory growth in long interactive sessions (subagent tool results now release once they scroll out of the display window) — relevant to any long-running Lanzico session, including this KB routine's own multi-hour research runs; (3) cross-session `SendMessage` now reports back to the sender when a recipient session refuses inbound messages or its inbox drops one (rate limit/full queue), instead of the message silently vanishing — directly relevant to this routine's own `SendMessage`/`ListAgents` use and any other multi-session Lanzico automation that assumed delivery.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.238
+- If Lanzico adds a plugin marketplace with `headersHelper`, verify the relevant project folder's trust dialog has been accepted
+- No specific config change needed for the memory-growth or cross-session-messaging fixes beyond updating — both close silent-failure gaps
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -36. `[ACTION]` Update to Claude Code v2.1.236/v2.1.237 — `ANTHROPIC_DEFAULT_MODEL`, cross-session idle notice, built-in Concise output style
 Shipped 2026-08-19 and 2026-08-20. Three items relevant to this KB routine and other scheduled/multi-session Lanzico automation: (1) new `ANTHROPIC_DEFAULT_MODEL` env var sets the model new sessions start on (a `/model` pick still overrides and persists, unlike `ANTHROPIC_MODEL`) — useful for pinning a default model per automation without touching each session's settings; (2) `notify_when_idle` added to cross-session `SendMessage` — one Claude Code session on the same machine can now ask another to send a single notice when it next goes idle, opt-in and one-shot, no polling required; (3) v2.1.237 ships a **built-in "Concise" output style** (select under Output style in `/config`) that leads with results and skips preamble/narration while doing the work just as thoroughly — this KB previously logged Concise as a community-recommended `/config` option (2026-07-14 best-practices entry); it's now first-party, worth turning on for scheduled/headless routines like this one where narration isn't read live. Also fixed: sandbox wildcard read-deny rules on macOS (e.g. `**/.env`) now properly cover matched directories and can't be bypassed by renaming; several fullscreen-renderer, `/model`-picker, and background-session stability fixes; prompt caching fixed for sessions using an LLM gateway or custom base URL.
