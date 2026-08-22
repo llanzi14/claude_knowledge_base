@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-21)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-22)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -38. `[ACTION]` Run `/claude-api upgrade` on any Lanzico Python integration still on the 0.x `anthropic` SDK
+Claude Code v2.1.239 (shipped 2026-08-21) adds a `/claude-api upgrade` command that migrates a Python project from the `anthropic` SDK 0.x to 1.x automatically, including the `httpx.Timeout` → `anthropic.Timeout` change. Low urgency, no security fix attached to this release, but worth a five-minute check: if any Lanzico script or service still imports the 0.x SDK, running the upgrade avoids a future breaking-change scramble when 0.x is eventually deprecated. Separately, Windows now has cross-session messaging (`SendMessage`/`ListAgents`), so this KB routine's multi-session tooling notes no longer need a Windows caveat.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.239
+- If a Lanzico repo has a `requirements.txt`/`pyproject.toml` pin on `anthropic<1.0`, run `/claude-api upgrade` in that project and review the diff
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -37. `[ACTION]` Update to Claude Code v2.1.238 — plugin `headersHelper` trust-dialog gating, unbounded-memory fix, cross-session `SendMessage` no longer fails silently
 Shipped 2026-08-20 — the largest single-day changelog logged in this KB (~30 items). Three items worth acting on: (1) plugin marketplaces' new `headersHelper` (a configured command that mints HTTP headers, e.g. a short-lived auth token, for catalog/archive fetches) now requires the project's trust dialog to have been accepted and runs without inherited credential env vars — if Lanzico ever adds a custom or third-party plugin marketplace, confirm it isn't relying on the old, less-gated behavior; (2) fixed unbounded memory growth in long interactive sessions (subagent tool results now release once they scroll out of the display window) — relevant to any long-running Lanzico session, including this KB routine's own multi-hour research runs; (3) cross-session `SendMessage` now reports back to the sender when a recipient session refuses inbound messages or its inbox drops one (rate limit/full queue), instead of the message silently vanishing — directly relevant to this routine's own `SendMessage`/`ListAgents` use and any other multi-session Lanzico automation that assumed delivery.
