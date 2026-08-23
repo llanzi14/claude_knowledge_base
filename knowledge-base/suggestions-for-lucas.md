@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-21)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-23)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -38. `[ACTION]` Update to Claude Code v2.1.239 — retry mode now fails fast on real spend limits, `WebFetch` cache-TTL fix, `/claude-api upgrade` for Python SDK migration
+Shipped 2026-08-21 — one of the largest single-release changelogs logged in this KB (~50 items, mostly fixes). Two items directly relevant to this KB routine's own reliability: (1) persistent retry mode (`CLAUDE_CODE_RETRY_WATCHDOG`) now fails immediately on organization spend-limit and out-of-credits errors instead of retrying indefinitely against a limit that will never clear — worth confirming this routine (and any other unattended Lanzico automation using persistent retry) surfaces that failure rather than silently hanging; (2) fixed `WebFetch` retaining expired cached page content for the whole session instead of the intended 15-minute TTL — this routine's own research fetches use `WebFetch` for the Claude Code changelog and Anthropic newsroom each run, so a long session could previously have served stale pages past the cache window. Separately, if Lanzico has any direct Python `anthropic` SDK usage, `/claude-api upgrade` now automates the 0.x → 1.x migration (timeouts move from `httpx.Timeout` to `anthropic.Timeout`). Also: `ListAgents` now tells a session its own addressable name and correctly lists live teammates (previously a reachable teammate could look absent); Windows cross-session messaging now works, matching macOS/Linux; fixed Bedrock streaming behind Content-Type-stripping proxies silently doubling billed API calls — check if relevant to any Lanzico Bedrock+proxy setup.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.239
+- No specific config change needed for the retry/cache fixes beyond updating — both close silent-failure/staleness gaps this routine could otherwise hit unnoticed
+- If Lanzico has direct Python SDK usage, run `/claude-api upgrade` to migrate off `anthropic` 0.x before it's deprecated
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -37. `[ACTION]` Update to Claude Code v2.1.238 — plugin `headersHelper` trust-dialog gating, unbounded-memory fix, cross-session `SendMessage` no longer fails silently
 Shipped 2026-08-20 — the largest single-day changelog logged in this KB (~30 items). Three items worth acting on: (1) plugin marketplaces' new `headersHelper` (a configured command that mints HTTP headers, e.g. a short-lived auth token, for catalog/archive fetches) now requires the project's trust dialog to have been accepted and runs without inherited credential env vars — if Lanzico ever adds a custom or third-party plugin marketplace, confirm it isn't relying on the old, less-gated behavior; (2) fixed unbounded memory growth in long interactive sessions (subagent tool results now release once they scroll out of the display window) — relevant to any long-running Lanzico session, including this KB routine's own multi-hour research runs; (3) cross-session `SendMessage` now reports back to the sender when a recipient session refuses inbound messages or its inbox drops one (rate limit/full queue), instead of the message silently vanishing — directly relevant to this routine's own `SendMessage`/`ListAgents` use and any other multi-session Lanzico automation that assumed delivery.
