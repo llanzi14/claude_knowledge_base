@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-23)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-25)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -39. `[ACTION]` Claude Security (public beta) — potential security-audit add-on for LanziCo/Odoovers Growth client engagements
+Anthropic brought Claude Mythos 5 into Claude Security on 2026-08-21, moving it from limited research preview to public beta for Claude Enterprise customers: point it at a repository, get back vulnerability findings (CWE-classified, severity, confidence, suggested patch) for human review — no direct model access, just the scan output. This is a distinct service angle worth a gut-check: if any client engagement already involves reviewing or maintaining a codebase (Odoo customizations, integrations, internal tools), a Claude Security pass could be packaged as a low-effort add-on (automated first-pass security audit + remediation suggestions) rather than something LanziCo builds in-house.
+- Only actionable if Lanzico or the client is on (or willing to move to) Claude Enterprise — confirm current plan tier before pursuing
+- Treat as beta: verify output quality/false-positive rate on a low-stakes internal repo before offering it to a client
+- Sourced from third-party coverage only (MarkTechPost, Infosecurity Magazine) — anthropic.com/claude.com are unreachable from this environment as of this writing; re-confirm exact terms directly with Anthropic before quoting pricing/availability to a client
+- [MarkTechPost](https://www.marktechpost.com/2026/08/21/anthropic-brings-claude-mythos-5-to-claude-security/)
 
 ### -38. `[ACTION]` Update to Claude Code v2.1.239 — retry mode now fails fast on real spend limits, `WebFetch` cache-TTL fix, `/claude-api upgrade` for Python SDK migration
 Shipped 2026-08-21 — one of the largest single-release changelogs logged in this KB (~50 items, mostly fixes). Two items directly relevant to this KB routine's own reliability: (1) persistent retry mode (`CLAUDE_CODE_RETRY_WATCHDOG`) now fails immediately on organization spend-limit and out-of-credits errors instead of retrying indefinitely against a limit that will never clear — worth confirming this routine (and any other unattended Lanzico automation using persistent retry) surfaces that failure rather than silently hanging; (2) fixed `WebFetch` retaining expired cached page content for the whole session instead of the intended 15-minute TTL — this routine's own research fetches use `WebFetch` for the Claude Code changelog and Anthropic newsroom each run, so a long session could previously have served stale pages past the cache window. Separately, if Lanzico has any direct Python `anthropic` SDK usage, `/claude-api upgrade` now automates the 0.x → 1.x migration (timeouts move from `httpx.Timeout` to `anthropic.Timeout`). Also: `ListAgents` now tells a session its own addressable name and correctly lists live teammates (previously a reachable teammate could look absent); Windows cross-session messaging now works, matching macOS/Linux; fixed Bedrock streaming behind Content-Type-stripping proxies silently doubling billed API calls — check if relevant to any Lanzico Bedrock+proxy setup.
