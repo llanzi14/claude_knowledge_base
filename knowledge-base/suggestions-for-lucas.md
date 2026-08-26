@@ -1,10 +1,18 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-25)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-26)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -40. `[ACTION]` Update to Claude Code v2.1.246 — use the new Auto mode tab in `/permissions` to actually audit the classifier, and check Bash allow rules for wildcard-before-subcommand
+Shipped 2026-08-25. This closes a gap this KB has flagged since Auto Mode went default on Pro/Max/Team (item `-29`, 2026-08-14): there was previously no native way to see or edit exactly what the auto-mode classifier will and won't auto-approve, only env vars and general settings. The new **Auto mode tab in `/permissions`** shows and lets you edit those classifier rules directly. Separately, a new startup warning flags Bash allow rules with a wildcard placed *before* the subcommand (e.g. `Bash(git * main)`) — that shape can match commands beyond what was intended, similar in spirit to the `dir/**` scoping bug logged in v2.1.214 (item `-14`).
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.246
+- Open `/permissions` → Auto mode tab and actually review what the classifier currently allows for this KB routine's own session and any other Lanzico Pro/Max/Team seat — this is the concrete follow-through the `-29` item asked for, now that there's a UI for it
+- Grep any Lanzico `.claude/settings.json` for Bash allow rules with a wildcard before the subcommand and re-scope if the warning fires
+- Bonus: `/cd` now applies the new directory's settings/hooks/`.mcp.json`/skills/agents immediately instead of requiring a restart
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -39. `[ACTION]` Claude Security (public beta) — potential security-audit add-on for LanziCo/Odoovers Growth client engagements
 Anthropic brought Claude Mythos 5 into Claude Security on 2026-08-21, moving it from limited research preview to public beta for Claude Enterprise customers: point it at a repository, get back vulnerability findings (CWE-classified, severity, confidence, suggested patch) for human review — no direct model access, just the scan output. This is a distinct service angle worth a gut-check: if any client engagement already involves reviewing or maintaining a codebase (Odoo customizations, integrations, internal tools), a Claude Security pass could be packaged as a low-effort add-on (automated first-pass security audit + remediation suggestions) rather than something LanziCo builds in-house.
