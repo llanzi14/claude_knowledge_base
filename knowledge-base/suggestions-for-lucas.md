@@ -1,10 +1,23 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-26)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-27)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -42. Claude Managed Agents adds session budgets, advisor models, geo pinning, GitHub-hosted skills — relevant only if Lanzico builds directly on the API
+Reported week of 2026-08-24. Four new governance/capability levers on Managed Agents sessions: hard spend budgets (session pauses on `budget_reached`, resumable by raising the cap), an optional advisor model the primary agent can consult mid-turn, `inference_geo` pinning (`us` at 1.1x vs `global` at standard rate), and auto-discovery of skills from a mounted GitHub repo's `.claude/skills` directory. None of this applies to ordinary Claude Code/Cowork usage — it's specifically for teams running their own agents on the Managed Agents API.
+- No action unless Lanzico or a client engagement involves building a custom agent on Managed Agents (e.g. a dedicated client-facing automation with its own spend controls)
+- If that ever happens, GitHub-hosted skills is the most immediately useful piece — skills can live and version in a repo instead of being baked into the agent definition
+- [ClaudeDevs](https://x.com/ClaudeDevs/status/2085853169930957158)
+
+### -41. `[ACTION]` Salesforce + Anthropic "Claudeforce" — worth a look for Salesforce-using clients, and as a model for an Odoo-in-Claude equivalent
+Announced 2026-08-26. **Salesforce in Claude** ships 37 pre-built sales skills (meeting prep, deal-health reviews, pipeline analysis) that let a seller query, update, and act on live CRM data from inside Claude instead of the Salesforce app. Pilot customers now, open beta September 2026. Two angles for Lanzico: (1) if any current or prospective LanziCo/Odoovers Growth client runs Salesforce, this is a concrete new capability to be aware of before proposing custom CRM-automation work — it may cover ground Lanzico would otherwise build by hand; (2) since Lanzico's own CRM/sales analysis work (the `business-analyst` skill) is built around **Odoo**, not Salesforce, this is a useful reference for what a comparable "Odoo in Claude" skill/plugin could look like — pre-built skills for pipeline audits, deal-health checks, and rep performance reviews, callable conversationally instead of via manual export/analysis.
+- If a client runs Salesforce, mention Claudeforce's September open-beta timeline before scoping new Salesforce-adjacent automation work for them
+- Consider whether the `business-analyst` skill's existing Odoo workflows (pipeline audits, conversion/velocity reviews, salesperson performance) could be packaged as a small set of named, directly-callable skills the way Salesforce in Claude does — same underlying analysis, lower-friction invocation
+- Re-confirm pricing/availability directly with Anthropic/Salesforce before quoting terms to a client — sourced from CNBC/VentureBeat, `salesforce.com`/`anthropic.com` unreachable from this environment
+- [CNBC](https://www.cnbc.com/2026/08/26/salesforce-anthropic-partnership-claudeforce.html) / [VentureBeat](https://venturebeat.com/orchestration/salesforce-just-put-its-entire-crm-inside-claude-and-says-youll-never-need-its-app-again)
 
 ### -40. `[ACTION]` Update to Claude Code v2.1.246 — use the new Auto mode tab in `/permissions` to actually audit the classifier, and check Bash allow rules for wildcard-before-subcommand
 Shipped 2026-08-25. This closes a gap this KB has flagged since Auto Mode went default on Pro/Max/Team (item `-29`, 2026-08-14): there was previously no native way to see or edit exactly what the auto-mode classifier will and won't auto-approve, only env vars and general settings. The new **Auto mode tab in `/permissions`** shows and lets you edit those classifier rules directly. Separately, a new startup warning flags Bash allow rules with a wildcard placed *before* the subcommand (e.g. `Bash(git * main)`) — that shape can match commands beyond what was intended, similar in spirit to the `dir/**` scoping bug logged in v2.1.214 (item `-14`).
