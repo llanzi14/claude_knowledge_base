@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-27)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-28)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -43. `[ACTION]` Try Cowork's new built-in browser for research tasks
+Rolling out this week (announced 2026-08-27): Cowork in Claude Desktop can open a sandboxed browser in its side panel and navigate/read/click/type on real websites, with no separate browser window needed and no shared browsing data unless cookies are imported per-site. On Team plans it's on by default as it rolls out. This is a plausible fit for the kind of open-web research the `marketing-researcher` skill and general Cowork sessions already do by hand (checking a competitor's site, pulling data from a web dashboard, verifying a claim on a live page) — worth a trial run before assuming a separate browser tab is still needed.
+- Confirm which plan Lanzico's Cowork seat is on and whether the browser is already active (Settings → Cowork → Preferred browser)
+- Trial it on a real research task next time `marketing-researcher` or a Cowork session needs to check something live on the web
+- If Lanzico ever moves to Enterprise, note it turns on by default 2026-09-10 unless disabled — a deliberate choice, not a surprise
+- [Claude blog](https://claude.com/blog/cowork-built-in-browser)
 
 ### -42. Claude Managed Agents adds session budgets, advisor models, geo pinning, GitHub-hosted skills — relevant only if Lanzico builds directly on the API
 Reported week of 2026-08-24. Four new governance/capability levers on Managed Agents sessions: hard spend budgets (session pauses on `budget_reached`, resumable by raising the cap), an optional advisor model the primary agent can consult mid-turn, `inference_geo` pinning (`us` at 1.1x vs `global` at standard rate), and auto-discovery of skills from a mounted GitHub repo's `.claude/skills` directory. None of this applies to ordinary Claude Code/Cowork usage — it's specifically for teams running their own agents on the Managed Agents API.
