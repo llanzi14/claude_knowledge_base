@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-28)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-29)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -44. `[ACTION]` Update Claude Code to v2.1.251 (permission-bypass fixes); consider `--restricted` mode for hardened automation
+v2.1.251 (2026-08-28) bundles several permission/sandbox-bypass fixes: a symlink-swap bug that let Read/Write/Edit escape the approved working directory, a plugin path-traversal bug, and related Workflow/Grep/Glob deny-rule gaps. Separately, v2.1.248 (2026-08-27) added `--restricted`/`CLAUDE_CODE_RESTRICTED=1` — a new mode that strips code-execution tools and WebFetch, confines file tools to the working directory, refuses `bypassPermissions`, and ignores settings files. Also directly relevant to this KB routine: v2.1.248 fixed a `ScheduleWakeup`-related prompt-cache miss that could hit a resumed session during usage overage.
+- Update Claude Code to v2.1.251+ across any Lanzico machine/session running it, for the permission-bypass fixes alone
+- Consider `--restricted` for any automation that only needs to read/write files in a known directory and doesn't need Bash or WebFetch — e.g. a report-formatting or file-transform task, where removing code-execution entirely is a stronger guarantee than a permission allowlist
+- No action needed on the `ScheduleWakeup`/resume cache-miss fix beyond updating — it's a reliability fix for scheduled routines like this one
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -43. `[ACTION]` Try Cowork's new built-in browser for research tasks
 Rolling out this week (announced 2026-08-27): Cowork in Claude Desktop can open a sandboxed browser in its side panel and navigate/read/click/type on real websites, with no separate browser window needed and no shared browsing data unless cookies are imported per-site. On Team plans it's on by default as it rolls out. This is a plausible fit for the kind of open-web research the `marketing-researcher` skill and general Cowork sessions already do by hand (checking a competitor's site, pulling data from a web dashboard, verifying a claim on a live page) — worth a trial run before assuming a separate browser tab is still needed.
