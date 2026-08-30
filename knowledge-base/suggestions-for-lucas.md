@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-29)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-30)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -45. `[ACTION]` Claude Tag can now be configured with standing instructions committed to GitHub — a concrete on-ramp for the still-open "add Claude Tag" recommendation
+Anthropic updated Claude Tag on 2026-08-13 (only surfaced in this KB today, 2026-08-30 — worth flagging that the earlier "-0" item's underlying capability has moved since it was written): ambient mode now reads context across a whole channel plus memory and **standing instructions** to pick among reply-inline, start-a-thread, route-to-workstream, or stay-silent — about 30% better at knowing when to stay quiet. The part that matters most for Lanzico: standing instructions can be **markdown skill files committed to a GitHub repo**, so channel behavior is versioned and reviewable the same way code is, instead of living only in an admin UI. `@Claude what triggers do you have set up here?` in any channel lists and disables active triggers.
+- This KB has recommended trying Claude Tag since item `0` (2026-06-25) without it having been adopted yet — if Lanzico's Slack is on Team/Enterprise, this update is a good trigger to actually pilot it now: start with one internal-ops channel, define its standing instructions as a committed skill file, and use the `@Claude what triggers...` command to verify what's active before expanding to a client-facing channel
+- If Claude Tag is already piloted somewhere, check whether its current triggers are configured via the admin UI or GitHub skills, and consider moving them to GitHub for review/version history
+- [Claude blog](https://claude.com/blog/claude-tag-now-reads-even-more-of-the-room)
 
 ### -44. `[ACTION]` Update Claude Code to v2.1.251 (permission-bypass fixes); consider `--restricted` mode for hardened automation
 v2.1.251 (2026-08-28) bundles several permission/sandbox-bypass fixes: a symlink-swap bug that let Read/Write/Edit escape the approved working directory, a plugin path-traversal bug, and related Workflow/Grep/Glob deny-rule gaps. Separately, v2.1.248 (2026-08-27) added `--restricted`/`CLAUDE_CODE_RESTRICTED=1` — a new mode that strips code-execution tools and WebFetch, confines file tools to the working directory, refuses `bypassPermissions`, and ignores settings files. Also directly relevant to this KB routine: v2.1.248 fixed a `ScheduleWakeup`-related prompt-cache miss that could hit a resumed session during usage overage.
