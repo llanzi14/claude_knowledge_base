@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-30)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-08-31)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -46. `[ACTION]` Infostealer malware is hijacking active Claude sessions to drain usage — scan your machine and check billing history
+Anthropic disclosed (reported 2026-08-30/31) that common Windows infostealer malware (Vidar, LummaC2, StealC, RedLine, Acreed) is stealing already-logged-in Claude browser sessions and reusing them to access accounts and burn usage — bypassing password/2FA entirely since it reuses a live session cookie, not credentials. The tell is usage limits appearing to refill then drain without you using Claude. Anthropic is proactively signing out and refunding affected accounts, but detection is reactive on their end. Separately, a distinct report found fake Anthropic-branded sites serving a fileless infostealer aimed specifically at Claude Code users — relevant given this KB routine and other Lanzico automation run Claude Code regularly.
+- Run an AV/malware scan on any machine used to log into Claude or run Claude Code, especially if it's ever used for casual downloads/browsing
+- Check Claude account billing and usage history for any unexplained spikes or refills-then-drains
+- Only ever install Claude/Claude Code from `claude.ai`/`claude.com`/the official npm package — treat any other "Anthropic" download link or lookalike domain as phishing
+- [BleepingComputer](https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-warns-infostealer-malware-is-hijacking-claude-sessions-to-drain-usage/) / [Hackread](https://hackread.com/fake-anthropic-sites-fileless-infostealer-claude-code-users/)
 
 ### -45. `[ACTION]` Claude Tag can now be configured with standing instructions committed to GitHub — a concrete on-ramp for the still-open "add Claude Tag" recommendation
 Anthropic updated Claude Tag on 2026-08-13 (only surfaced in this KB today, 2026-08-30 — worth flagging that the earlier "-0" item's underlying capability has moved since it was written): ambient mode now reads context across a whole channel plus memory and **standing instructions** to pick among reply-inline, start-a-thread, route-to-workstream, or stay-silent — about 30% better at knowing when to stay quiet. The part that matters most for Lanzico: standing instructions can be **markdown skill files committed to a GitHub repo**, so channel behavior is versioned and reviewable the same way code is, instead of living only in an admin UI. `@Claude what triggers do you have set up here?` in any channel lists and disables active triggers.
