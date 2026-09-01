@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-08-31)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-01)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -47. `[ACTION]` Claude Code weekly limits effectively shrink 2026-09-14 — check current usage patterns before then
+Anthropic is ending the temporary +50% weekly-limit boost (running since 2026-05-13) on 2026-09-14 and replacing it with a permanent +25% increase over the *original* baseline. Because +25% is measured from the pre-promo baseline rather than from today's boosted level, this is a net ~17% cut in available weekly usage from where things stand today, despite being announced as a "permanent increase." This is relevant to any Lanzico Claude Code usage that runs near the weekly cap — including this KB routine itself, which runs Claude Code daily.
+- Check `/usage` now (before 2026-09-14) to see how close current usage runs to the weekly cap under the boosted limit
+- If usage is currently high relative to the cap, plan to either trim usage or budget for hitting limits sooner starting 2026-09-14
+- No action needed if usage has consistent headroom well below the cap
+- [BleepingComputer](https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-cutting-claude-codes-current-weekly-limits-by-17-percent/) / [XenoSpectrum](https://xenospectrum.com/en/claude-code-weekly-limit-change/)
 
 ### -46. `[ACTION]` Infostealer malware is hijacking active Claude sessions to drain usage — scan your machine and check billing history
 Anthropic disclosed (reported 2026-08-30/31) that common Windows infostealer malware (Vidar, LummaC2, StealC, RedLine, Acreed) is stealing already-logged-in Claude browser sessions and reusing them to access accounts and burn usage — bypassing password/2FA entirely since it reuses a live session cookie, not credentials. The tell is usage limits appearing to refill then drain without you using Claude. Anthropic is proactively signing out and refunding affected accounts, but detection is reactive on their end. Separately, a distinct report found fake Anthropic-branded sites serving a fileless infostealer aimed specifically at Claude Code users — relevant given this KB routine and other Lanzico automation run Claude Code regularly.
