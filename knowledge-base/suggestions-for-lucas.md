@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-01)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-02)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -48. `[ACTION]` Update Claude Code to v2.1.258 — fixes a scheduled-session bug this KB routine itself could hit, plus review the new auto-mode Containment Escape rule
+v2.1.258 (2026-09-01) fixes remote and **scheduled sessions** failing with "user messages must have non-empty content" after a re-sent permission approval couldn't be applied — this KB routine runs as a scheduled session, so this is a direct reliability fix for it. The preceding v2.1.257 also adds an auto-mode **Containment Escape** rule (blocks cloud metadata-credential fetches, egress evasion, and cross-tenant reach from auto-approval unless marked expected) and ships **Fable 5.1** as the new default Fable model.
+- Update to v2.1.258 on any machine running this routine or other scheduled Claude Code automation
+- If Auto mode is in use for any Lanzico automation, no action needed on Containment Escape — it tightens auto-approval by default — but worth knowing the category of risk it now blocks
+- No pricing/behavior change from adopting Fable 5.1 vs. Fable 5 — same rate, larger context
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -47. `[ACTION]` Claude Code weekly limits effectively shrink 2026-09-14 — check current usage patterns before then
 Anthropic is ending the temporary +50% weekly-limit boost (running since 2026-05-13) on 2026-09-14 and replacing it with a permanent +25% increase over the *original* baseline. Because +25% is measured from the pre-promo baseline rather than from today's boosted level, this is a net ~17% cut in available weekly usage from where things stand today, despite being announced as a "permanent increase." This is relevant to any Lanzico Claude Code usage that runs near the weekly cap — including this KB routine itself, which runs Claude Code daily.
