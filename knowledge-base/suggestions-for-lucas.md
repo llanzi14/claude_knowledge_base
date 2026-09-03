@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-02)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-03)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -49. `[ACTION]` Update Claude Code to v2.1.259 and use `--permission-prompts none` for this KB routine's own scheduled session
+Shipped 2026-09-02. New **`--permission-prompts none`** flag: on a headless host, anything that would normally show a permission dialog is auto-denied instead of hanging, while the active permission mode (including auto mode) keeps deciding everything else. This is a more explicit unattended-session guarantee than relying on auto mode alone — worth adopting for this KB routine's own scheduled run and any other headless/cron Lanzico automation, since a hung prompt on an unattended host previously meant a silently stalled run. Separately, a reliability fix matters if more than one Claude Code session ever runs on the same machine at once: concurrent sessions were silently reverting each other's `~/.claude.json` changes (workspace trust resetting, MCP/project state getting lost) — closed in this release. Also closes further Bash `Read()` deny-rule gaps (git diff/grep file operands, `cd DIR && cat FILE` compounds) and makes managed settings fail closed and loudly instead of silently going unenforced on a parse error.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.259
+- Add `--permission-prompts none` (or the equivalent env var if this KB routine's own scheduler exposes one) to this routine's own invocation so a stray permission dialog can never hang a scheduled run
+- If any Lanzico setup runs multiple Claude Code sessions concurrently on one machine, this release is why workspace trust/MCP state may have appeared to reset unexpectedly before
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -48. `[ACTION]` Update Claude Code to v2.1.258 — fixes a scheduled-session bug this KB routine itself could hit, plus review the new auto-mode Containment Escape rule
 v2.1.258 (2026-09-01) fixes remote and **scheduled sessions** failing with "user messages must have non-empty content" after a re-sent permission approval couldn't be applied — this KB routine runs as a scheduled session, so this is a direct reliability fix for it. The preceding v2.1.257 also adds an auto-mode **Containment Escape** rule (blocks cloud metadata-credential fetches, egress evasion, and cross-tenant reach from auto-approval unless marked expected) and ships **Fable 5.1** as the new default Fable model.
