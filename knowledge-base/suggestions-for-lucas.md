@@ -1,10 +1,24 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-03)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-04)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -51. `[ACTION]` Evaluate Enterprise Frontier Safeguards (EFS) for any client work touching sensitive data
+Announced 2026-09-01/02: a free enterprise offering that stores Claude session transcripts/logs in the *customer's own* cloud (S3/Azure Blob/GCS, customer-held encryption keys) while still running Anthropic's automated misuse monitoring — no human review by Anthropic staff required. Rolls out across Claude Code, Claude Enterprise, the Claude Platform, Bedrock, Google's Agent Platform, and Microsoft Foundry, in phases through this fall. This directly answers the kind of data-residency/zero-retention concern that would come up with a financial-services, healthcare, or legal client considering Claude-based automation.
+- If any current or prospective LanziCo/Odoovers Growth client has sensitive-data concerns blocking a Claude Enterprise/Platform/Bedrock proposal, flag EFS as a concrete, no-cost mitigation once it's confirmed live for the relevant plan tier
+- Re-verify pricing/availability directly with Anthropic before citing specifics to a client — sourced from third-party coverage only, `anthropic.com` unreachable from this environment
+- See `knowledge-base/releases-and-features.md` (Platform & Enterprise, 2026-09-04) for full details
+- [SecurityWeek](https://www.securityweek.com/anthropic-details-response-to-security-incidents-unveils-enterprise-safeguards/) / [MarkTechPost](https://www.marktechpost.com/2026/09/02/anthropic-enterprise-frontier-safeguards-efs/)
+
+### -50. `[ACTION]` Update Claude Code to v2.1.260 — fixes a permission-rule bug that could silently break all file edits, plus new prompt-cache-miss diagnostics
+A single invalid file permission rule (bad regex from parentheses in a path, etc.) was breaking *all* file edits, not just the one bad rule — now fixed, along with the parentheses-in-paths and zsh-command-substitution-hiding bugs that could trigger it. Separately, `/cost` and the status line's `prompt_cache` field now name a likely cause when a prompt-cache miss happens (tool definitions changed, system prompt changed, idle past TTL) — useful the next time this KB routine or any Lanzico automation sees an unexpected full-price re-cache instead of guessing. Also fixes prompt caching on Fable 5.1 not covering context after tool results, which had been undercutting Fable 5.1's new 75% cache-read discount (see item `-51`'s neighbor entry in `releases-and-features.md`, Models section).
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.260
+- If any Lanzico `.claude/settings.json` permission rule ever silently broke all file edits before, that's this bug — safe to re-add now
+- Try the new `/diff` panel and prompt-cache-miss diagnostics next time this KB routine's own session behaves unexpectedly
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -49. `[ACTION]` Update Claude Code to v2.1.259 and use `--permission-prompts none` for this KB routine's own scheduled session
 Shipped 2026-09-02. New **`--permission-prompts none`** flag: on a headless host, anything that would normally show a permission dialog is auto-denied instead of hanging, while the active permission mode (including auto mode) keeps deciding everything else. This is a more explicit unattended-session guarantee than relying on auto mode alone — worth adopting for this KB routine's own scheduled run and any other headless/cron Lanzico automation, since a hung prompt on an unattended host previously meant a silently stalled run. Separately, a reliability fix matters if more than one Claude Code session ever runs on the same machine at once: concurrent sessions were silently reverting each other's `~/.claude.json` changes (workspace trust resetting, MCP/project state getting lost) — closed in this release. Also closes further Bash `Read()` deny-rule gaps (git diff/grep file operands, `cd DIR && cat FILE` compounds) and makes managed settings fail closed and loudly instead of silently going unenforced on a parse error.
