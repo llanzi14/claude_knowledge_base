@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-04)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-05)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -52. `[ACTION]` Update Claude Code to v2.1.261 and run `/skill-doctor` against Lanzico's skill roster
+Released 2026-09-04. New **`/skill-doctor`** command reports which installed skills are unused and how much context each one costs — directly relevant given Lanzico's skill roster has grown large (business-analyst, content-writer, marketing-researcher, docx/pptx/xlsx, morning, session-start-hook, update-config, and more). Running it once could surface skills that are loaded but rarely invoked, freeing context budget without losing functionality. Also in this release: `bashOutputMaxChars`/`taskOutputMaxChars` (128K-character inline output caps, useful for long build/test logs) and `--append-subagent-system-prompt-file` (load a large subagent system prompt from a file instead of inline).
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.261
+- Run `/skill-doctor` once and review its output for unused skills before deciding whether to prune the roster
+- No urgent fix in this release (unlike the last two) — this is a workflow-hygiene opportunity, not a bug fix
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -51. `[ACTION]` Evaluate Enterprise Frontier Safeguards (EFS) for any client work touching sensitive data
 Announced 2026-09-01/02: a free enterprise offering that stores Claude session transcripts/logs in the *customer's own* cloud (S3/Azure Blob/GCS, customer-held encryption keys) while still running Anthropic's automated misuse monitoring — no human review by Anthropic staff required. Rolls out across Claude Code, Claude Enterprise, the Claude Platform, Bedrock, Google's Agent Platform, and Microsoft Foundry, in phases through this fall. This directly answers the kind of data-residency/zero-retention concern that would come up with a financial-services, healthcare, or legal client considering Claude-based automation.
