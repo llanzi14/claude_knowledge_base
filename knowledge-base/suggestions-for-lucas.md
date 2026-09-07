@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-05)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-07)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -53. `[ACTION]` Review Anthropic's Claude Commerce Agents blueprint (Apache-2.0) as a reference architecture for Odoovers Growth sales/commerce automation
+Anthropic released an open-source (Apache-2.0) blueprint on 2026-09-02 for two agent types — a shopping agent (catalog search, comparison, cart-building) and a merchant agent (inventory, pricing, marketing) — with runnable reference implementations across retail, travel, telecom, and entertainment, plus a Claude Code plugin. Early adopters include Shopify, Visa, Mastercard, and Accenture. Because it's Apache-2.0, this is a directly reusable starting point rather than just an announcement — relevant given Odoovers Growth's international sales focus and any client work touching e-commerce, catalog, or merchant-side automation.
+- Pull the blueprint and skim the shopping-agent/merchant-agent harness for patterns applicable to Odoovers Growth's own sales-automation work (compare against what `business-analyst`/Odoo-based workflows already do)
+- If any current or prospective client runs e-commerce or a product catalog, this is a concrete reference architecture to mention rather than building a commerce agent from scratch
+- Treat Anthropic's cited performance numbers (35% larger carts, 60% higher purchase completion) as a single-partner example, not a general benchmark — don't quote them to a client as expected results
+- [MarkTechPost](https://www.marktechpost.com/2026/09/03/anthropic-released-claude-commerce-agents-an-apache-2-0-blueprint-for-shopping-and-merchant-agents-across-retail-travel-telecom-and-entertainment/) / [PYMNTS](https://www.pymnts.com/news/artificial-intelligence/2026/anthropic-built-the-shopping-brain-and-skipped-the-wallet/)
 
 ### -52. `[ACTION]` Update Claude Code to v2.1.261 and run `/skill-doctor` against Lanzico's skill roster
 Released 2026-09-04. New **`/skill-doctor`** command reports which installed skills are unused and how much context each one costs — directly relevant given Lanzico's skill roster has grown large (business-analyst, content-writer, marketing-researcher, docx/pptx/xlsx, morning, session-start-hook, update-config, and more). Running it once could surface skills that are loaded but rarely invoked, freeing context budget without losing functionality. Also in this release: `bashOutputMaxChars`/`taskOutputMaxChars` (128K-character inline output caps, useful for long build/test logs) and `--append-subagent-system-prompt-file` (load a large subagent system prompt from a file instead of inline).
