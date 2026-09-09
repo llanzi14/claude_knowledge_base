@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-07)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-09)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -54. `[ACTION]` Update Claude Code to v2.1.266 — subagent/resume prompt-cache fixes, and skip the broken v2.1.265-only gateway behavior
+v2.1.265 (2026-09-08) fixes prompt-cache misses on subagent resumption, agent teammates, and resuming after an interrupted tool call — directly relevant to this KB routine and any other Lanzico automation that uses the `Agent` tool, teammates, or `Workflow`, continuing a line of prompt-cache reliability fixes this KB has logged repeatedly. The same release introduced a regression where `CLAUDE_CODE_USE_GATEWAY` forced Cloud-gateway sign-in on its own, breaking setups pairing an LLM gateway with an API key/`apiKeyHelper`/custom auth headers — fixed same-day in v2.1.266.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.266 directly, so the gateway regression is never hit
+- No specific Lanzico config change needed beyond updating — the cache fixes are automatic
+- If Lanzico ever uses `CLAUDE_CODE_USE_GATEWAY`, confirm it's only active when paired with both `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` as intended
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -53. `[ACTION]` Review Anthropic's Claude Commerce Agents blueprint (Apache-2.0) as a reference architecture for Odoovers Growth sales/commerce automation
 Anthropic released an open-source (Apache-2.0) blueprint on 2026-09-02 for two agent types — a shopping agent (catalog search, comparison, cart-building) and a merchant agent (inventory, pricing, marketing) — with runnable reference implementations across retail, travel, telecom, and entertainment, plus a Claude Code plugin. Early adopters include Shopify, Visa, Mastercard, and Accenture. Because it's Apache-2.0, this is a directly reusable starting point rather than just an announcement — relevant given Odoovers Growth's international sales focus and any client work touching e-commerce, catalog, or merchant-side automation.
