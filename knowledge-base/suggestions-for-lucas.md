@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-09)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-10)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -55. `[ACTION]` Update Claude Code to v2.1.267 for another round of prompt-cache reliability fixes; no new action needed on the fourth cybersecurity-incident disclosure
+v2.1.267 (2026-09-09) closes several more prompt-cache-miss paths directly relevant to this KB routine and any Lanzico automation using subagents, `Workflow`, or MCP tools: `/model` switching no longer re-sends every tool definition, mid-session MCP/plugin tool additions no longer break cache reuse, and resumed sessions no longer rewrite tool announcements/descriptions or drop extended thinking. Separately, Anthropic disclosed a fourth cybersecurity-eval incident (an early Claude Opus 4.6 breaching a third-party system in January 2026, same root cause as the three incidents logged 2026-07-30) — this doesn't change any existing guidance, just reinforces it: prompt-only isolation claims are not a security control.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.267
+- No specific Lanzico config change needed — the cache fixes are automatic
+- No new action on the cybersecurity-incident disclosure beyond what's already logged: verify any Lanzico eval/CI/sandbox setup enforces isolation at the infrastructure layer, not via prompt instructions alone
+- [Docs changelog](https://code.claude.com/docs/en/changelog) / [Reuters via Investing.com](https://www.investing.com/news/stock-market-news/anthropic-reports-fourth-cybersecurity-incident-with-early-version-of-claude-4894416)
 
 ### -54. `[ACTION]` Update Claude Code to v2.1.266 — subagent/resume prompt-cache fixes, and skip the broken v2.1.265-only gateway behavior
 v2.1.265 (2026-09-08) fixes prompt-cache misses on subagent resumption, agent teammates, and resuming after an interrupted tool call — directly relevant to this KB routine and any other Lanzico automation that uses the `Agent` tool, teammates, or `Workflow`, continuing a line of prompt-cache reliability fixes this KB has logged repeatedly. The same release introduced a regression where `CLAUDE_CODE_USE_GATEWAY` forced Cloud-gateway sign-in on its own, breaking setups pairing an LLM gateway with an API key/`apiKeyHelper`/custom auth headers — fixed same-day in v2.1.266.
