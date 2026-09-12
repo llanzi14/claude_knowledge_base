@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-11)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-12)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -57. `[ACTION]` Update Claude Code to v2.1.269 — closes a duplicate-run bug in scheduled routines and a permission-rule scoping bug, both directly relevant to this KB routine
+v2.1.269 (2026-09-11) fixes two reliability bugs that apply directly to this KB routine (a scheduled Claude Code on the web session): one-off scheduled routines occasionally ran a **second time** after a transient server error, and routine runs using subagents could be treated as finished too early — skipping the retry after a real failure or starting a duplicate run. Also fixes prompt-cache misses in cloud sessions by waiting briefly for server config before the first request, continuing the prompt-cache-reliability line this KB has tracked for weeks. **Security-relevant**: a deny/ask permission rule starting with `!` was wrongly applying beyond the settings source that wrote it — now scoped only to its own source. Separately, the attribution reminder was overriding a CLAUDE.md/memory rule against commit/PR attribution — a user-level "no attribution" rule now wins (managed-settings-set lines still apply).
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.269
+- No specific Lanzico config change needed for the scheduled-routine/prompt-cache fixes beyond updating — both close silent-failure gaps this KB routine or other scheduled Lanzico automation could otherwise hit unnoticed
+- Re-check any Lanzico `.claude/settings.json` deny/ask rule starting with `!` that assumed it applied across settings sources — it was previously broader than intended
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -56. `[ACTION]` Update Claude Code to v2.1.268 — credential-leak fix in MCP/plugin diagnostics, `WebFetch`-hang fix
 v2.1.268 (2026-09-10) fixes MCP/plugin diagnostics printing tokens/passwords embedded in git source URLs, and fixes `WebFetch` hanging indefinitely (now bounded to 300s, configurable via `CLAUDE_CODE_WEBFETCH_DEADLINE_MS`) — both directly relevant to this KB routine's own MCP and `WebFetch` usage. (Note: an earlier draft of this item also flagged a reported "Claude Mythos Preview unauthorized access" story as new — on closer verification it's a real but **old** story from ~April 22–23, 2026, about a since-superseded model version (Glasswing partners moved from Mythos Preview to Mythos 5 on 2026-06-09, already logged in this KB). It resurfaced in today's search results but isn't new information; not logged as an action item.)
