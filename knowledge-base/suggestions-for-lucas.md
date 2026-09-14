@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-12)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-14)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -58. `[ACTION]` Update Claude Code to v2.1.270 — fixes a permission-prompt regression introduced by v2.1.269
+v2.1.270 (2026-09-12) is a small follow-up release: fixes read-only git commands in Bash unexpectedly asking for permission again after a session had been running for a while — a regression from v2.1.269 (item `-57`). Only matters if v2.1.269 is already in use; low effort, no config change needed.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.270
+- Relevant to any long-running Lanzico session that relies on auto-approved read-only git commands, including this KB routine
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -57. `[ACTION]` Update Claude Code to v2.1.269 — closes a duplicate-run bug in scheduled routines and a permission-rule scoping bug, both directly relevant to this KB routine
 v2.1.269 (2026-09-11) fixes two reliability bugs that apply directly to this KB routine (a scheduled Claude Code on the web session): one-off scheduled routines occasionally ran a **second time** after a transient server error, and routine runs using subagents could be treated as finished too early — skipping the retry after a real failure or starting a duplicate run. Also fixes prompt-cache misses in cloud sessions by waiting briefly for server config before the first request, continuing the prompt-cache-reliability line this KB has tracked for weeks. **Security-relevant**: a deny/ask permission rule starting with `!` was wrongly applying beyond the settings source that wrote it — now scoped only to its own source. Separately, the attribution reminder was overriding a CLAUDE.md/memory rule against commit/PR attribution — a user-level "no attribution" rule now wins (managed-settings-set lines still apply).
