@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-14)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-15)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -59. `[ACTION]` Update Claude Code to v2.1.271 — adopt per-command `allowed_domains` and `--accept-command` for unattended plugin management
+v2.1.271 (2026-09-14) adds two items directly useful for Lanzico automation: a per-command `allowed_domains` option to sandbox one Bash/tool call to a narrower network allowlist than the session default, and a `--accept-command` flag so `claude plugin install`/`update` can run non-interactively (skips the accept-risk prompt) in CI or scheduled contexts. Also adds Fast mode support in Remote sessions and an `omitClaudeMd` setting for subagents that should not inherit the parent's `CLAUDE.md`.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.271 (v2.1.272 is a same-week maintenance follow-up, safe to take together)
+- If any Lanzico script/CI job installs or updates plugins unattended, switch it to `--accept-command` instead of a prior workaround (e.g. piping a confirmation, or skipping the check)
+- If a specific command in a Lanzico workflow needs broader or narrower network access than the rest of the session, use the new per-command `allowed_domains` option rather than changing the session-wide sandbox policy
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -58. `[ACTION]` Update Claude Code to v2.1.270 — fixes a permission-prompt regression introduced by v2.1.269
 v2.1.270 (2026-09-12) is a small follow-up release: fixes read-only git commands in Bash unexpectedly asking for permission again after a session had been running for a while — a regression from v2.1.269 (item `-57`). Only matters if v2.1.269 is already in use; low effort, no config change needed.
