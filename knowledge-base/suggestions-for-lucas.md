@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-15)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-16)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -60. `[ACTION]` Update Claude Code to v2.1.273 — re-verify MCP/connector restriction settings actually apply; check Claude Enterprise smart-reports eligibility
+v2.1.273 (2026-09-15) fixes managed settings that govern MCP server/connector access (`allowManagedMcpServersOnly`, `deniedMcpServers`, `disableClaudeAiConnectors`) being silently ignored — if any Lanzico or client environment relies on these to restrict which MCP servers/connectors a session can reach, the restriction may not have actually been enforced on earlier versions. Separately, Anthropic's new **smart reports** beta (Claude Enterprise) analyzes team usage, cost, friction points, and shared-skill candidates — exactly the kind of data this KB routine currently has to infer manually.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.273
+- If `deniedMcpServers`/`allowManagedMcpServersOnly`/`disableClaudeAiConnectors` are set anywhere in Lanzico's `.claude/settings.json` or managed policy, re-test after upgrading to confirm the restriction now holds
+- Check whether the current Claude plan is Enterprise-eligible for smart reports; if so, it's a lower-effort alternative/complement to this KB's manual usage-pattern tracking
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -59. `[ACTION]` Update Claude Code to v2.1.271 — adopt per-command `allowed_domains` and `--accept-command` for unattended plugin management
 v2.1.271 (2026-09-14) adds two items directly useful for Lanzico automation: a per-command `allowed_domains` option to sandbox one Bash/tool call to a narrower network allowlist than the session default, and a `--accept-command` flag so `claude plugin install`/`update` can run non-interactively (skips the accept-risk prompt) in CI or scheduled contexts. Also adds Fast mode support in Remote sessions and an `omitClaudeMd` setting for subagents that should not inherit the parent's `CLAUDE.md`.
