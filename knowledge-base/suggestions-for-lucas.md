@@ -1,10 +1,25 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-16)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-17)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -62. `[ACTION]` Update Claude Code to v2.1.274 — set `CLAUDE_CODE_MCP_STARTUP_WAIT_MS` for this KB routine and other headless MCP-connected sessions
+v2.1.274 (2026-09-16) adds a `CLAUDE_CODE_MCP_STARTUP_WAIT_MS` env var that caps (or, at `0`, skips entirely) how long a non-interactive/scheduled session waits for MCP servers to finish connecting before starting work. This KB routine itself connects to several MCP servers at startup (GitHub, Slack, and whatever else is configured) — if it or any other Lanzico headless/cron Claude Code session has ever seemed to pause before doing anything, this setting is the direct fix. Also in this release: sessions no longer loop forever on "unexpected tool_use_id" errors, and a critical-memory warning now gives concrete recovery steps.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.274
+- Set `CLAUDE_CODE_MCP_STARTUP_WAIT_MS` explicitly for this KB routine's own scheduled invocation and any other Lanzico headless automation, rather than relying on the implicit default wait
+- No action needed on the tool_use_id/critical-memory fixes beyond updating — both are automatic reliability improvements
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
+
+### -61. `[ACTION]` Evaluate Claude for Small Business — a pre-built Cowork package overlapping directly with LanziCo/Odoovers Growth client-delivery work
+Catch-up item: Anthropic launched **Claude for Small Business** on 2026-05-13 — before this KB began tracking (first digest 2026-06-12) — so it was never logged until surfacing now via September training-tour coverage. It bundles 15 ready-to-run agentic workflows and 15 reusable skills with connectors to QuickBooks, PayPal, HubSpot, Canva, DocuSign, Google Workspace, Microsoft 365, and Slack, toggled on inside Cowork. Workflows cover payroll planning, month-end close, business performance monitoring, and marketing campaigns; skills include cash-flow forecasting, invoice chasing, contract review, and lead triage — all tasks that overlap with LanziCo's own consulting scope and Odoovers Growth's sales ops, and several connectors (Canva, Slack, Google Workspace) are already in use in this session. Sensitive actions (sending, posting, paying) require explicit user approval before executing.
+- Check whether Lanzico's Cowork seat already has this package available (Pro/Max/Team eligibility) and toggle it on to trial one workflow (e.g. invoice chasing or contract review) against a real, low-stakes case
+- Compare its pre-built cash-flow-forecasting/lead-triage skills against what `business-analyst` already does manually for Odoo-based client work — worth adopting directly if it covers the same ground with less setup
+- If a QuickBooks/HubSpot/DocuSign-using client comes up, this is a concrete, already-built reference to point to rather than proposing custom automation from scratch
+- A free "AI Fluency for Small Business" course (with PayPal) and a 10-city US workshop tour (free half-day workshops, a free month of Claude Max per attendee) are also available — worth checking if a tour stop is reachable
+- [Anthropic](https://www.anthropic.com/news/claude-for-small-business) / [Appwrite](https://appwrite.io/blog/post/anthropic-just-launched-claude-for-small-business)
 
 ### -60. `[ACTION]` Update Claude Code to v2.1.273 — re-verify MCP/connector restriction settings actually apply; check Claude Enterprise smart-reports eligibility
 v2.1.273 (2026-09-15) fixes managed settings that govern MCP server/connector access (`allowManagedMcpServersOnly`, `deniedMcpServers`, `disableClaudeAiConnectors`) being silently ignored — if any Lanzico or client environment relies on these to restrict which MCP servers/connectors a session can reach, the restriction may not have actually been enforced on earlier versions. Separately, Anthropic's new **smart reports** beta (Claude Enterprise) analyzes team usage, cost, friction points, and shared-skill candidates — exactly the kind of data this KB routine currently has to infer manually.
