@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-17)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-18)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -63. `[ACTION]` Update Claude Code to v2.1.276 (skip v2.1.275) — claude.ai skill/plugin sync to terminal, send-now key for queued messages during long runs
+v2.1.275 (2026-09-17) syncs skills and plugins enabled on a claude.ai account automatically into terminal sessions, adds `/plugin install <plugin> --marketplace <source>` for non-interactive installs, and a send-now key (ctrl+enter) that interrupts the current turn and sends all queued messages at once — useful for queuing follow-up instructions during this KB routine's own long-running scheduled sessions or any other unattended Lanzico automation. VS Code also gains a Memory dialog to view/edit/delete saved memory. v2.1.275 shipped with a same-day-discovered regression (fixed in v2.1.276, 2026-09-18): every request failed with `400 … Input tag 'advisor_20260301'` when `ANTHROPIC_BASE_URL` points at a proxy or gateway.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.276 directly — do not stop at v2.1.275 if any Lanzico setup runs Claude Code through a gateway/proxy (`ANTHROPIC_BASE_URL` set)
+- If Lanzico has skills/plugins toggled on via a claude.ai account, verify they now appear automatically in terminal sessions instead of needing separate local installation
+- Try the send-now key next time a follow-up needs to be queued mid-turn during this KB routine's own run or another long Lanzico session
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -62. `[ACTION]` Update Claude Code to v2.1.274 — set `CLAUDE_CODE_MCP_STARTUP_WAIT_MS` for this KB routine and other headless MCP-connected sessions
 v2.1.274 (2026-09-16) adds a `CLAUDE_CODE_MCP_STARTUP_WAIT_MS` env var that caps (or, at `0`, skips entirely) how long a non-interactive/scheduled session waits for MCP servers to finish connecting before starting work. This KB routine itself connects to several MCP servers at startup (GitHub, Slack, and whatever else is configured) — if it or any other Lanzico headless/cron Claude Code session has ever seemed to pause before doing anything, this setting is the direct fix. Also in this release: sessions no longer loop forever on "unexpected tool_use_id" errors, and a critical-memory warning now gives concrete recovery steps.
