@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-18)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-19)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -64. `[ACTION]` Update Claude Code to v2.1.278 — AGENTS.md support and free server-side auto-mode classifier billing
+v2.1.277 (2026-09-18) adds native support for **`AGENTS.md`**: any project with no `CLAUDE.md` now has its project instructions read from `AGENTS.md` instead (toggle under "Project instructions" in `/config`; not yet on Bedrock/Vertex/Foundry) — the first native Claude Code support for the cross-tool `AGENTS.md` convention used by several other coding agents. v2.1.278 (2026-09-19) changes auto mode's safety classifier to run **server-side and free of classifier-overhead charges by default** for API, Enterprise, Bedrock, Vertex, Foundry, and gateway accounts (`CLAUDE_CODE_AUTO_MODE_SERVER=0` opts back out; a new `Auto mode server` row in `/status` shows which mode is active, with a warning if a request falls back to the billed client-side path).
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.278
+- If any Lanzico repo already uses (or is considering) an `AGENTS.md` file instead of `CLAUDE.md`, confirm Claude Code is actually reading it after upgrading — check `/config` → "Project instructions"
+- If Lanzico or a client runs Claude Code via the API, Enterprise, Bedrock, Vertex, Foundry, or a gateway with auto mode on, check `/status` after upgrading to confirm the server-side classifier is active rather than the billed client-side fallback
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -63. `[ACTION]` Update Claude Code to v2.1.276 (skip v2.1.275) — claude.ai skill/plugin sync to terminal, send-now key for queued messages during long runs
 v2.1.275 (2026-09-17) syncs skills and plugins enabled on a claude.ai account automatically into terminal sessions, adds `/plugin install <plugin> --marketplace <source>` for non-interactive installs, and a send-now key (ctrl+enter) that interrupts the current turn and sends all queued messages at once — useful for queuing follow-up instructions during this KB routine's own long-running scheduled sessions or any other unattended Lanzico automation. VS Code also gains a Memory dialog to view/edit/delete saved memory. v2.1.275 shipped with a same-day-discovered regression (fixed in v2.1.276, 2026-09-18): every request failed with `400 … Input tag 'advisor_20260301'` when `ANTHROPIC_BASE_URL` points at a proxy or gateway.
