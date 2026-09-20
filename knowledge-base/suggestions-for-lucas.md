@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-19)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-20)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -65. `[ACTION]` Watch for a consulting/sales-specific Cowork vertical bundle, following the Financial Advisors and Small Business precedents
+Anthropic launched **Claude for Financial Advisors** on 2026-09-14 (surfaced via 2026-09-16 press coverage) — a Cowork/Enterprise plugin bundling connectors to custodians, portfolio platforms, CRMs, planning tools, and investment-data services, with Schwab and BlackRock as launch partners. Anthropic recommends Enterprise specifically because it includes audit logs for recordkeeping compliance. This is the second vertical-specific Cowork bundle logged in this KB after **Claude for Small Business** (`-61`, 2026-05-13 launch), confirming a pattern: Anthropic is packaging pre-built connectors/skills/workflows per industry rather than leaving every client to assemble their own from general-purpose tools.
+- Not directly actionable for LanziCo/Odoovers Growth today (financial advisory isn't the target vertical), but worth a recurring check: if Anthropic ships a consulting- or B2B-sales-specific Cowork bundle, it could replace bespoke Lanzico tooling built from scratch
+- If Lanzico ever pursues a financial-services client, this is a ready-made reference package to point to rather than proposing custom integration work
+- No urgent action; logged to track the vertical-bundle trend across future digests
+- [Forbes](https://www.forbes.com/sites/jonmarkman/2026/09/16/anthropic-launches-claude-for-advisors-with-schwab-and-blackrock/) / [WealthManagement.com](https://www.wealthmanagement.com/artificial-intelligence/anthropic-launches-claude-for-financial-advisors)
 
 ### -64. `[ACTION]` Update Claude Code to v2.1.278 — AGENTS.md support and free server-side auto-mode classifier billing
 v2.1.277 (2026-09-18) adds native support for **`AGENTS.md`**: any project with no `CLAUDE.md` now has its project instructions read from `AGENTS.md` instead (toggle under "Project instructions" in `/config`; not yet on Bedrock/Vertex/Foundry) — the first native Claude Code support for the cross-tool `AGENTS.md` convention used by several other coding agents. v2.1.278 (2026-09-19) changes auto mode's safety classifier to run **server-side and free of classifier-overhead charges by default** for API, Enterprise, Bedrock, Vertex, Foundry, and gateway accounts (`CLAUDE_CODE_AUTO_MODE_SERVER=0` opts back out; a new `Auto mode server` row in `/status` shows which mode is active, with a warning if a request falls back to the billed client-side path).
