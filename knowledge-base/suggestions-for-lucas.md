@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-20)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-21)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -66. `[ACTION]` Trial Claude for Small Business's lead-response and proposal-drafting workflows against real Odoovers Growth sales work
+Anthropic expanded Claude for Small Business on 2026-09-15 from its original 15 workflows/15 skills (item `-61`) to **43 workflows and 27 tool integrations** — including Shopify, Salesforce, Zoom, Xero, Gusto, Square, Stripe, and Zapier. Two of the new bundled workflows go beyond the original back-office focus and land directly on Odoovers Growth's sales-development scope: **respond to inbound leads** (15 connectors) and **draft branded proposals priced from past jobs** (17 connectors). Both run in Claude Cowork with approval-gated execution (Claude drafts/stages, a human approves before anything sends). Available on every paid plan; Team recommended for multi-person use. A same-week Forbes piece reports 900,000+ installs of the plugin, suggesting real adoption rather than a paper launch.
+- Install/enable the Small Business plugin in Cowork (`/smb-onboard`) and connect whichever of Salesforce/Zoom/Stripe/Zapier are already in use for Odoovers Growth sales ops
+- Trial the lead-response and proposal-drafting workflows on a real (but low-stakes) lead/proposal before deciding whether they replace or complement Lanzico's own manual process
+- Compare against the reference architecture already logged for Odoovers Growth in item `-53` (Claude Commerce Agents) — this is a second, more directly sales-oriented off-the-shelf option worth weighing against building custom
+- [Claude blog](https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs) / [Unite.AI](https://www.unite.ai/anthropic-adds-43-workflows-27-integrations-to-claude-for-small-business/) / [Forbes](https://www.forbes.com/sites/boazsobrado/2026/09/15/anthropic-puts-claude-on-small-business-sales-after-900000-installs/)
 
 ### -65. `[ACTION]` Watch for a consulting/sales-specific Cowork vertical bundle, following the Financial Advisors and Small Business precedents
 Anthropic launched **Claude for Financial Advisors** on 2026-09-14 (surfaced via 2026-09-16 press coverage) — a Cowork/Enterprise plugin bundling connectors to custodians, portfolio platforms, CRMs, planning tools, and investment-data services, with Schwab and BlackRock as launch partners. Anthropic recommends Enterprise specifically because it includes audit logs for recordkeeping compliance. This is the second vertical-specific Cowork bundle logged in this KB after **Claude for Small Business** (`-61`, 2026-05-13 launch), confirming a pattern: Anthropic is packaging pre-built connectors/skills/workflows per industry rather than leaving every client to assemble their own from general-purpose tools.
