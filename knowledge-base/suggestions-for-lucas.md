@@ -1,10 +1,18 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-21)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-23)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -67. `[ACTION]` Update to Claude Code v2.1.280 for Claude Opus 5.5 — re-evaluate model strategy given the 40% price cut, Fable-level performance, and removed 5-hour usage caps
+Claude Opus 5.5 launched 2026-09-22 as the new default Opus model: $4/$20 per Mtok input/output (down from Opus 5's $5/$25) with cache reads cut 60% to $0.20/Mtok, roughly 30%+ faster, and reported performance close to or ahead of Fable 5.1 on several benchmarks (it now beats Fable 5.1 on GDPval-AA v2.1, 1846 vs. 1735 Elo) at a fraction of Fable 5.1's cost. Anthropic also reports its best-yet safety-audit scores and an 85% drop in containment-boundary-circumvention attempts. Two plan-level changes shipped alongside it that directly affect day-to-day usage: **Pro and Team Standard's default model switched from Sonnet to Opus** (previously Sonnet-only unless manually switched), and the **five-hour usage cap was removed** for Pro/Max/Team/seat-based Enterprise, replaced by a save-and-deploy rate-limit reset feature.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.280
+- Re-run `/model` to confirm which model a Lanzico session actually defaults to now — if on Pro or Team Standard, sessions that previously defaulted to Sonnet will now default to Opus, which is more capable but was historically pricier; the new Opus 5.5 pricing narrows that gap substantially
+- Given Opus 5.5's reported near-Fable-5.1 performance at ~40% lower Opus-5 pricing, reconsider any workflow currently routed to Fable 5.1 specifically for capability reasons — a side-by-side trial on a real Lanzico task (e.g. a `business-analyst` pipeline audit or `content-writer` draft) would confirm whether Opus 5.5 now covers it at lower cost
+- Check whether the removed five-hour cap changes how usage-sensitive this KB routine or other scheduled Lanzico automation has been designed (e.g. throttling, off-peak scheduling) — that constraint may no longer apply
+- [Anthropic](https://www.anthropic.com/claude-opus-5-5) / [TechCrunch](https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance/) / [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -66. `[ACTION]` Trial Claude for Small Business's lead-response and proposal-drafting workflows against real Odoovers Growth sales work
 Anthropic expanded Claude for Small Business on 2026-09-15 from its original 15 workflows/15 skills (item `-61`) to **43 workflows and 27 tool integrations** — including Shopify, Salesforce, Zoom, Xero, Gusto, Square, Stripe, and Zapier. Two of the new bundled workflows go beyond the original back-office focus and land directly on Odoovers Growth's sales-development scope: **respond to inbound leads** (15 connectors) and **draft branded proposals priced from past jobs** (17 connectors). Both run in Claude Cowork with approval-gated execution (Claude drafts/stages, a human approves before anything sends). Available on every paid plan; Team recommended for multi-person use. A same-week Forbes piece reports 900,000+ installs of the plugin, suggesting real adoption rather than a paper launch.
