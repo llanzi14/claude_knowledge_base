@@ -1,10 +1,31 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-23)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-24)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -70. `[ACTION]` Browse the new Claude Marketplace for a ready-made connector/product filling a Lanzico or Odoovers Growth tool gap
+Anthropic launched the **Claude Marketplace** on 2026-09-23: one catalog spanning **Add** (2,000+ connectors/plugins — Atlassian, Google, Microsoft, Notion, Salesforce, and more), **Buy** (Claude-powered partner products — CrowdStrike, Cursor, Harvey, Legora, Lovable, Rogo, Snowflake — purchasable against existing committed Anthropic spend rather than a new bill), and **Scale** (consulting/SI partners — Accenture, BCG, Deloitte). This consolidates discovery that was previously scattered across separate connector lists, plugin marketplaces, and case studies logged piecemeal in this KB (Claude for Small Business, Claudeforce, Claude Commerce Agents, Claude Financial Advisors).
+- Browse the **Add** tab for any connector already relevant to Lanzico's current MCP setup (Notion, Slack, Gmail, Calendar, Drive already connected — check for gaps like Odoo, if one exists)
+- Browse **Buy** for a partner product that might replace a piece of custom tooling being considered for a client engagement, before building it in-house
+- Note for future Lanzico tool-building: since the Marketplace is built on MCP + Agent Skills (open standards), a Lanzico-built skill/connector could in principle be listed the same way if ever productized
+- [Claude blog](https://claude.com/blog/claude-marketplace) / [VentureBeat](https://venturebeat.com/technology/anthropic-launches-claude-marketplace-giving-enterprises-access-to-claude) / [AlphaSignal](https://alphasignal.ai/news/anthropic-s-claude-marketplace-unifies-2-000-partners-into-one-enterprise-hub)
+
+### -69. `[ACTION]` Trial Claude Docs/Slides against `content-writer` skill deliverables, now that Cowork and chat are one product
+Catch-up item: Anthropic announced on 2026-09-16 (never previously logged in this KB) that **Claude Cowork and chat have merged into one Claude** — the system now decides how much autonomy a task needs instead of the user picking a mode up front, with a configurable check-in cadence (default: ask before acting). Alongside the merge, Anthropic shipped **Claude Docs** (co-write a document inline in a conversation) and **Claude Slides** (Claude drafts a deck from a prompt), and folded the previously separate **Claude Design** into the same conversational surface. Everything produced this way lives at one shareable link (phone, desktop, web). Rolling out to Pro/Max first, beta on paid plans. This is directly relevant to Lanzico: the `content-writer` skill already produces YouTube scripts, newsletters, blogs, client reports, and proposals by hand — Claude Docs/Slides may cover the document/deck-shaped portion of that output with less manual formatting.
+- Confirm whether Lucas's Claude plan (Pro/Max) already has the merged experience and Docs/Slides in beta; if not yet visible, check again in a few weeks as rollout continues
+- Trial Claude Docs on a real client report or proposal draft normally produced via `content-writer`, and Claude Slides on a real LanziCo/Odoovers Growth deck, comparing output quality and editing friction against the current manual process
+- If adopted, the one-shareable-link behavior may simplify client hand-off compared to exporting a `.docx`/`.pptx` via the existing `docx`/`pptx` skills — worth a side-by-side on one real deliverable before switching workflows
+- [FourWeekMBA](https://fourweekmba.com/ai-claude-cowork-merge-docs-slides-analysis/) / [testingcatalog](https://www.testingcatalog.com/claude-merges-cowork-and-chat-into-one-experience/) / [technology.org](https://www.technology.org/2026/09/17/anthropic-claude-chat-cowork-merge-docs-slides/)
+
+### -68. `[ACTION]` Update Claude Code to v2.1.281 — closes an auto-mode gap on dangerous `rm` commands, adds Bedrock IAM role assumption/guardrails for gateway users
+v2.1.281 (2026-09-23) fixes auto mode treating a dangerous `rm` command as safe to auto-approve when its target path was built purely from command substitution — worth updating for promptly on any Lanzico session running with auto mode on (the default on Pro/Max/Team since 2026-08-14, item `-29`), including this KB routine's own scheduled session. Separately, if Lanzico or a client runs Claude Code through the Claude Apps Gateway on Bedrock, new `assume_role` support (IAM role assumption via STS) and a `guardrail: {id, version}` option (apply Amazon Bedrock guardrails to gateway requests) are both directly usable. Also fixes several session-resumption bugs (parallel tool calls, MCP reconnection, prompt-cache loss) and, specific to this KB routine's own execution environment, Claude Code on the web fixes for routines, GitHub triggers, and the repository picker.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.281
+- No specific Lanzico config change needed for the auto-mode `rm` fix beyond updating — it closes a real gap automatically
+- If Lanzico or a client runs Claude Code via the Claude Apps Gateway on Bedrock, evaluate the new `assume_role`/`guardrail` upstream options for IAM-based access and content guardrails
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -67. `[ACTION]` Update to Claude Code v2.1.280 for Claude Opus 5.5 — re-evaluate model strategy given the 40% price cut, Fable-level performance, and removed 5-hour usage caps
 Claude Opus 5.5 launched 2026-09-22 as the new default Opus model: $4/$20 per Mtok input/output (down from Opus 5's $5/$25) with cache reads cut 60% to $0.20/Mtok, roughly 30%+ faster, and reported performance close to or ahead of Fable 5.1 on several benchmarks (it now beats Fable 5.1 on GDPval-AA v2.1, 1846 vs. 1735 Elo) at a fraction of Fable 5.1's cost. Anthropic also reports its best-yet safety-audit scores and an 85% drop in containment-boundary-circumvention attempts. Two plan-level changes shipped alongside it that directly affect day-to-day usage: **Pro and Team Standard's default model switched from Sonnet to Opus** (previously Sonnet-only unless manually switched), and the **five-hour usage cap was removed** for Pro/Max/Team/seat-based Enterprise, replaced by a save-and-deploy rate-limit reset feature.
