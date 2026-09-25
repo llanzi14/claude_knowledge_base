@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-24)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-25)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -71. `[ACTION]` Claim the Claude Code Cloud Sessions launch credit before 2026-10-07
+Anthropic moved Claude Code cloud sessions out of research preview on 2026-09-23 — this is literally the execution environment this KB routine runs in every day. Pro subscribers get a one-time **$100** credit, Max subscribers get **$250**; the credit is spent by cloud sessions first, before falling back to normal plan usage, so it's free extra runway rather than a new bill. Requires a linked GitHub account. Deadline to claim is **2026-10-07**; the credit itself expires 2026-11-05.
+- Confirm which plan (Pro or Max) Lucas's Claude account is on, then claim via `https://claude.ai/code/claim-credit/10` or run `/claim-credit` in the Claude Code CLI before 2026-10-07
+- Since this KB routine and any other Lanzico scheduled/cloud automation already run as cloud sessions, the credit effectively offsets some of that usage at no extra cost — no config change needed beyond claiming it
+- Low effort, hard deadline, no downside — highest-priority item this cycle
+- [ClaudeDevs/X](https://x.com/ClaudeDevs/status/2102940480736821610) / [explainx.ai](https://explainx.ai/blog/claude-code-cloud-sessions-ga-100-250-credit-claim-credit-2026)
 
 ### -70. `[ACTION]` Browse the new Claude Marketplace for a ready-made connector/product filling a Lanzico or Odoovers Growth tool gap
 Anthropic launched the **Claude Marketplace** on 2026-09-23: one catalog spanning **Add** (2,000+ connectors/plugins — Atlassian, Google, Microsoft, Notion, Salesforce, and more), **Buy** (Claude-powered partner products — CrowdStrike, Cursor, Harvey, Legora, Lovable, Rogo, Snowflake — purchasable against existing committed Anthropic spend rather than a new bill), and **Scale** (consulting/SI partners — Accenture, BCG, Deloitte). This consolidates discovery that was previously scattered across separate connector lists, plugin marketplaces, and case studies logged piecemeal in this KB (Claude for Small Business, Claudeforce, Claude Commerce Agents, Claude Financial Advisors).
