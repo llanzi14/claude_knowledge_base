@@ -1,10 +1,23 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-25)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-26)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -73. `[ACTION]` Consider submitting a Lanzico-built skill or MCP connector through Anthropic's new plugin directory submission portal
+Anthropic opened a self-serve **plugin directory submission portal** on 2026-09-25, open to developers on paid Claude plans: submit a single MCP connector or a bundle of MCP servers + GitHub-hosted skills, get automatic validation/safety scanning and real-time review status, and control when it goes live once approved. This is the concrete mechanism behind the earlier speculative note (item `-70`, 2026-09-23 Marketplace launch) that a Lanzico-built skill could in principle be listed.
+- If any of Lanzico's internal skills (`content-writer`, `business-analyst`, `marketing-researcher`) are generic enough to be useful outside Lanzico, evaluate whether publishing one publicly is worth the exposure/maintenance tradeoff
+- Low priority unless there's an appetite to productize internal tooling — mainly logged so the option is on record
+- [Claude blog](https://claude.com/blog/build-plugins-for-claude)
+
+### -72. `[ACTION]` Run `/doctor prompt-audit` against Lanzico's CLAUDE.md, skills, and agents
+Claude Code v2.1.283 (2026-09-25) ships a built-in **`/doctor prompt-audit`** (alias `/checkup prompt-audit`) that audits CLAUDE.md files, skills, agents, and commands for prompting patterns written for older models. Lanzico's roster of custom skills (`content-writer`, `business-analyst`, `marketing-researcher`, this KB's own `ROUTINE.md`) has grown steadily since June — worth a periodic health check now that a dedicated command exists rather than relying on the older `claude-api` skill's `prompt-audit` subcommand.
+- `npm update -g @anthropic-ai/claude-code` (or equivalent) to reach v2.1.283
+- Run `/doctor prompt-audit` in a Lanzico project session and review flagged items against current-model best practices
+- Low effort, no downside — a housekeeping item rather than an urgent one
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
 
 ### -71. `[ACTION]` Claim the Claude Code Cloud Sessions launch credit before 2026-10-07
 Anthropic moved Claude Code cloud sessions out of research preview on 2026-09-23 — this is literally the execution environment this KB routine runs in every day. Pro subscribers get a one-time **$100** credit, Max subscribers get **$250**; the credit is spent by cloud sessions first, before falling back to normal plan usage, so it's free extra runway rather than a new bill. Requires a linked GitHub account. Deadline to claim is **2026-10-07**; the credit itself expires 2026-11-05.
