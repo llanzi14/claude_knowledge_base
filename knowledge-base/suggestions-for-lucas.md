@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-26)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-09-29)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -74. `[ACTION]` Update to Claude Code v2.1.284 and move routine work to Sonnet 5.5
+Sonnet 5.5 (2026-09-28) keeps $2/$10 pricing, is >30% faster and up to 30% cheaper per task, and is ZDR-eligible. v2.1.284 also adds `/mcp reconnect all`, dollar amounts in `/usage` spend limits, and a "ask again next time" option for auto-mode read permissions.
+- Set Sonnet 5.5 as default for `content-writer`, `business-analyst` and this KB routine's subagents; keep Opus 5.5 for complex work
+- Spot-check output quality on one real deliverable per skill before switching wholesale
+- Reminder: Cloud Sessions credit must be claimed by 2026-10-07 (item `-71`)
+- [Docs changelog](https://code.claude.com/docs/en/changelog) / [Unite.AI](https://www.unite.ai/anthropic-releases-claude-sonnet-5-5-at-unchanged-sonnet-5-pricing/)
 
 ### -73. `[ACTION]` Consider submitting a Lanzico-built skill or MCP connector through Anthropic's new plugin directory submission portal
 Anthropic opened a self-serve **plugin directory submission portal** on 2026-09-25, open to developers on paid Claude plans: submit a single MCP connector or a bundle of MCP servers + GitHub-hosted skills, get automatic validation/safety scanning and real-time review status, and control when it goes live once approved. This is the concrete mechanism behind the earlier speculative note (item `-70`, 2026-09-23 Marketplace launch) that a Lanzico-built skill could in principle be listed.
