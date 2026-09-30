@@ -6,6 +6,12 @@ Generated `(2026-06-29)`, updated `(2026-09-29)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -75. `[ACTION]` Update to Claude Code v2.1.285 — artifact updates after compaction fixed, plugin config from the CLI
+v2.1.285 (2026-09-29) fixes cloud sessions refusing artifact updates after conversation compaction and mid-session model switches keeping stale output-token limits; it adds `claude plugin configure`, `claude --desktop` and the `allowedProviders` managed setting.
+- Update, then confirm scheduled routines that publish artifacts still work after long sessions
+- Use `claude plugin configure` to script Lanzico plugin/MCP settings instead of hand-editing config
+- [Docs changelog](https://code.claude.com/docs/en/changelog)
+
 ### -74. `[ACTION]` Update to Claude Code v2.1.284 and move routine work to Sonnet 5.5
 Sonnet 5.5 (2026-09-28) keeps $2/$10 pricing, is >30% faster and up to 30% cheaper per task, and is ZDR-eligible. v2.1.284 also adds `/mcp reconnect all`, dollar amounts in `/usage` spend limits, and a "ask again next time" option for auto-mode read permissions.
 - Set Sonnet 5.5 as default for `content-writer`, `business-analyst` and this KB routine's subagents; keep Opus 5.5 for complex work
