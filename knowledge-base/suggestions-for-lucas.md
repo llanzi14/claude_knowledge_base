@@ -1,10 +1,18 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-09-29)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-02)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -76. `[ACTION]` Update to Claude Code v2.1.287, try the "you should know" mod, and clear Sonnet 4.5 references before 2026-11-30
+v2.1.287 (2026-10-01) introduces Claude Mods with a built-in side agent that flags things you or Claude may miss; v2.1.286 fixes `--resume` losing turns and cloud sessions with large histories not waking (relevant to this routine). Sonnet 4.5 retires 2026-11-30.
+- Update, then `/plugin enable cc-plugin-you-should-know@builtin` for a week on a client-facing session and judge signal vs. noise
+- Grep scripts/skills/agents for `claude-sonnet-4-5` and move to `claude-sonnet-5-5` (mind the thinking/`tool_choice` breaking changes if calling the API directly)
+- Idea: a small Lanzico mod/hook that blocks sending Odoo client data to unapproved MCP tools (Mods docs via changelog)
+- Reminder: Cloud Sessions credit claim deadline 2026-10-07 (item `-71`)
+- [Changelog](https://code.claude.com/docs/en/changelog) / [API notes](https://platform.claude.com/docs/en/release-notes/overview)
 
 ### -75. `[ACTION]` Update to Claude Code v2.1.285 — artifact updates after compaction fixed, plugin config from the CLI
 v2.1.285 (2026-09-29) fixes cloud sessions refusing artifact updates after conversation compaction and mid-session model switches keeping stale output-token limits; it adds `claude plugin configure`, `claude --desktop` and the `allowedProviders` managed setting.
