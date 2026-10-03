@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-02)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-03)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -77. `[ACTION]` Update to Claude Code v2.1.288 — more resilient scheduled runs and a `/code-review` findings cap
+v2.1.288 (2026-10-02): headless/subagent sessions now continue from partial responses after API timeouts, `--resume` stops dropping context, MCP servers can trigger a re-auth prompt for new OAuth scopes.
+- Update (this KB routine benefits directly from the timeout recovery)
+- Use `/code-review --max-findings 5` on Lanzico PRs to keep reviews focused
+- Re-authorize MCP connectors if prompted (e.g. lemlist still needs authorization in this routine's environment)
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -76. `[ACTION]` Update to Claude Code v2.1.287, try the "you should know" mod, and clear Sonnet 4.5 references before 2026-11-30
 v2.1.287 (2026-10-01) introduces Claude Mods with a built-in side agent that flags things you or Claude may miss; v2.1.286 fixes `--resume` losing turns and cloud sessions with large histories not waking (relevant to this routine). Sonnet 4.5 retires 2026-11-30.
