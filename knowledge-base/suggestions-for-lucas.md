@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-03)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-07)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -78. `[ACTION]` Update to Claude Code v2.1.292 — scheduled tasks no longer silently skip after compaction
+v2.1.292 (2026-10-06) fixes scheduled tasks silently not firing after compaction, plan mode lost on resume, and sandbox/UNC-path permission bypasses; adds an `effort` parameter on the Agent tool and `claude plugin install --marketplace <source>`.
+- Update; this routine and any `/loop` jobs benefit directly
+- Set `effort` low on cheap research subagents to save tokens
+- Reminder: Cloud Sessions credit claim deadline is 2026-10-07 (item `-71`)
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -77. `[ACTION]` Update to Claude Code v2.1.288 — more resilient scheduled runs and a `/code-review` findings cap
 v2.1.288 (2026-10-02): headless/subagent sessions now continue from partial responses after API timeouts, `--resume` stops dropping context, MCP servers can trigger a re-auth prompt for new OAuth scopes.
