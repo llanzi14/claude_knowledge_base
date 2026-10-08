@@ -1,10 +1,18 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-07)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-08)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -79. `[ACTION]` Adopt Haiku 5.5 for cheap subagents and claim Max/Team API credits
+Haiku 5.5 (2026-10-07, $0.10/$0.50 per Mtok, 1M context) is the new default Haiku in Claude Code v2.1.293. Max/Team plans also now include monthly API credits ($100–$200 Max, up to $500 Team) that do not cover Claude Code.
+- Update to v2.1.293; route exploration/classification/lead-triage subagents to Haiku 5.5 with low `effort`
+- Any API code on `claude-haiku-4-5`: remove `temperature`/`top_p`/`top_k`, prefill and `budget_tokens`, recount tokens (~+30%) before switching
+- If on Max/Team, link a Console org (Settings > Billing) and put API automations on the credits
+- Idea workflow: a Haiku-powered inbox/Clay lead-triage skill that classifies and routes, escalating only ambiguous cases to Sonnet 5.5
+- [Haiku 5.5](https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5) / [Credits](https://platform.claude.com/docs/en/about-claude/api-credits-for-subscribers)
 
 ### -78. `[ACTION]` Update to Claude Code v2.1.292 — scheduled tasks no longer silently skip after compaction
 v2.1.292 (2026-10-06) fixes scheduled tasks silently not firing after compaction, plan mode lost on resume, and sandbox/UNC-path permission bypasses; adds an `effort` parameter on the Agent tool and `claude plugin install --marketplace <source>`.
