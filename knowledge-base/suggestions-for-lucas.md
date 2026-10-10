@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-08)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-10)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -80. `[ACTION]` Update to Claude Code v2.1.296 and use `autoCompactWindow` + a single workflow-subagent model
+v2.1.296 (2026-10-09) lets subagents auto-compact earlier than the main session and adds `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` to pin all workflow agents to one model (e.g. Haiku 5.5 or Sonnet 5.5).
+- Update; add `autoCompactWindow` to research/crawler subagent frontmatter so long sweeps (like this routine) stay lean
+- Set `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL=claude-haiku-5-5` for cheap fan-out workflows; keep Opus for the orchestrator
+- Raise `CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS` for unattended scheduled runs hitting 529s
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -79. `[ACTION]` Adopt Haiku 5.5 for cheap subagents and claim Max/Team API credits
 Haiku 5.5 (2026-10-07, $0.10/$0.50 per Mtok, 1M context) is the new default Haiku in Claude Code v2.1.293. Max/Team plans also now include monthly API credits ($100–$200 Max, up to $500 Team) that do not cover Claude Code.
