@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-10)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-11)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -81. `[ACTION]` Review the 2026 Usage Policy (effective 2026-11-12) and trial Managed Agents dynamic workflows
+The policy tightens "deceptive campaigns / artificial activity" and hardware-control rules; Managed Agents now supports dynamic multi-agent workflows (beta).
+- Check any cold-outreach or lead-enrichment automation against the new deceptive-activity wording before Nov 12
+- Idea workflow: move this daily KB crawl into a Managed Agent with a dynamic workflow (one phase per source category, Haiku 5.5 workers, Sonnet 5.5 merge) instead of a single serial session
+- [Policy](https://www.anthropic.com/news/2026-usage-policy-update) / [API notes](https://platform.claude.com/docs/en/release-notes/overview)
 
 ### -80. `[ACTION]` Update to Claude Code v2.1.296 and use `autoCompactWindow` + a single workflow-subagent model
 v2.1.296 (2026-10-09) lets subagents auto-compact earlier than the main session and adds `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` to pin all workflow agents to one model (e.g. Haiku 5.5 or Sonnet 5.5).

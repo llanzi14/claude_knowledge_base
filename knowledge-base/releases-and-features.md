@@ -2,6 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Policy & Platform (added 2026-10-11)
+
+- **2026 Usage Policy effective 2026-11-12** (2026-10-11, published 2026-10-08) — new deceptive-activity section, narrower elections rules, explicit weapons-software and drone-arming prohibitions, surveillance/law-enforcement limits, oversight + safe-state requirements for Claude connected to physical hardware. `[ACTION]` Skim before 2026-11-12 to confirm Lanzico's outreach/lead-gen automations (Clay, lemlist) stay clear of the "artificial activity" language. [Policy post](https://www.anthropic.com/news/2026-usage-policy-update)
+- **Managed Agents dynamic workflows (beta)** (2026-10-11, from 2026-10-09 notes) — agent writes a program that runs many agents in phases; enable via `multiagent` field `{"type":"multiagent_20261001","workflows":{"type":"enabled"}}`, observe via `workflow_run.*` events. Server-side counterpart to Claude Code's Workflow tool. [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+
 ## Models
 
 - **`[ACTION]` Claude Haiku 5.5 launched — 1M context, 128k output, adaptive thinking; $0.10/$0.50 per Mtok** (2026-10-08, launched 2026-10-07) — `claude-haiku-5-5`, now the default Haiku in Claude Code v2.1.293 and on the API (also Bedrock, Google Cloud, Foundry, Claude Platform on AWS). Built for classification, routing, extraction and subagent work. Pricing $0.10/$0.50 per Mtok ($0.50/$2.50 for prompts >100K). **Breaking vs Haiku 4.5:** `budget_tokens` manual thinking, non-default `temperature`/`top_p`/`top_k`, and assistant prefill all return 400; computer use needs `computer_toolset_20260801`; adaptive thinking on by default (responses may start with a `thinking` block — select blocks by `type`); new tokenizer = ~30% more tokens for the same text; thinking blocks are account-bound; safety classifiers can return `stop_reason: "refusal"` with no server-side fallback. `[ACTION]` Use as the cheap subagent/classification tier (Agent tool `model: haiku` + low `effort`); grep for `claude-haiku-4-5` and re-test prompts before migrating. [What's new](https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5) / [API notes](https://platform.claude.com/docs/en/release-notes/overview) / [Changelog](https://code.claude.com/docs/en/changelog)
