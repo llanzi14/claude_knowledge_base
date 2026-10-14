@@ -6,6 +6,13 @@ Generated `(2026-06-29)`, updated `(2026-10-11)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -82. `[ACTION]` Update to Claude Code v2.1.299 and fix MCP permission rules
+v2.1.299 (2026-10-14) tightens MCP allow rules to exact server names and runs `UserPromptSubmit` hooks before skill expansion.
+- Audit `.claude/settings.json` for `mcp__<server>` allow entries; switch to `mcp__<server>__*` so Slack/Notion/Gmail/Clay tools keep working unattended in routines
+- Add `onFailure: "block"` (v2.1.295) to any safety hook (e.g. a pre-send check on outreach emails) so a failing hook blocks rather than passes
+- Set `CLAUDE_CODE_DISABLE_FILE_MENTIONS` if large `@file` mentions bloat context
+- [Changelog](https://code.claude.com/docs/en/changelog)
+
 ### -81. `[ACTION]` Review the 2026 Usage Policy (effective 2026-11-12) and trial Managed Agents dynamic workflows
 The policy tightens "deceptive campaigns / artificial activity" and hardware-control rules; Managed Agents now supports dynamic multi-agent workflows (beta).
 - Check any cold-outreach or lead-enrichment automation against the new deceptive-activity wording before Nov 12

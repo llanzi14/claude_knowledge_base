@@ -2,6 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code (added 2026-10-14)
+
+- **v2.1.299 (2026-10-14)** — `CLAUDE_CODE_DISABLE_FILE_MENTIONS` (pass `@` file paths instead of contents); idle compaction for >200K-token sessions at ~54 min, before the 1h prompt cache expires. **Breaking-ish:** MCP allow rules now match only the named server (`mcp__a` no longer covers `a__b`; use `mcp__<server>__*`); `UserPromptSubmit` hooks now run before skill/command expansion. `[ACTION]` Re-check `permissions.allow` MCP entries after updating. [Changelog](https://code.claude.com/docs/en/changelog)
+- **v2.1.295 (2026-10-08)** — `onFailure: "block"` for command/HTTP hooks; OSC 7501 terminal status protocol; claude.ai connectors negotiate MCP protocol 2026-07-28 by default; subagents preload max 32 skills. [Changelog](https://code.claude.com/docs/en/changelog)
+
 ## Policy & Platform (added 2026-10-11)
 
 - **2026 Usage Policy effective 2026-11-12** (2026-10-11, published 2026-10-08) — new deceptive-activity section, narrower elections rules, explicit weapons-software and drone-arming prohibitions, surveillance/law-enforcement limits, oversight + safe-state requirements for Claude connected to physical hardware. `[ACTION]` Skim before 2026-11-12 to confirm Lanzico's outreach/lead-gen automations (Clay, lemlist) stay clear of the "artificial activity" language. [Policy post](https://www.anthropic.com/news/2026-usage-policy-update)
