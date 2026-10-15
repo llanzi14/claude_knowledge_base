@@ -6,6 +6,11 @@ Generated `(2026-06-29)`, updated `(2026-10-11)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -83. `[ACTION]` Update to v2.1.300 and check hook `updatedInput` validation
+v2.1.300 now validates `updatedInput` returned by PreToolUse/PermissionRequest hooks like normal tool input; malformed rewrites will be rejected.
+- After updating, smoke-test any hook that rewrites tool input; use the new OTel cache-token fields if you export telemetry
+- [Changelog](https://code.claude.com/docs/en/changelog)
+
 ### -82. `[ACTION]` Update to Claude Code v2.1.299 and fix MCP permission rules
 v2.1.299 (2026-10-14) tightens MCP allow rules to exact server names and runs `UserPromptSubmit` hooks before skill expansion.
 - Audit `.claude/settings.json` for `mcp__<server>` allow entries; switch to `mcp__<server>__*` so Slack/Notion/Gmail/Clay tools keep working unattended in routines

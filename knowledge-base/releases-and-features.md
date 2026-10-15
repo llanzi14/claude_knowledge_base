@@ -2,6 +2,12 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code (added 2026-10-15)
+
+- **v2.1.300 (2026-10-14)** — OTel: GenAI semantic-convention span attributes and `cache_creation_5m/1h_tokens` on `api_request`; `/advisor` on Claude Platform on AWS; `updatedInput` from PreToolUse/PermissionRequest hooks now validated like Claude's own input; large api.anthropic.com requests gzip-compressed (`CLAUDE_CODE_GZIP_REQUEST_BODIES=0` to disable); `claude remote-control` no longer accepts `--sandbox/--no-sandbox` (use `sandbox.enabled`); 59 fixes (background agents, worktrees, MCP schemas, Slack/Code Review). [Changelog](https://code.claude.com/docs/en/changelog)
+- **API (2026-10-14)** — OpenTelemetry export (beta) for Messages API and Managed Agents sessions; Managed Agents scheduled deployments on Claude Platform on AWS. [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+- **Newsroom (2026-10-14)** — "Preparing for the 2026 US midterms"; Singapore office + government MOU. [News](https://www.anthropic.com/news)
+
 ## Claude Code (added 2026-10-14)
 
 - **v2.1.299 (2026-10-14)** — `CLAUDE_CODE_DISABLE_FILE_MENTIONS` (pass `@` file paths instead of contents); idle compaction for >200K-token sessions at ~54 min, before the 1h prompt cache expires. **Breaking-ish:** MCP allow rules now match only the named server (`mcp__a` no longer covers `a__b`; use `mcp__<server>__*`); `UserPromptSubmit` hooks now run before skill/command expansion. `[ACTION]` Re-check `permissions.allow` MCP entries after updating. [Changelog](https://code.claude.com/docs/en/changelog)
