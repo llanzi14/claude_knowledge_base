@@ -2,6 +2,12 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code (added 2026-10-16)
+
+- **v2.1.301 (2026-10-15)** — `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS` (unattended retries give up if the usage limit resets too far away); OTel `tool_decision` now carries `classifier_verdict`, `permission_mode`, `classifier_category`; `fable`/`best` alias falls back once to the previous Fable model if the newest isn't enabled for your org; Read no longer reads binary files (.xlsm, .parquet, .epub, .heic) as text; Grep/Glob error out instead of reporting "no matches" when the search program fails; VS Code LaTeX rendering. [Changelog](https://code.claude.com/docs/en/changelog)
+- **API (2026-10-15)** — Fast mode for Claude Opus 5.5 is out of research preview (no approval; `fast-mode-2026-02-01` header optional; still needed for Opus 5 / 4.8); also on Microsoft Foundry. Compliance API now exposes members' custom instructions (Enterprise, beta). [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+- **Newsroom (2026-10-15)** — "An update on independent evaluators" (follows the Sept 18 Accenture/Faculty embedded-evaluator deal; body not read). [News](https://www.anthropic.com/news)
+
 ## Claude Code (added 2026-10-15)
 
 - **v2.1.300 (2026-10-14)** — OTel: GenAI semantic-convention span attributes and `cache_creation_5m/1h_tokens` on `api_request`; `/advisor` on Claude Platform on AWS; `updatedInput` from PreToolUse/PermissionRequest hooks now validated like Claude's own input; large api.anthropic.com requests gzip-compressed (`CLAUDE_CODE_GZIP_REQUEST_BODIES=0` to disable); `claude remote-control` no longer accepts `--sandbox/--no-sandbox` (use `sandbox.enabled`); 59 fixes (background agents, worktrees, MCP schemas, Slack/Code Review). [Changelog](https://code.claude.com/docs/en/changelog)

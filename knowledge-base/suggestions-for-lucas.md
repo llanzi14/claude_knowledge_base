@@ -6,6 +6,13 @@ Generated `(2026-06-29)`, updated `(2026-10-11)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -84. `[ACTION]` Update to v2.1.301 and cap usage-limit waits in unattended runs
+Scheduled routines can now give up instead of sleeping through a distant usage-limit reset.
+- Set `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS` (e.g. 15 min) on routines so a stuck run fails fast and can notify you
+- If you use Opus 5.5 for latency-sensitive work, fast mode is now GA: no approval or beta header needed
+- Grep/Glob now error on failure rather than "no matches" — re-check any skill that treated empty results as success
+- [Changelog](https://code.claude.com/docs/en/changelog) / [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+
 ### -83. `[ACTION]` Update to v2.1.300 and check hook `updatedInput` validation
 v2.1.300 now validates `updatedInput` returned by PreToolUse/PermissionRequest hooks like normal tool input; malformed rewrites will be rejected.
 - After updating, smoke-test any hook that rewrites tool input; use the new OTel cache-token fields if you export telemetry
