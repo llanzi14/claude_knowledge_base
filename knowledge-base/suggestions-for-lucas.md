@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-11)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-17)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -85. `[ACTION]` Update to v2.1.302: re-test headless/forked subagents
+Fork subagents are now default-on in `claude -p` and the Agent SDK, and headless runs on third-party providers start in `default` permission mode.
+- Set `CLAUDE_CODE_FORK_SUBAGENT=0` in routines if forked context changes behaviour; pin `--permission-mode` explicitly in unattended scripts
+- If you use Claude Design, export work before 2026-12-14 (standalone app closes)
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -84. `[ACTION]` Update to v2.1.301 and cap usage-limit waits in unattended runs
 Scheduled routines can now give up instead of sleeping through a distant usage-limit reset.

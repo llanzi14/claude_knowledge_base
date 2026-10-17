@@ -2,6 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code (added 2026-10-17)
+
+- **v2.1.302 (2026-10-16)** — `CLAUDE_CODE_AUTO_MODE_MODEL` (client-side auto-mode classifier model); `Idle compaction` row in `/config`; fork subagents default-on in `claude -p`/Agent SDK/desktop/VS Code (`CLAUDE_CODE_FORK_SUBAGENT=0` opts out); desktop/VS Code always background subagents; `claude -p` with no permission mode starts in `default` on third-party providers; Read refuses images >128 MB; cloud "Rewind to here" on all messages; 43 fixes. [Changelog](https://code.claude.com/docs/en/changelog)
+- **Deprecation** — standalone Claude Design (claude.ai/design) closes 2026-12-14; `/design-sync` and `/design-login` now warn. [Changelog](https://code.claude.com/docs/en/changelog)
+
 ## Claude Code (added 2026-10-16)
 
 - **v2.1.301 (2026-10-15)** — `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS` (unattended retries give up if the usage limit resets too far away); OTel `tool_decision` now carries `classifier_verdict`, `permission_mode`, `classifier_category`; `fable`/`best` alias falls back once to the previous Fable model if the newest isn't enabled for your org; Read no longer reads binary files (.xlsm, .parquet, .epub, .heic) as text; Grep/Glob error out instead of reporting "no matches" when the search program fails; VS Code LaTeX rendering. [Changelog](https://code.claude.com/docs/en/changelog)
