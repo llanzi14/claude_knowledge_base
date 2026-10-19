@@ -2,6 +2,10 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code (added 2026-10-19)
+
+- **v2.1.303 (2026-10-18)** — bug fixes and reliability improvements only; no listed behaviour changes. [Changelog](https://code.claude.com/docs/en/changelog)
+
 ## Claude Code (added 2026-10-17)
 
 - **v2.1.302 (2026-10-16)** — `CLAUDE_CODE_AUTO_MODE_MODEL` (client-side auto-mode classifier model); `Idle compaction` row in `/config`; fork subagents default-on in `claude -p`/Agent SDK/desktop/VS Code (`CLAUDE_CODE_FORK_SUBAGENT=0` opts out); desktop/VS Code always background subagents; `claude -p` with no permission mode starts in `default` on third-party providers; Read refuses images >128 MB; cloud "Rewind to here" on all messages; 43 fixes. [Changelog](https://code.claude.com/docs/en/changelog)
