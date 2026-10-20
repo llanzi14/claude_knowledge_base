@@ -2,6 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code (added 2026-10-20)
+
+- **v2.1.304 (2026-10-19)** — `/auto-mode-setup` guided setup (also on Bedrock/Vertex/Foundry/gateways); mods' `tool.check` can return `decider: "person"` so only a human dialog/host callback approves; Pro/Max get a warning before resuming an idle conversation that would burn a notable share of the 5-hour limit; tool search on by default behind custom `ANTHROPIC_BASE_URL` (retries without it on 400/422); skill list resent after compaction; Code Review gets Quick/Standard/Deep levels per org or repo and an all-repos-in-org option; stronger prompts for `rm -r` on mounted drives; worktrees with unpushed commits no longer silently removed. [Changelog](https://code.claude.com/docs/en/changelog)
+- **Newsroom (2026-10-18)** — "Investing in the public benefit" (Announcements; body not retrievable). API release notes unchanged since 2026-10-15. [News](https://www.anthropic.com/news)
+
 ## Claude Code (added 2026-10-19)
 
 - **v2.1.303 (2026-10-18)** — bug fixes and reliability improvements only; no listed behaviour changes. [Changelog](https://code.claude.com/docs/en/changelog)

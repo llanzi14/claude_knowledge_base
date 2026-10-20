@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-17)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-20)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -86. `[ACTION]` Update to v2.1.304: set up Code Review levels and run `/auto-mode-setup`
+Code Review now has Quick/Standard/Deep levels per org or repo, and auto mode has a guided setup.
+- In Code Review settings, use Quick on routine repos and Deep on Lanzico's client-facing code; enable all-repos-in-org if you want blanket coverage
+- Run `/auto-mode-setup` before relying on auto mode in unattended routines
+- Pro/Max: resuming old conversations now warns about 5-hour-limit cost — prefer fresh sessions + CLAUDE.md for stale work
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -85. `[ACTION]` Update to v2.1.302: re-test headless/forked subagents
 Fork subagents are now default-on in `claude -p` and the Agent SDK, and headless runs on third-party providers start in `default` permission mode.
