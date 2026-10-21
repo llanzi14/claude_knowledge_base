@@ -2,6 +2,12 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code (added 2026-10-21)
+
+- **v2.1.305 / v2.1.306 (dates not listed, ~2026-10-20)** — `sandbox.allowNestedUserNamespaces` (Linux; lets sandboxed commands create user namespaces for Chromium/rootless podman, but weakens file protections); `CLAUDE_CODE_RETRY_WATCHDOG_USAGE_LIMIT_RECHECK_MS` (unattended retries notice a lifted usage limit); `allowedMcpServers` no longer filters `managed-mcp.json` stdio servers using `${VAR}` only in `env` (previously excluded servers may load after upgrade — use `deniedMcpServers`); `/artifacts` delete confirm now 1/2/Esc; gateways rejecting tool search are retried without it; fixed `claude -p` in cloud sessions reporting "Not logged in" and a false "prompt is too long" with many MCP tools. [Changelog](https://code.claude.com/docs/en/changelog)
+- **API (2026-10-20)** — Inference hooks GA for Enterprise orgs; user profiles (`/v1/user_profiles`, SDK + `ant` CLI) to attribute requests to end customers; Admin API organization webhooks (beta, `webhooks-2026-10-07`, via account team). [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+- **Newsroom** — earlier October posts surfaced: "Strengthening our defenses against distillation attacks" (10-12), "Introducing the Anthropic Cyber Mission" and "2026 Usage Policy update" (10-08). No new posts since 10-18. [News](https://www.anthropic.com/news)
+
 ## Claude Code (added 2026-10-20)
 
 - **v2.1.304 (2026-10-19)** — `/auto-mode-setup` guided setup (also on Bedrock/Vertex/Foundry/gateways); mods' `tool.check` can return `decider: "person"` so only a human dialog/host callback approves; Pro/Max get a warning before resuming an idle conversation that would burn a notable share of the 5-hour limit; tool search on by default behind custom `ANTHROPIC_BASE_URL` (retries without it on 400/422); skill list resent after compaction; Code Review gets Quick/Standard/Deep levels per org or repo and an all-repos-in-org option; stronger prompts for `rm -r` on mounted drives; worktrees with unpushed commits no longer silently removed. [Changelog](https://code.claude.com/docs/en/changelog)
