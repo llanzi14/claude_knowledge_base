@@ -1,10 +1,18 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-20)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-22)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -87. `[ACTION]` Update to v2.1.308 and plan the SDK/API `2026-10-21` migration
+New SDK majors (Python 2.0, TS 1.0, etc.) send API version `2026-10-21` by default and carry breaking changes; pin SDK versions until you've migrated.
+- Pin current SDK versions in any Lanzico project; in each repo run `/claude-api api-version` on a branch and review the diff before merging
+- Note the SDK license change MIT -> Apache 2.0 if client contracts track licenses
+- Add the `claude_code.safety_event` OTel event to any telemetry to audit blocked/prompted tool calls in unattended routines
+- If you use `@claude review always`, `@claude review stop` now ends the subscription
+- [Changelog](https://code.claude.com/docs/en/changelog) / [Migration guide](https://platform.claude.com/docs/en/api/migration-2026-10-21)
 
 ### -86. `[ACTION]` Update to v2.1.304: set up Code Review levels and run `/auto-mode-setup`
 Code Review now has Quick/Standard/Deep levels per org or repo, and auto mode has a guided setup.
