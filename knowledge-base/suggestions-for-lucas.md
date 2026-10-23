@@ -1,10 +1,17 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-22)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-23)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -88. `[ACTION]` Update to v2.1.309: fix scripts that call `claude ultrareview` or rely on `sed -i`
+- Add `--trust-workspace` (or `CLAUDE_CODE_DISABLE_ULTRAREVIEW_TRUST_CHECK=1`) to any unattended `claude ultrareview` call
+- `sed -i` now prompts like other Bash edits and isn't undone by `/rewind`; commit before scripted bulk edits
+- Sandboxing hardening (no startup files outside sandbox, `--mcp-config` protected) is worth the upgrade for routines like this one
+- Skills are heading to the Agentic AI Foundation (title-only news, 2026-10-22): keep Lanzico skills in standard `SKILL.md` format so they stay portable
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -87. `[ACTION]` Update to v2.1.308 and plan the SDK/API `2026-10-21` migration
 New SDK majors (Python 2.0, TS 1.0, etc.) send API version `2026-10-21` by default and carry breaking changes; pin SDK versions until you've migrated.
