@@ -1,10 +1,15 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-23)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-24)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -89. `[ACTION]` Update to v2.1.310: Windows hook safety fix and unattended MCP behaviour
+- If any Lanzico machine runs Windows with PreToolUse/PermissionRequest hooks, update: hooks previously let calls through when Git Bash was missing
+- Unattended MCP calls that hit an unanswered elicitation now stop retrying; check routines that depend on authenticated MCP servers (e.g. lemlist needs auth) fail cleanly and notify
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -88. `[ACTION]` Update to v2.1.309: fix scripts that call `claude ultrareview` or rely on `sed -i`
 - Add `--trust-workspace` (or `CLAUDE_CODE_DISABLE_ULTRAREVIEW_TRUST_CHECK=1`) to any unattended `claude ultrareview` call

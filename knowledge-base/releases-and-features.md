@@ -2,7 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
-## Claude Code / API (added 2026-10-23)
+## Claude Code / API (added 2026-10-24)
+
+- **Claude Code v2.1.310 (2026-10-23)** — Monitor tool/plugin monitors work on Bedrock, Vertex, Foundry and with telemetry off; Cloud sessions + Remote Control permissions assignable to Enterprise custom roles; unanswered-elicitation MCP timeouts in non-interactive runs now tell Claude not to retry; gateway-compat retry without `effort-2025-11-24` beta; fixes for `cleanupPeriodDays` deleting recent files and Windows hooks passing through when Git Bash is missing. [Changelog](https://code.claude.com/docs/en/changelog)
+
+## Claude Code / API (earlier, added 2026-10-23)
 
 - **Claude Code v2.1.309 (2026-10-22)** — `sed -i` now uses the standard Bash prompt and is not restored by `/rewind`; `claude ultrareview` requires workspace trust (scripts: `--trust-workspace` or `CLAUDE_CODE_DISABLE_ULTRAREVIEW_TRUST_CHECK=1`); bypass-permissions mode in Desktop/VS Code denies dangerous `rm`/`rmdir` immediately with a rewrite hint; worktree creation no longer fetches git objects on demand; `/claude-api` skill builds Managed Agents subagent teams on `multiagent_20261001` (dynamic workflows default on); security fixes: sandboxed Bash no longer runs shell startup files outside the sandbox, sandboxed commands/auto-accepted edits can't modify the `--mcp-config` file, disabled MCP servers not reconnected by permission prompts in print/SDK, better Bash permission checks around `cd`, redirects and `Edit(path)` deny rules. v2.1.308 fixes only. [Changelog](https://code.claude.com/docs/en/changelog)
 - **Claude Models on Google Cloud (2026-10-22)** — Anthropic-operated Claude API reached via a Google Cloud project, Google IAM access, Marketplace billing; fast mode for Opus 5.5 available there. [API notes](https://platform.claude.com/docs/en/release-notes/overview)
