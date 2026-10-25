@@ -2,6 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code (added 2026-10-25)
+
+- **Claude Code v2.1.310 (2026-10-23)** — Monitor tool/plugin monitors work on Bedrock, Vertex, Foundry and with nonessential traffic disabled; Enterprise custom roles can hold Cloud sessions and Remote Control permissions (admin toggle asks for confirmation); cloud environment setup script loadable from a file; non-interactive MCP elicitation timeouts tell Claude not to repeat the call; gateway retries without the `effort-2025-11-24` beta / mid-conversation system messages; fixes for `cleanupPeriodDays` deleting recent files, compaction after "Prompt is too long", Windows hook bypass when Git Bash is missing, VS Code plan-feedback approving the plan. [Changelog](https://code.claude.com/docs/en/changelog)
+- **Agent Skills donation (2026-10-22)** — Newsroom lists "Donating Agent Skills to the Agentic AI Foundation" (listing summary: open standard donated, many platforms adopted); not corroborated elsewhere. [News](https://www.anthropic.com/news)
+
 ## Claude Code / API (added 2026-10-23)
 
 - **Claude Code v2.1.309 (2026-10-22)** — `sed -i` now uses the standard Bash prompt and is not restored by `/rewind`; `claude ultrareview` requires workspace trust (scripts: `--trust-workspace` or `CLAUDE_CODE_DISABLE_ULTRAREVIEW_TRUST_CHECK=1`); bypass-permissions mode in Desktop/VS Code denies dangerous `rm`/`rmdir` immediately with a rewrite hint; worktree creation no longer fetches git objects on demand; `/claude-api` skill builds Managed Agents subagent teams on `multiagent_20261001` (dynamic workflows default on); security fixes: sandboxed Bash no longer runs shell startup files outside the sandbox, sandboxed commands/auto-accepted edits can't modify the `--mcp-config` file, disabled MCP servers not reconnected by permission prompts in print/SDK, better Bash permission checks around `cd`, redirects and `Edit(path)` deny rules. v2.1.308 fixes only. [Changelog](https://code.claude.com/docs/en/changelog)
