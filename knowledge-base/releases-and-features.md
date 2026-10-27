@@ -2,6 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code (added 2026-10-27)
+
+- **Claude Code v2.1.311 (2026-10-26)** — `ultrathink` runs its turn at xhigh effort on Opus 5.5/Sonnet 5.5/Haiku 5.5/Fable 5.1 via the Anthropic API; JSON/stream-json output escapes some control chars as `\uXXXX`; `DISABLE_COMPACT` from settings can only disable compaction; cloud-provider model settings load from a signed file (`CLAUDE_CODE_MODEL_CATALOG=off` to disable); `self-hosted-runner` gets `--hold-idle-file`/`--max-hold-min`; Skills view in Claude Tag analytics; 56 fixes (compaction over 200K tokens no longer blocked by "Usage credits required for 1M context", repeated `SubagentStop` hooks, Write/Edit stalls, subagents see late-connecting MCP servers). [Changelog](https://code.claude.com/docs/en/changelog)
+- **Newsroom (2026-10-26)** — "Anthropic files S-1 with the SEC for proposed IPO" (title only; unverified — only a confidential draft S-1 from 2026-06-01 is corroborated). [News](https://www.anthropic.com/news)
+
 ## Claude Code (added 2026-10-25)
 
 - **Claude Code v2.1.310 (2026-10-23)** — Monitor tool/plugin monitors work on Bedrock, Vertex, Foundry and with nonessential traffic disabled; Enterprise custom roles can hold Cloud sessions and Remote Control permissions (admin toggle asks for confirmation); cloud environment setup script loadable from a file; non-interactive MCP elicitation timeouts tell Claude not to repeat the call; gateway retries without the `effort-2025-11-24` beta / mid-conversation system messages; fixes for `cleanupPeriodDays` deleting recent files, compaction after "Prompt is too long", Windows hook bypass when Git Bash is missing, VS Code plan-feedback approving the plan. [Changelog](https://code.claude.com/docs/en/changelog)
