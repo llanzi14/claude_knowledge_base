@@ -1,10 +1,16 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-23)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-28)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -89. `[ACTION]` Update to v2.1.312: set effort on scheduled routines and drop safety_event dependence
+- This routine can now have an effort level set in the cloud-routine model menu; use low/medium for the daily crawl to save tokens
+- Setup scripts for cloud environments get a proper Bash editor (add `git` sync / tool installs there)
+- `claude_code.safety_event` OTel event was removed again; don't build audit dashboards on it (see -87)
+- [Changelog](https://code.claude.com/docs/en/changelog)
 
 ### -88. `[ACTION]` Update to v2.1.309: fix scripts that call `claude ultrareview` or rely on `sed -i`
 - Add `--trust-workspace` (or `CLAUDE_CODE_DISABLE_ULTRAREVIEW_TRUST_CHECK=1`) to any unattended `claude ultrareview` call

@@ -2,6 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code (added 2026-10-28)
+
+- **Claude Code v2.1.312 (2026-10-27)** — cloud routines get an effort-level picker in the model menu; cloud environment setup scripts get a Bash editor (syntax colouring, line numbers, Copy); `oidc.user_id_claim` for the Claude apps gateway; Bedrock/Vertex/Foundry/Mantle use the shorter system prompt for unrecognized model names (`CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT=0` to keep full) and refusal-fallback model switches apply to them too (`CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK=1`); usage messages say "5-hour limit"; prompt/agent hooks capped at 24 concurrent per session; `claude_code.safety_event` OTel event removed (added in v2.1.307); 22 fixes (managed settings after VS Code sign-in, large CLAUDE.md not overwritten after partial read, `paths:` skills found after Bash `cd`, Claude Tag silent in network-None environments). [Changelog](https://code.claude.com/docs/en/changelog)
+- **Newsroom (2026-10-27)** — "Early progress on accelerating drug development with Claude"; "Expanding our partnership with GSA to bring Claude to all levels of government" (titles only). [News](https://www.anthropic.com/news)
+
 ## Claude Code (added 2026-10-27)
 
 - **Claude Code v2.1.311 (2026-10-26)** — `ultrathink` runs its turn at xhigh effort on Opus 5.5/Sonnet 5.5/Haiku 5.5/Fable 5.1 via the Anthropic API; JSON/stream-json output escapes some control chars as `\uXXXX`; `DISABLE_COMPACT` from settings can only disable compaction; cloud-provider model settings load from a signed file (`CLAUDE_CODE_MODEL_CATALOG=off` to disable); `self-hosted-runner` gets `--hold-idle-file`/`--max-hold-min`; Skills view in Claude Tag analytics; 56 fixes (compaction over 200K tokens no longer blocked by "Usage credits required for 1M context", repeated `SubagentStop` hooks, Write/Edit stalls, subagents see late-connecting MCP servers). [Changelog](https://code.claude.com/docs/en/changelog)
