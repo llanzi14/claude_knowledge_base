@@ -2,6 +2,10 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Newsroom (added 2026-10-29)
+
+- **Newsroom (2026-10-28)** — "AI for Science expands to foundations and research institutions" (title only; body not retrievable). [News](https://www.anthropic.com/news)
+
 ## Claude Code (added 2026-10-28)
 
 - **Claude Code v2.1.312 (2026-10-27)** — cloud routines get an effort-level picker in the model menu; cloud environment setup scripts get a Bash editor (syntax colouring, line numbers, Copy); `oidc.user_id_claim` for the Claude apps gateway; Bedrock/Vertex/Foundry/Mantle use the shorter system prompt for unrecognized model names (`CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT=0` to keep full) and refusal-fallback model switches apply to them too (`CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK=1`); usage messages say "5-hour limit"; prompt/agent hooks capped at 24 concurrent per session; `claude_code.safety_event` OTel event removed (added in v2.1.307); 22 fixes (managed settings after VS Code sign-in, large CLAUDE.md not overwritten after partial read, `paths:` skills found after Bash `cd`, Claude Tag silent in network-None environments). [Changelog](https://code.claude.com/docs/en/changelog)
