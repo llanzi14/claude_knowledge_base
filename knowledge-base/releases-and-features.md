@@ -2,6 +2,12 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code / API (added 2026-10-30)
+
+- **Claude Code v2.1.314 (2026-10-30)** — new `permissions.blockWritesOutsideWorkingDirectories` makes Write/Edit/NotebookEdit refuse paths outside working directories in every permission mode; idle compaction in VS Code and Desktop Code tab (conversations >200K tokens that sit idle get summarized); optional `groups` list for Claude apps gateway upstreams (route only listed IdP groups); `FORCE_HYPERLINK=false/no/off` now turns hyperlinks off (previously on). v2.1.313 also exists (entry not retrieved). [Changelog](https://code.claude.com/docs/en/changelog)
+- **Usage and Cost Analytics API beta (2026-10-29)** — `/v1/organizations/analytics/usage` and `/cost` (beta `analytics-usage-cost-2026-08-24`) for Console and Enterprise orgs; older Usage and Cost API now legacy. [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+- **Request size limit 128 MB (2026-10-28)** — Messages and Token Counting APIs raised from 32 MB on the first-party API. [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+
 ## Newsroom (added 2026-10-29)
 
 - **Newsroom (2026-10-28)** — "AI for Science expands to foundations and research institutions" (title only; body not retrievable). [News](https://www.anthropic.com/news)
