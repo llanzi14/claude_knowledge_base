@@ -1,10 +1,15 @@
 # Suggestions for Lucas's Claude Usage
 
-Generated `(2026-06-29)`, updated `(2026-10-28)`. Based on knowledge base findings; review and adopt selectively.
+Generated `(2026-06-29)`, updated `(2026-10-31)`. Based on knowledge base findings; review and adopt selectively.
 
 ---
 
 ## Immediate / High-Impact
+
+### -90. `[ACTION]` Update to v2.1.316: cap subagent effort and clear Opus 4.8 fast-mode usage before 2026-11-30
+- Set `CLAUDE_CODE_SUBAGENT_EFFORT` (e.g. `medium`) so subagents don't inherit expensive effort levels
+- Grep configs/scripts for `claude-opus-4-8` with `speed: "fast"`; it errors (no fallback) from 2026-11-30 — move to Opus 5.5
+- Consider `permissions.blockWritesOutsideWorkingDirectories` (v2.1.314) for unattended routines
 
 ### -89. `[ACTION]` Update to v2.1.312: set effort on scheduled routines and drop safety_event dependence
 - This routine can now have an effort level set in the cloud-routine model menu; use low/medium for the daily crawl to save tokens

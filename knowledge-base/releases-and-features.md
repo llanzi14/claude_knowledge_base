@@ -2,6 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code / API (added 2026-10-31)
+
+- **Claude Code v2.1.316 (2026-10-31)** — env vars `CLAUDE_CODE_DISABLE_ULTRATHINK`, `CLAUDE_CODE_SUBAGENT_EFFORT` (default subagent effort), `CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP`; gateway `pooled_budget` (shared monthly group budget), `managed.policy_mode: layered`, `guardrail.input_tagging` for Bedrock; Team/Enterprise server-managed settings apply without approval prompt; cloud session form cards; 34 fixes. v2.1.314 additionally: `guardrail_trace` gateway logging, cloud sessions start even if setup script fails. [Changelog](https://code.claude.com/docs/en/changelog)
+- **Opus 4.8 fast mode deprecated (2026-10-30)** — removed 2026-11-30; `speed: "fast"` requests to `claude-opus-4-8` then error. Migrate to Opus 5.5. [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+
 ## Claude Code / API (added 2026-10-30)
 
 - **Claude Code v2.1.314 (2026-10-30)** — new `permissions.blockWritesOutsideWorkingDirectories` makes Write/Edit/NotebookEdit refuse paths outside working directories in every permission mode; idle compaction in VS Code and Desktop Code tab (conversations >200K tokens that sit idle get summarized); optional `groups` list for Claude apps gateway upstreams (route only listed IdP groups); `FORCE_HYPERLINK=false/no/off` now turns hyperlinks off (previously on). v2.1.313 also exists (entry not retrieved). [Changelog](https://code.claude.com/docs/en/changelog)
