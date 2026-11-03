@@ -6,6 +6,12 @@ Generated `(2026-06-29)`, updated `(2026-10-31)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -91. `[ACTION]` Update to v2.1.317 and review scheduled-task connectors
+- `/schedule` now warns when a new cloud task gets connectors you didn't request: check this routine's attached connectors (Gmail, Drive, Notion, Canva, Miro, Clay…) and remove the ones a KB crawl doesn't need (least privilege)
+- Subagents on a different model now use that model's own effort default; revisit `CLAUDE_CODE_SUBAGENT_EFFORT` (see -90)
+- Evaluate Messages API "message threads" beta (`message-threads-2026-08-12`) for any long-running agent loop in Lanzico projects; beta, 5-min expiry
+- [Changelog](https://code.claude.com/docs/en/changelog)
+
 ### -90. `[ACTION]` Update to v2.1.316: cap subagent effort and clear Opus 4.8 fast-mode usage before 2026-11-30
 - Set `CLAUDE_CODE_SUBAGENT_EFFORT` (e.g. `medium`) so subagents don't inherit expensive effort levels
 - Grep configs/scripts for `claude-opus-4-8` with `speed: "fast"`; it errors (no fallback) from 2026-11-30 — move to Opus 5.5

@@ -2,6 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code / API (added 2026-11-03)
+
+- **Claude Code v2.1.317 (2026-11-03)** — asks before web/shell tool calls send your account email over the network; Agent SDK hook callbacks accept `onFailure: "block"`; `/schedule` warns when a new cloud scheduled task gets connectors you didn't request; `GET /v1/organizations/analytics/cost` gateway cost report (by total/developer/day/IdP group); `CLAUDE_CODE_DISABLE_NESTED_SESSION_ID=1` for `claude -p` inside sessions; subagents/teammates on a different model use that model's saved/default effort; Read no longer returns the "file unchanged" stub; 62 fixes (MCP disconnect after first turn in some desktop sessions, `claude auth status` sign-outs, `claude -p` exit 0 on full-disk transcript loss). [Changelog](https://code.claude.com/docs/en/changelog)
+- **Message threads beta (2026-11-02)** — Messages API keeps conversation server-side so follow-up requests send only new messages (lower TTFT for long chats/agent loops). Beta header `message-threads-2026-08-12`; thread expires 5 min after last request, deleted within 1 h. Available on Claude API, Platform on AWS, Google Cloud (Anthropic managed), Microsoft Foundry. [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+
 ## Claude Code / API (added 2026-10-31)
 
 - **Claude Code v2.1.316 (2026-10-31)** — env vars `CLAUDE_CODE_DISABLE_ULTRATHINK`, `CLAUDE_CODE_SUBAGENT_EFFORT` (default subagent effort), `CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP`; gateway `pooled_budget` (shared monthly group budget), `managed.policy_mode: layered`, `guardrail.input_tagging` for Bedrock; Team/Enterprise server-managed settings apply without approval prompt; cloud session form cards; 34 fixes. v2.1.314 additionally: `guardrail_trace` gateway logging, cloud sessions start even if setup script fails. [Changelog](https://code.claude.com/docs/en/changelog)
