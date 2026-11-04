@@ -2,6 +2,11 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code / API (added 2026-11-04)
+
+- **Claude Code v2.1.318 (2026-11-04)** — auto-mode and mod consent records; `assume_role` on gateway `mantle` upstreams; `effort` option for a mod's `$.model.fork`; `loginExpiresAt` in `claude auth status` and `credential_expires_at` in `claude -p` JSON, plus a stderr warning 10 days before a claude.ai sign-in expires; "No repository" option for cloud sessions. Changed: no more IDE-extension auto-install from IDE terminals (use `/ide`); background subagents move shell commands to background after 3 min on all providers; `deniedMcpServers` URL entries also block matching Anthropic-provided servers; self-hosted runner log lines changed (`retryable=true:`/`false:`). 47 fixes (`--continue` losing conversation after malformed tool-call retries, `~/.claude.json` corruption on shared homes). [Changelog](https://code.claude.com/docs/en/changelog)
+- **Text watermark (2026-11-03)** — text from Claude Mythos 5, Opus 4.7 and Sonnet 4.6 carries Anthropic's text watermark on listed platforms; on Sonnet 4.6, non-default `temperature`/`top_p`/`top_k` may drop it. [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+
 ## Claude Code / API (added 2026-11-03)
 
 - **Claude Code v2.1.317 (2026-11-03)** — asks before web/shell tool calls send your account email over the network; Agent SDK hook callbacks accept `onFailure: "block"`; `/schedule` warns when a new cloud scheduled task gets connectors you didn't request; `GET /v1/organizations/analytics/cost` gateway cost report (by total/developer/day/IdP group); `CLAUDE_CODE_DISABLE_NESTED_SESSION_ID=1` for `claude -p` inside sessions; subagents/teammates on a different model use that model's saved/default effort; Read no longer returns the "file unchanged" stub; 62 fixes (MCP disconnect after first turn in some desktop sessions, `claude auth status` sign-outs, `claude -p` exit 0 on full-disk transcript loss). [Changelog](https://code.claude.com/docs/en/changelog)

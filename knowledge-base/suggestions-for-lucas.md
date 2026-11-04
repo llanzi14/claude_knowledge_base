@@ -6,6 +6,11 @@ Generated `(2026-06-29)`, updated `(2026-10-31)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -92. `[ACTION]` Update to v2.1.318; use cloud "No repository" sessions and login-expiry warning
+- Scheduled `claude -p` jobs now warn on stderr 10 days before the claude.ai sign-in expires: watch routine logs so crawls don't silently stop
+- If any script matches self-hosted runner logs for `retryable=true:`/`false:`, update it
+- Background subagents now background shell commands after 3 min (cache-friendly); no change needed
+
 ### -91. `[ACTION]` Update to v2.1.317 and review scheduled-task connectors
 - `/schedule` now warns when a new cloud task gets connectors you didn't request: check this routine's attached connectors (Gmail, Drive, Notion, Canva, Miro, Clay…) and remove the ones a KB crawl doesn't need (least privilege)
 - Subagents on a different model now use that model's own effort default; revisit `CLAUDE_CODE_SUBAGENT_EFFORT` (see -90)
