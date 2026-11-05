@@ -2,6 +2,12 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code / API (added 2026-11-05)
+
+- **Claude Code v2.1.318 (2026-11-04)** — `claude auth status` shows `loginExpiresAt` and `claude -p` JSON adds `credential_expires_at` (stderr warning 10 days before claude.ai sign-in expires; useful for unattended routines); cloud sessions get a "No repository" start option; Claude Code no longer auto-installs/updates the IDE extension from an IDE terminal (use `/ide` or the extensions view); mods: `effort` option on `$.model.fork`; gateway `assume_role` on `mantle` upstreams (per-developer AWS cost attribution); `CLAUDE_RUNNER_SPAWN_REASON` for self-hosted runner hook. [Changelog](https://code.claude.com/docs/en/changelog)
+- **Text watermarking (2026-11-03)** — text from Claude Mythos 5, Opus 4.7 and Sonnet 4.6 carries Anthropic's text watermark on listed platforms; on Sonnet 4.6 non-default `temperature`/`top_p`/`top_k` may skip it. [API notes](https://platform.claude.com/docs/en/release-notes/overview) / [How Claude marks AI-generated content](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content)
+- **Newsroom**: no post newer than 2026-10-28 (S-1 filed 2026-10-26). [News](https://www.anthropic.com/news)
+
 ## Claude Code / API (added 2026-11-03)
 
 - **Claude Code v2.1.317 (2026-11-03)** — asks before web/shell tool calls send your account email over the network; Agent SDK hook callbacks accept `onFailure: "block"`; `/schedule` warns when a new cloud scheduled task gets connectors you didn't request; `GET /v1/organizations/analytics/cost` gateway cost report (by total/developer/day/IdP group); `CLAUDE_CODE_DISABLE_NESTED_SESSION_ID=1` for `claude -p` inside sessions; subagents/teammates on a different model use that model's saved/default effort; Read no longer returns the "file unchanged" stub; 62 fixes (MCP disconnect after first turn in some desktop sessions, `claude auth status` sign-outs, `claude -p` exit 0 on full-disk transcript loss). [Changelog](https://code.claude.com/docs/en/changelog)

@@ -6,6 +6,12 @@ Generated `(2026-06-29)`, updated `(2026-10-31)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -92. `[ACTION]` Update to v2.1.318 and watch routine sign-in expiry
+- Unattended routines fail silently when the claude.ai login lapses: add a `claude auth status` check (`loginExpiresAt`) or parse `credential_expires_at` from `claude -p` JSON and alert ~10 days ahead
+- Cloud sessions can now start with "No repository": use for pure research/Slack routines that don't need a clone
+- IDE extension no longer auto-updates from IDE terminals: update it manually via the extensions view
+- [Changelog](https://code.claude.com/docs/en/changelog)
+
 ### -91. `[ACTION]` Update to v2.1.317 and review scheduled-task connectors
 - `/schedule` now warns when a new cloud task gets connectors you didn't request: check this routine's attached connectors (Gmail, Drive, Notion, Canva, Miro, Clay…) and remove the ones a KB crawl doesn't need (least privilege)
 - Subagents on a different model now use that model's own effort default; revisit `CLAUDE_CODE_SUBAGENT_EFFORT` (see -90)
