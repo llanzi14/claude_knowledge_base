@@ -6,6 +6,12 @@ Generated `(2026-06-29)`, updated `(2026-10-31)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -92. `[ACTION]` Update to v2.1.318: check sign-in expiry and MCP deny rules
+- Scheduled routines run on a claude.ai sign-in; v2.1.318 warns 10 days before it expires (`claude auth status` shows `loginExpiresAt`). Re-auth before then so this routine doesn't silently stop
+- `deniedMcpServers` URL entries now also block Anthropic-provided connectors: use it to drop unneeded ones (Canva, Miro, Clay) from unattended runs
+- If you use the Console, consider the new IP allowlist (beta) to limit where a leaked API key works
+- [Changelog](https://code.claude.com/docs/en/changelog)
+
 ### -91. `[ACTION]` Update to v2.1.317 and review scheduled-task connectors
 - `/schedule` now warns when a new cloud task gets connectors you didn't request: check this routine's attached connectors (Gmail, Drive, Notion, Canva, Miro, Clay…) and remove the ones a KB crawl doesn't need (least privilege)
 - Subagents on a different model now use that model's own effort default; revisit `CLAUDE_CODE_SUBAGENT_EFFORT` (see -90)
