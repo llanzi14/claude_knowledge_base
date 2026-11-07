@@ -6,6 +6,13 @@ Generated `(2026-06-29)`, updated `(2026-10-31)`. Based on knowledge base findin
 
 ## Immediate / High-Impact
 
+### -92. `[ACTION]` Update to v2.1.319: fix /loop keepalive and harden unattended runs
+- Self-paced `/loop` now stops if a turn doesn't reschedule; set `CLAUDE_CODE_LOOP_KEEPALIVE=1` for any loop you rely on
+- For scheduled routines (like this one) consider `permissions.denyInsteadOfPrompting` so nobody-is-watching runs never stall on a prompt
+- Try `/claude-api latency-optimize` on Lanzico API code; add the Console IP allowlist (beta) for production API keys
+- Claude Code 2.1.318+ warns 10 days before claude.ai sign-in expiry: re-login proactively on machines running routines
+- [Changelog](https://code.claude.com/docs/en/changelog)
+
 ### -91. `[ACTION]` Update to v2.1.317 and review scheduled-task connectors
 - `/schedule` now warns when a new cloud task gets connectors you didn't request: check this routine's attached connectors (Gmail, Drive, Notion, Canva, Miro, Clay…) and remove the ones a KB crawl doesn't need (least privilege)
 - Subagents on a different model now use that model's own effort default; revisit `CLAUDE_CODE_SUBAGENT_EFFORT` (see -90)

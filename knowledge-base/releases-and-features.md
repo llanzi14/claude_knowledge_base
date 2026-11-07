@@ -2,6 +2,13 @@
 
 Newest entries first. Dated `(YYYY-MM-DD)` = date added to this KB.
 
+## Claude Code / API (added 2026-11-07)
+
+- **Claude Code v2.1.319 (2026-11-06)** — MCP tasks run in background in the terminal (`CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND` to wait); new `permissions.denyInsteadOfPrompting` (would-be prompts are denied, turn continues); `/claude-api latency-optimize`; `CLAUDE_CODE_DISABLE_FEATURE_FLAGS`; gateway pooled group budgets, `login_notice`, JSON logs; "Earlier in this session" row in `/tasks`. Changed: auto mode with telemetry/flags off asks or denies uncheckable calls (`CLAUDE_CODE_AUTO_MODE_SERVER=0` keeps classifier); **self-paced `/loop` now ends if a turn doesn't reschedule** (`CLAUDE_CODE_LOOP_KEEPALIVE=1` restores old behavior); `which` with flags prompts; `--add-dir` marketplaces need trust; Chrome `shortcuts_*` tools removed; 90 fixes. [Changelog](https://code.claude.com/docs/en/changelog)
+- **Claude Code v2.1.318 (2026-11-04)** — `effort` for mod `$.model.fork`; `loginExpiresAt` in `claude auth status` + 10-day expiry warning; "No repository" option for cloud sessions; no IDE-extension auto-install from IDE terminals (use `/ide`); background subagents push shell commands to background after 3 min; `deniedMcpServers` URL entries also block Anthropic-provided connectors; 47 fixes. [Changelog](https://code.claude.com/docs/en/changelog)
+- **IP allowlisting beta (2026-11-05)** — Console admins can restrict API use to up to 1,000 IPv4/IPv6/CIDR entries per org. Admin API can also sign an Enterprise member out on all devices (beta). [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+- **Text watermark (2026-11-03)** — text from Mythos 5, Opus 4.7, Sonnet 4.6 carries Anthropic's watermark on listed platforms. [API notes](https://platform.claude.com/docs/en/release-notes/overview)
+
 ## Claude Code / API (added 2026-11-03)
 
 - **Claude Code v2.1.317 (2026-11-03)** — asks before web/shell tool calls send your account email over the network; Agent SDK hook callbacks accept `onFailure: "block"`; `/schedule` warns when a new cloud scheduled task gets connectors you didn't request; `GET /v1/organizations/analytics/cost` gateway cost report (by total/developer/day/IdP group); `CLAUDE_CODE_DISABLE_NESTED_SESSION_ID=1` for `claude -p` inside sessions; subagents/teammates on a different model use that model's saved/default effort; Read no longer returns the "file unchanged" stub; 62 fixes (MCP disconnect after first turn in some desktop sessions, `claude auth status` sign-outs, `claude -p` exit 0 on full-disk transcript loss). [Changelog](https://code.claude.com/docs/en/changelog)
